@@ -1,6 +1,7 @@
 {
   "private": true,
   "scripts": {
+    "start": "micro",
     "test": "npm run lint && mocha ./node_modules/html-tests/task-stub/test",
     "lint": "eslint . && stylelint *.css **/*.css && html-validator --file index.html --verbose && htmllint *.html"
   },
@@ -11,6 +12,7 @@
     "html-tests": "1.0.2",
     "html-validator-cli": "3.0.2",
     "htmllint-cli-alpha": "0.0.6",
+    "micro": "latest",
     "mocha": "3.1.0",
     "stylelint": "7.3.1",
     "stylelint-config-hrundel": "1.0.3"
