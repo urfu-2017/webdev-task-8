@@ -1,3 +1,4 @@
+/* eslint-disable */
 // Snap.svg 0.5.1
 //
 // Copyright (c) 2013 – 2017 Adobe Systems Incorporated. All rights reserved.

@@ -12,7 +12,6 @@
     "html-validator-cli": "3.0.2",
     "htmllint-cli-alpha": "0.0.6",
     "mocha": "3.1.0",
-    "path": "0.12.7",
     "stylelint": "7.3.1",
     "stylelint-config-hrundel": "1.0.3"
   }

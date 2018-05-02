@@ -1,18 +1,20 @@
-body {
+body
+{
     font: 15px Arial;
 }
 
-button {
+button
+{
     display: block;
 }
 
-audio {
+audio
+{
     display: block;
-    position: relative;
-    left: -210px;
 }
 
-#svg {
+.svg
+{
     position: absolute;
     left: 500px;
     top: 200px;
@@ -21,7 +23,8 @@ audio {
     border: 1px solid black;
 }
 
-.speech-log {
+.speech-log
+{
     width: 300px;
     height: 200px;
     border: 1px solid black;
