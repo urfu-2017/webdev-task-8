@@ -1,10 +1,34 @@
 <!DOCTYPE html>
 <html lang="ru">
+
 <head>
     <meta charset="utf-8">
     <title>Хрюногочи</title>
     <link rel="stylesheet" href="./index.css">
+    <script src="./snap.svg.js"></script>
 </head>
+
 <body>
+    <div class="stat">Сытость:
+        <span class="stat__amount stat__amount_satiety"></span>
+    </div>
+    <div class="stat">Энергия:
+        <span class="stat__amount stat__amount_energy"></span>
+    </div>
+    <div class="stat">Настроение:
+        <span class="stat__amount stat__amount_mood"></span>
+    </div>
+    <button class="restart-button">Начать заново</button>
+    <button class="feed-button">Покормить</button>
+    <button class="sleep">sleep</button>
+    <button class="awake">awake</button>
+    <div class="speech-log">There would be your phrase</div>
+    <div class="battery-charging"></div>
+    <audio controls>
+        <source src="./hru.mp3" type="audio/mp3">
+    </audio>
+    <svg id="svg"></svg>
+    <script src="./index.js"></script>
 </body>
+
 </html>

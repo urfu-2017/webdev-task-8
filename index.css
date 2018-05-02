@@ -1,0 +1,28 @@
+body {
+    font: 15px Arial;
+}
+
+button {
+    display: block;
+}
+
+audio {
+    display: block;
+    position: relative;
+    left: -210px;
+}
+
+#svg {
+    position: absolute;
+    left: 500px;
+    top: 200px;
+    width: 300px;
+    height: 300px;
+    border: 1px solid black;
+}
+
+.speech-log {
+    width: 300px;
+    height: 200px;
+    border: 1px solid black;
+}
