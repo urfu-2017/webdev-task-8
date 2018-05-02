@@ -4,7 +4,43 @@
     <meta charset="utf-8">
     <title>Хрюногочи</title>
     <link rel="stylesheet" href="./index.css">
+    <script src="./node_modules/snapsvg/dist/snap.svg-min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/js-cookie@2/src/js.cookie.min.js"></script>
 </head>
 <body>
+    <main class="app">
+        <div class="header">
+            <div class="health">
+                <div class="health__satiety">Satiety:
+                    <span class="health__satiety-value"></span>
+                </div>
+                <div class="health__energy">Energy:
+                    <span class="health__energy-value"></span>
+                </div>
+                <div class="health__mood">Mood:
+                    <span class="health__mood-value"></span>
+                </div>
+            </div>
+            <div class="settings">
+                <div class="newGame">
+                    <img src="image/restart.svg" alt="">
+                </div>
+                <div class="voice">
+                    <div class="voice__plus">+</div>
+                    <div class="voice__minus">-</div>
+                    <img src="image/bullhorn.svg" alt="">
+                </div>
+            </div>
+        </div>
+        <div class="hru" >
+            <div class="answer"></div>
+            <svg class="hru__svg"></svg>
+        </div>
+    </main>
+    <script src="js/hru.js"></script>
+    <script src="js/index.js"></script>
+    <script src="js/energy.js"></script>
+    <script src="js/satiety.js"></script>
+    <script src="js/mood.js"></script>
 </body>
 </html>
