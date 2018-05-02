@@ -1,0 +1,115 @@
+@import url('https://fonts.googleapis.com/css?family=Play');
+
+body {
+    display: flex;
+    justify-content: center;
+
+    font-family: 'Play', sans-serif;
+    font-size: 26px;
+}
+
+.game {
+    
+    width: 500px;
+    display: grid;
+
+    grid-template-areas: "state"
+        "hrundel"
+        "controllers";
+
+    grid-template-rows: auto 400px auto;
+    box-shadow: 0 0 5px grey;
+}
+
+.state {
+    grid-area: state;
+
+    text-align: center;
+
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.state__card {
+    margin: 5px;
+    padding: 5px;
+    border: 1px solid black;
+}
+
+.hrundel {
+    grid-area: hrundel;
+
+    border: 1px solid black;
+    border-left: none;
+    border-right: none;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.hrundel__text {
+    margin: 0 20px;
+    text-align: center;
+}
+
+
+.controllers {
+    grid-area: controllers;
+
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.controllers__button {
+    font-size: 26px;
+    font-family: 'Play', sans-serif;
+    cursor: pointer;
+    outline: none;
+    border: none;
+    background: none;
+}
+
+.controllers__button:hover {
+    text-decoration: underline;
+}
+
+.controllers__sound-text {
+    text-align: center;
+}
+
+.hrundel__img {
+    cursor: pointer;
+    width: 150px;
+    height: 150px;
+}
+
+.help {
+    font-size: 14px;
+    width: 320px;
+    position: fixed;
+    left: 10px;
+    top: 10px;
+    box-shadow: 0 0 5px grey;
+    padding: 10px;
+}
+
+.help__list-item {
+    margin-top: 25px;
+}
+
+.help__list {
+    padding-left: 20px;
+}
+
+.help__close-button {
+    border: none;
+    cursor: pointer;
+    font-size: 20px;
+    padding: 5px;
+    position: absolute;
+    top: 0;
+    right: 5px;
+    outline: none;
+}
