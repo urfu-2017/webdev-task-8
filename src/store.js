@@ -52,9 +52,9 @@ const actions = {
       return
     }
     const clamp2 = (value, k) => clamp(value - (elapsedMs * k))
-    fat = clamp2(fat, pstate === pigstate.EATING ? -0.00023 : 0.0001)
-    energy = clamp2(energy, pstate === pigstate.SLEEPING ? -0.000004 : 0.000002)
-    mood = clamp2(mood, pstate === pigstate.LISTENING ? 0.0002 : 0.0001)
+    fat = clamp2(fat, pstate === pigstate.EATING ? -0.0023 : 0.0001)
+    energy = clamp2(energy, pstate === pigstate.SLEEPING ? -0.0004 : 0.000002)
+    mood = clamp2(mood, pstate === pigstate.LISTENING ? -0.01 : 0.0001)
     if ((fat === 100 && pstate === pigstate.EATING) ||
       (energy === 100 && pstate === pigstate.SLEEPING) ||
       (mood === 100 && pstate === pigstate.LISTENING)
@@ -106,7 +106,7 @@ const getters = {
   isNight: ({ datetime: dt }) => moment(dt).hour() >= 22 || moment(dt).hour() <= 5,
   state: state => state,
   needsAttention: ({ pig: { fat, energy, mood } }) => [fat, energy, mood].some(x => x <= 10),
-  volume: ({ volume }) => volume
+  volumeLevel: ({ volumeLevel }) => volumeLevel
 }
 
 const store = new Vuex.Store({

@@ -7,15 +7,19 @@ import BootstrapVue from 'bootstrap-vue'
 import FontAwesomeIcon from '@fortawesome/vue-fontawesome'
 import * as icons from '@fortawesome/fontawesome-free-solid'
 import 'bootstrap/dist/css/bootstrap.css' // eslint-disable-line
+import 'animate.css/animate.css'
 import 'bootstrap-vue/dist/bootstrap-vue.css'
+import pigstate from './pigstate'
 import App from './App'
 import router from './router'
 import store from './store'
+
 
 Vue.use(BootstrapVue)
 Vue.component('font-awesome-icon', FontAwesomeIcon)
 Vue.config.productionTip = false
 Vue.prototype.$icon = icons
+Vue.prototype.pigstate = pigstate
 
 const requireComponent = require.context(
   // The relative path of the components folder

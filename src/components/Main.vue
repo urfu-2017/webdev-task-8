@@ -1,7 +1,7 @@
 <template>
-    <main>
-        <Pig class="pig-container" />
-    </main>
+  <main>
+    <Pig class="pig-container" />
+  </main>
 </template>
 
 <script>
@@ -14,16 +14,16 @@ export default class Main extends Vue {
 </script>
 
 <style scoped>
-    main {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-    }
+  main {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
 
-    .pig-container {
-        max-width: 450px;
-        width: 100%;
-        height: 100vh;
-        max-height: 310px;
-    }
+  .pig-container {
+    max-width: 450px;
+    width: 100%;
+    height: 100vh;
+    max-height: 310px;
+  }
 </style>

@@ -1,5 +1,5 @@
 <template>
-    <link v-if="isNight" rel="stylesheet" type="text/css" href="/static/night.css">
+  <link v-if="isNight" rel="stylesheet" type="text/css" href="/static/night.css">
 </template>
 
 <script>
