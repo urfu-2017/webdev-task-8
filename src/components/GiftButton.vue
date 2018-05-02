@@ -1,6 +1,7 @@
 <template>
   <b-button size="sm"
     v-if="!isCharging"
+    variant="outline-secondary"
     :disabled="pig.state === pigstate.DEAD"
     @click="() => pig.state === pigstate.EATING ? interrupt() : feed()">
       <font-awesome-icon :icon="pig.state === pigstate.EATING ? $icon.faBan : $icon.faGift" />

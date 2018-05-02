@@ -1,7 +1,7 @@
 <template>
   <b-button size="sm"
-    v-if="!isCharging"
     :disabled="pig.state === pigstate.DEAD"
+    variant="outline-secondary"
     @click="() => pig.state === pigstate.LISTENING ? interrupt() : talk()">
       <font-awesome-icon :icon="pig.state === pigstate.LISTENING ? $icon.faBan : $icon.faComment" />
   </b-button>
@@ -13,7 +13,7 @@ import { Component } from 'vue-property-decorator'
 import { Getter, Action } from 'vuex-class'
 
 @Component
-export default class GiftButton extends Vue {
+export default class SpeakButton extends Vue {
   @Getter pig
   @Action interrupt
   @Action talk

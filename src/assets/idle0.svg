@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- generated at drububu.com  -->
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg version="1.1" preserveAspectRatio="xMinYMin meet" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="960px" height="960px" viewBox="0 0 960 960">
+<path d="M0 0h960v960h-960v-960z" fill="rgb(255,255,255)"/>
+<path d="M180 90h60v30h-30v30h-30v60h30v30h-60v-60h-30v-30h30v-30h30v-30z" fill="rgb(0,0,0)"/>
+<path d="M630 90h90v30h60v30h-60v60h30v30h-60v-120h-60v-30z" fill="rgb(0,0,0)"/>
+<path d="M780 150h30v30h-30v-30z" fill="rgb(0,0,0)"/>
+<path d="M90 180h30v30h-30v-30z" fill="rgb(0,0,0)"/>
+<path d="M810 180h60v30h30v60h-30v-30h-30v-30h-30v-30z" fill="rgb(0,0,0)"/>
+<path d="M60 210h30v60h-30v60h-30v-90h30v-30z" fill="rgb(0,0,0)"/>
+<path d="M330 300h240v30h-210v30h-60v30h-60v60h-30v90h30v30h30v30h-60v-30h-30
+	v-150h30v-60h60v-30h60v-30z" fill="rgb(0,0,0)"/>
+<path d="M360 330h210v30h60v30h60v30h30v60h-30v60h-30v30h-60v30h-120v30h-120
+	v-30h-90v-30h-30v-30h-30v-90h30v-60h60v-30h60v-30z" fill="rgb(255,255,255)"/>
+<path d="M570 330h90v30h60v60h-30v-30h-60v-30h-60v-30z" fill="rgb(0,0,0)"/>
+<path d="M480 390h30v30h-30v-30z" fill="rgb(0,0,0)"/>
+<path d="M330 420h60v60h30v90h-30v-60h-30v-60h-30v-30z" fill="rgb(0,0,0)"/>
+<path d="M510 420h30v30h30v90h-30v-60h-30v-60z" fill="rgb(0,0,0)"/>
+<path d="M720 420h30v90h-30v60h-30v30h-60v30h-120v30h-150v-30h120v-30h120v-30
+	h60v-30h30v-60h30v-60z" fill="rgb(0,0,0)"/>
+<path d="M270 600h90v30h-90v-30z" fill="rgb(0,0,0)"/>
+</svg>
