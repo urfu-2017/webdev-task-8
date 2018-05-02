@@ -24,9 +24,11 @@ export function сonfigurateHrundel(hrundel) {
         DomHruborgText.innerHTML = newText;
     };
 
-    startPeriodicSound(periodicSoundInterval);
+    hrundel.onStartDying = () => {
+        DRAWER.startBlinking(blinkingInteraval);
+    };
 
-    DRAWER.startBlinking(blinkingInteraval);
+    startPeriodicSound(periodicSoundInterval);
 
     return hrundel;
 }

@@ -89,10 +89,18 @@ export default class Hrundel {
         this._onReset = onReset;
     }
 
+    set onStartDying(onStartDying) {
+        this._onStartDying = onStartDying;
+    }
+
     startDying() {
-        this.state.startChangingSatiety(decreaseValue, decreaseSpeed);
-        this.state.startChangingEnergy(decreaseValue, decreaseSpeed);
-        this.state.startChangingMood(decreaseValue, decreaseSpeed);
+        if (!this.state.isDead) {
+            this.state.startChangingSatiety(decreaseValue, decreaseSpeed);
+            this.state.startChangingEnergy(decreaseValue, decreaseSpeed);
+            this.state.startChangingMood(decreaseValue, decreaseSpeed);
+
+            this._onStartDying();
+        }
     }
 
     resetState() {
