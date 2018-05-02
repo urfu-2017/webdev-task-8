@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import Pig from '../components/Pig'
+import Main from '../components/Main'
 
 Vue.use(Router)
 
@@ -8,8 +8,8 @@ export default new Router({
   routes: [
     {
       path: '/',
-      name: 'Pig',
-      component: Pig
+      name: 'Main',
+      component: Main
     }
   ]
 })

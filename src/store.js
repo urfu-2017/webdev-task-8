@@ -31,10 +31,12 @@ const mutations = {
     Object.assign(state.pig, pig)
   },
 
-  volume(state, volume) {
-    state.volume = volume
+  volume(state, volumeLevel) {
+    state.volumeLevel = volumeLevel
   }
 }
+
+const clamp = value => Math.max(Math.min(value, 100), 0)
 
 const actions = {
   async update({ commit, state, dispatch }) {
@@ -49,10 +51,10 @@ const actions = {
     if (pstate === pigstate.DEAD) {
       return
     }
-    const clamp = (value, k) => Math.max(Math.min(value - (elapsedMs * k), 100), 0)
-    fat = clamp(fat, pstate === pigstate.EATING ? -0.00023 : 0.0001)
-    energy = clamp(energy, pstate === pigstate.SLEEPING ? -0.000004 : 0.000002)
-    mood = clamp(mood, pstate === pigstate.LISTENING ? 0.0002 : 0.0001)
+    const clamp2 = (value, k) => clamp(value - (elapsedMs * k))
+    fat = clamp2(fat, pstate === pigstate.EATING ? -0.00023 : 0.0001)
+    energy = clamp2(energy, pstate === pigstate.SLEEPING ? -0.000004 : 0.000002)
+    mood = clamp2(mood, pstate === pigstate.LISTENING ? 0.0002 : 0.0001)
     if ((fat === 100 && pstate === pigstate.EATING) ||
       (energy === 100 && pstate === pigstate.SLEEPING) ||
       (mood === 100 && pstate === pigstate.LISTENING)
@@ -92,7 +94,11 @@ const actions = {
 
   restart({ commit, state: { volumeLevel } }) {
     commit('update', { ...initialState(), volumeLevel })
-  }
+  },
+
+  setVolumeLevel({ commit }, volumeLevel) {
+    commit('volume', clamp(volumeLevel))
+  },
 }
 
 const getters = {

@@ -1,5 +1,6 @@
 <template>
   <div id="app">
+    <DayNightCss />
     <router-view/>
   </div>
 </template>
