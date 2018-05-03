@@ -10,8 +10,6 @@ app.get('/', (req, res) =>
     res.sendFile('./index.html')
 );
 
-app.listen(8080, () => {
-    console.info('Opened in localhost:8080');
-});
+app.listen(3000);
 
 module.exports = app;
