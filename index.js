@@ -34,9 +34,12 @@ function minDataLimiter() {
 }
 
 function isDead() {
-    if ((hrunogochi.eat === 0 && hrunogochi.energy === 0) ||
-        (hrunogochi.eat === 0 && hrunogochi.mood === 0) ||
-        (hrunogochi.energy === 0 && hrunogochi.mood === 0)) {
+    /* eslint no-unused-expressions: 0 */
+    let counter = 0;
+    hrunogochi.eat === 0 ? counter++ : null;
+    hrunogochi.energy === 0 ? counter++ : null;
+    hrunogochi.mood === 0 ? counter++ : null;
+    if (counter >= 2) {
         const log = document.querySelector('.log');
         log.innerHTML = 'DEAD!!!!!!!';
     }
