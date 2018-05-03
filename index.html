@@ -2,9 +2,44 @@
 <html lang="ru">
 <head>
     <meta charset="utf-8">
-    <title>Хрюногочи</title>
+    <title>самара</title>
     <link rel="stylesheet" href="./index.css">
+    <script defer src="./bundle.js"></script>
 </head>
 <body>
+    <div class="wrapper">
+        <div class="state">
+            <div class="state__feature satiety">
+                <div class="state__feature-key">Сытость</div>
+                <div class="state__feature-value">???</div>
+            </div>
+            <div class="state__feature energy">
+                <div class="state__feature-key">Энергия</div>
+                <div class="state__feature-value">???</div>
+            </div>
+            <div class="state__feature mood">
+                <div class="state__feature-key">Настроение</div>
+                <div class="state__feature-value">???</div>
+            </div>
+        </div>
+        <div class="hero">
+
+            <div>
+                <svg class="hero__picture speech-btn"></svg>
+            </div>
+            <p class="recognized-text"></p>
+        </div>
+        <div class="control-panel">
+            <button class="new-game-btn">
+                Новая игра
+            </button>
+            <button hidden>Кормить</button>
+            <div class="volume">
+                <label for="volumeInput">Громкость</label>
+                <input type="range" min="0" max="1" step="0.05" class="volume__input" id="volumeInput">
+            </div>
+        </div>
+    </div>
+
 </body>
 </html>
