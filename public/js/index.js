@@ -119,6 +119,9 @@ const restart = () => {
 };
 
 window.onload = () => {
+    document.querySelector('.feed').onclick = feed;
+    document.querySelector('.restart').onclick = restart;
+
     if (document.cookie) {
         const hrundelInfo = JSON.parse(document.cookie.split('=')[1]);
         HRUNDEL = new Hrundel(hrundelInfo);
@@ -126,10 +129,11 @@ window.onload = () => {
         HRUNDEL = new Hrundel(DEFAULT_HRUNDEL_INFO);
     }
 
-    document.querySelector('.feed').onclick = feed;
-    document.querySelector('.restart').onclick = restart;
-
     render(false);
+
+    if (HRUNDEL.state === HRUNDEL_STATE.sleeping) {
+        HRUNDEL.state = undefined;
+    }
 
     setInterval(() => render(true), 1500);
 };
