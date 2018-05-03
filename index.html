@@ -20,15 +20,25 @@
     </div>
     <button class="restart-button">Начать заново</button>
     <button class="feed-button">Покормить</button>
-    <button class="sleep">sleep</button>
-    <button class="awake">awake</button>
-    <div class="speech-log">There would be your phrase</div>
+    <button class="sleep">Положить спать</button>
+    <button class="awake">Разбудить</button>
+    <div class="speech-log">Здесь будет ваша фраза</div>
     <div class="battery-charging"></div>
-    <audio controls loop autoplay>
-        <source src="./hru.mp3" type="audio/mp3">
-    </audio>
+    <span>Громкость: </span>
+    <input type="range" class="volume" min="0" max="10">
     <svg class="svg"></svg>
-    <script src="./main.js"></script>
+    
+    <script src="./scripts/state.js"></script>
+    <script src="./scripts/draw.js"></script>
+    <script src="./scripts/restart.js"></script>
+    <script src="./scripts/feed.js"></script>
+    <script src="./scripts/sound.js"></script>
+    <script src="./scripts/battery.js"></script>
+    <script src="./scripts/sleepAwake.js"></script>
+    <script src="./scripts/speech.js"></script>
+    <script src="./scripts/notification.js"></script>
+    <script src="./scripts/actions.js"></script>
+    <script src="./scripts/gameLoop.js"></script>
 </body>
 
 </html>

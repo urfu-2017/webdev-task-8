@@ -48,9 +48,9 @@ function saveState() {
     localStorage.setItem('energy', energy.innerHTML);
     localStorage.setItem('mood', mood.innerHTML);
 }
-function gainStat(stat) {
+function gainStat(stat, value) {
     let oldValue = parseInt(stat.innerHTML);
-    let newValue = oldValue + 4;
+    let newValue = oldValue + value;
     if (newValue > 100) {
         newValue = 100;
     }
@@ -58,9 +58,9 @@ function gainStat(stat) {
 
     saveState();
 }
-function loseStat(stat) {
+function loseStat(stat, value) {
     let oldValue = parseInt(stat.innerHTML);
-    let newValue = oldValue - 1;
+    let newValue = oldValue - value;
     if (newValue < 0) {
         newValue = 0;
     }
@@ -70,7 +70,6 @@ function loseStat(stat) {
 }
 
 var restartButton = document.querySelector('.restart-button');
-var feedButton = document.querySelector('.feed-button');
 function resetState() {
     localStorage.setItem('satiety', 100);
     localStorage.setItem('energy', 100);
@@ -86,9 +85,19 @@ restartButton.addEventListener('click', function (e) {
     resetState();
     startGame();
 });
+
+var feedButton = document.querySelector('.feed-button');
 feedButton.addEventListener('click', function (e) {
     currentState = states.EATING;
 });
+
+var volume = document.querySelector('.volume');
+function playSound(path, volume) {
+    let sound = new Audio(path);
+    sound.volume = volume;
+    sound.play();
+}
+let soundInterval = setInterval(() => playSound('./hru.mp3', parseInt(volume.value) / 10), 15000);
 
 var charging = document.querySelector('.battery-charging');
 if (navigator.getBattery) {
@@ -180,6 +189,32 @@ function notifyMe(text) {
     }
 }
 
+var gainConst = 4;
+var loseConst = 1;
+function eating() {
+    gainStat(satiety, gainConst);
+    loseStat(energy, loseConst);
+    loseStat(mood, loseConst);
+}
+function sleeping() {
+    loseStat(satiety, loseConst);
+    gainStat(energy, gainConst);
+    loseStat(mood, loseConst);
+}
+function talking() {
+    loseStat(satiety, loseConst);
+    loseStat(energy, loseConst);
+    gainStat(mood, gainConst * 4);
+    currentState = states.NOTHING;
+}
+function nothing() {
+    loseStat(satiety, loseConst);
+    loseStat(energy, loseConst);
+    loseStat(mood, loseConst);
+}
+function dying() {
+    console.info('FATALITY');
+}
 function checkDeath() {
     let satietyIsZero = parseInt(satiety.innerHTML) === 0;
     let energyIsZero = parseInt(energy.innerHTML) === 0;
@@ -203,8 +238,8 @@ function gameLoop() {
     if (Date.now() - lastGameLoopTime > 500) {
         lastGameLoopTime = Date.now();
         checkDeath();
-        checkStat(satiety, 'WANT TO EAT');
-        checkStat(mood, 'WANT TO TALK');
+        //checkStat(satiety, 'WANT TO EAT');
+        //checkStat(mood, 'WANT TO TALK');
         console.info(currentState);
         switch (currentState) {
             case states.DEAD: dying(); break;
@@ -215,32 +250,6 @@ function gameLoop() {
         }
     }
     requestAnimationFrame(gameLoop);
-}
-function eating() {
-    gainStat(satiety);
-    loseStat(energy);
-    loseStat(mood);
-}
-function sleeping() {
-    loseStat(satiety);
-    gainStat(energy);
-    loseStat(mood);
-}
-function talking() {
-    loseStat(satiety);
-    loseStat(energy);
-    gainStat(mood);
-    gainStat(mood);
-    gainStat(mood);
-    currentState = states.NOTHING;
-}
-function nothing() {
-    loseStat(satiety);
-    loseStat(energy);
-    loseStat(mood);
-}
-function dying() {
-    console.info('FATALITY');
 }
 
 if (localStorage.length === 0) {
