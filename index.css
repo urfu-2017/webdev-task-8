@@ -1,0 +1,60 @@
+@font-face
+{
+    font-family: 'PixelFont';
+    src: url('./font.ttf');
+}
+
+.root
+{
+    width: 480px;
+}
+
+.stat
+{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.stat > div:first-child
+{
+    font-family: 'PixelFont', sans-serif;
+    font-size: 25px;
+    line-height: 44px;
+
+    width: 150px;
+}
+
+.stat > div:last-child > svg
+{
+    height: 44px;
+    width: 210px;
+}
+
+.buttons
+{
+    display: flex;
+    justify-content: space-around;
+    margin-top: 15px;
+}
+
+.button
+{
+    font-family: 'PixelFont', sans-serif;
+    padding: 10px;
+    border: 2px dashed black;
+    width: 100px;
+    text-align: center;
+    cursor: pointer;
+}
+
+.button:hover
+{
+    background: red;
+}
+
+.hrundel
+{
+    margin-left: 100px;
+    margin-top: 20px;
+}
