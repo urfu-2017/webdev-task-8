@@ -1,0 +1,11 @@
+body
+{
+    display: flex;
+    flex-direction: column;
+}
+
+.svg
+{
+    height: 200px;
+    width: 200px;
+}
