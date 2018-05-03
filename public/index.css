@@ -1,0 +1,22 @@
+html
+{
+    font: 20px sans-serif;
+}
+
+.controls
+{
+    float: right;
+    width: 200px;
+}
+
+.state__container
+{
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 5px;
+}
+
+.feed-button
+{
+    display: none;
+}

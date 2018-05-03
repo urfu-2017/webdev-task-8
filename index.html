@@ -4,7 +4,32 @@
     <meta charset="utf-8">
     <title>Хрюногочи</title>
     <link rel="stylesheet" href="./index.css">
+    <script src="./snap.svg-min.js"></script>
+    <script src="./index.js"></script>
 </head>
 <body>
+<aside class="controls">
+    <section class="state">
+        <div class="state__container hunger">
+            <div class="state__name">Сытость</div>
+            <div class="state__value hunger__value"></div>
+        </div>
+        <div class="state__container happiness">
+            <div class="state__name">Радость</div>
+            <div class="state__value happiness__value"></div>
+        </div>
+        <div class="state__container energy">
+            <div class="state__name">Бодрость</div>
+            <div class="state__value energy__value"></div>
+        </div>
+
+    </section>
+    <div class="recognized-text"></div>
+    <button class="feed-button">Покормить</button>
+    <button class="reset-button">Начать заново</button>
+</aside>
+<main class="tamagotchi">
+    <svg class="tamagotchi__svg"></svg>
+</main>
 </body>
 </html>
