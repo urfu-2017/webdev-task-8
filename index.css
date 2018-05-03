@@ -29,3 +29,9 @@ audio
     height: 200px;
     border: 1px solid black;
 }
+
+.death-text
+{
+    font: 30px Arial;
+    color: #ff69b4;
+}

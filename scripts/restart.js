@@ -1,12 +1,14 @@
 'use strict';
 /* eslint-disable */
 
+var deathText = document.querySelector('.death-text');
 var restartButton = document.querySelector('.restart-button');
 function resetState() {
     localStorage.setItem('satiety', 100);
     localStorage.setItem('energy', 100);
     localStorage.setItem('mood', 100);
     currentState = states.NOTHING;
+    deathText.innerHTML = '';
 }
 function startGame() {
     satiety.innerHTML = localStorage.getItem('satiety');

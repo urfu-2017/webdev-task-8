@@ -25,3 +25,5 @@ window.addEventListener('blur', function (e) {
 window.addEventListener('focus', function (e) {
     awakening();
 });
+window.onblur = () => failingASleep();
+window.onfocus = () => awakening();

@@ -25,7 +25,7 @@ function nothing() {
     loseStat(mood, loseConst);
 }
 function dying() {
-    console.info('FATALITY');
+    deathText.innerHTML = 'ХРЮШКА УМЕРЛА';
 }
 function checkDeath() {
     let satietyIsZero = parseInt(satiety.innerHTML) === 0;
