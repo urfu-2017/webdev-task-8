@@ -1,0 +1,72 @@
+html,
+body
+{
+    height: 100%;
+}
+
+body
+{
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.game
+{
+    width: 200px;
+}
+
+.hero
+{
+    width: 200px;
+    height: 200px;
+}
+
+.phrase
+{
+    padding: 10px 0 20px;
+    text-align: center;
+}
+
+.progress
+{
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 7px;
+}
+
+.progress__name
+{
+    width: 90px;
+}
+
+.progress__value
+{
+    width: 50px;
+    text-align: end;
+}
+
+.actions
+{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.btn-restart
+{
+    margin-top: 50px;
+}
+
+.volume
+{
+    margin-top: 20px;
+    display: flex;
+    align-items: center;
+}
+
+.volume__input
+{
+    margin-left: 10px;
+}
