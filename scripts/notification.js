@@ -1,12 +1,14 @@
 'use strict';
 /* eslint-disable */
 
-var lastNotificationTime = Date.now();
+var notified = false;
 function checkStat(stat, text) {
-    if (parseInt(stat.innerHTML) <= 10 && Date.now() - lastNotificationTime > 10000) {
+    if (!notified && parseInt(stat.innerHTML) <= 10) {
         console.info(text);
-        lastNotificationTime = Date.now();
         notifyMe(text);
+        notified = true;
+    } else {
+        notified = false;
     }
 }
 function notifyMe(text) {
