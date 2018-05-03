@@ -1,0 +1,21 @@
+
+.energy
+{
+    width: 300px;
+    height: 20px;
+    background: linear-gradient(to right, #f00, #ffa500, #ff0, #01ff70,#0f0);
+}
+
+.fun
+{
+    width: 300px;
+    height: 20px;
+    background: linear-gradient(to right, #f00, #ffa500, #ff0, #01ff70,#0f0);
+}
+
+.hungry
+{
+    width: 300px;
+    height: 20px;
+    background: linear-gradient(to right, #f00, #ffa500, #ff0, #01ff70,#0f0);
+}
