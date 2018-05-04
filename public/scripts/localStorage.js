@@ -6,6 +6,7 @@ function init() {
     localStorage.setItem('hunger', 100);
     localStorage.setItem('energy', 100);
     localStorage.setItem('mood', 100);
+    localStorage.setItem('isDead', false);
 
     updateParameters();
 }

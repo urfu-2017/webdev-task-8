@@ -11,8 +11,7 @@ const createNotification = (text) => {
 if (Notification) {
     Notification.requestPermission();
     setInterval(() => {
-        const hungerValue = localStorage.getItem('hunger');
-        const moodValue = localStorage.getItem('mood');
+        let { hungerValue, moodValue } = getValues();
 
         if (hungerValue <= 10) {
             createNotification('Свинью нужно срочно покормить');
@@ -25,10 +24,7 @@ if (Notification) {
 
 
 setInterval(() => {
-    const hungerValue = localStorage.getItem('hunger');
-    const moodValue = localStorage.getItem('mood');
-    const energyValue = localStorage.getItem('energy');
-
+    let { hungerValue, moodValue, energyValue } = getValues();
     let count = 0;
     if (hungerValue === 0) {
         count++;
@@ -46,3 +42,16 @@ setInterval(() => {
     }
 }, 1000);
 
+setInterval(()=> {
+    let { hungerValue, moodValue, energyValue } = getValues();
+    let averageHealth = (hungerValue + moodValue + energyValue) / 3;
+    localStorage.setItem('averageHealth', averageHealth);
+}, 1000);
+
+function getValues() {
+    const hungerValue = Number(localStorage.getItem('hunger'));
+    const moodValue = Number(localStorage.getItem('mood'));
+    const energyValue = Number(localStorage.getItem('energy'));
+
+    return { hungerValue, moodValue, energyValue };
+}
