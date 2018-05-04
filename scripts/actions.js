@@ -16,7 +16,7 @@ function sleeping() {
 function talking() {
     loseStat(satiety, loseConst);
     loseStat(energy, loseConst);
-    gainStat(mood, gainConst * 4);
+    gainStat(mood, gainConst * 5);
     currentState = states.NOTHING;
 }
 function nothing() {
@@ -26,16 +26,4 @@ function nothing() {
 }
 function dying() {
     deathText.innerHTML = 'ХРЮШКА УМЕРЛА';
-}
-function checkDeath() {
-    let satietyIsZero = parseInt(satiety.innerHTML) === 0;
-    let energyIsZero = parseInt(energy.innerHTML) === 0;
-    let moodIsZero = parseInt(mood.innerHTML) === 0;
-    let a = satietyIsZero && energyIsZero;
-    let b = energyIsZero && moodIsZero;
-    let c = satietyIsZero && moodIsZero;
-
-    if (a || b || c) {
-        currentState = states.DEAD;
-    }
 }

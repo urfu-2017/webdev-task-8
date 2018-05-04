@@ -24,8 +24,8 @@ var rightEar = snap.polygon(
     205, 60,
     215, 60,
     230, 70);
-var mouth = snap.rect(100, 150, 100, 50);
-var mouthHole = snap.rect(110, 160, 80, 30);
+var mouth = snap.ellipse(150, 190, 60, 30);
+var mouthHole = snap.ellipse(150, 190, 50, 20);
 mouthHole.attr({
     fill: 'pink'
 });

@@ -13,7 +13,20 @@ var currentState = states.NOTHING;
 var satiety = document.querySelector('.stat__amount_satiety');
 var energy = document.querySelector('.stat__amount_energy');
 var mood = document.querySelector('.stat__amount_mood');
+var deathText = document.querySelector('.death-text');
 
+function resetState() {
+    localStorage.setItem('satiety', 100);
+    localStorage.setItem('energy', 100);
+    localStorage.setItem('mood', 100);
+    currentState = states.NOTHING;
+    deathText.innerHTML = '';
+}
+function initState() {
+    satiety.innerHTML = localStorage.getItem('satiety');
+    energy.innerHTML = localStorage.getItem('energy');
+    mood.innerHTML = localStorage.getItem('mood');
+}
 function saveState() {
     localStorage.setItem('satiety', satiety.innerHTML);
     localStorage.setItem('energy', energy.innerHTML);

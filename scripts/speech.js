@@ -8,7 +8,7 @@ var recognizer = new SpeechRecognition();
 recognizer.lang = 'ru-RU';
 pig.addEventListener('click', function () {
     if (parseInt(mood.innerHTML) < 100) {
-        speechLog.innerHTML = 'Распознавание начато';
+        speechLog.innerHTML = 'Хрюшка вас слушает';
         recognizer.start();
     }
 });

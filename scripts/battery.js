@@ -17,7 +17,7 @@ function updateCharging() {
     if (this.charging) {
         currentState = states.EATING;
     }
-    if (!this.charging /*&& currentState === states.EATING*/) {
+    if (!this.charging && currentState === states.EATING) {
         currentState = states.NOTHING;
     }
 }
