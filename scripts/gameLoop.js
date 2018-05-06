@@ -1,11 +1,13 @@
 'use strict';
 /* eslint-disable */
 
-var delay = 500;
+var delay = 1000;
+var isSatietyNotified = false;
+var isMoodNotified = false;
 function gameLoop() {
     checkDeath();
-    checkStat(satiety, 'WANT TO EAT');
-    checkStat(mood, 'WANT TO TALK');
+    isSatietyNotified = checkStat(satiety, 'WANT TO EAT', isSatietyNotified);
+    isMoodNotified = checkStat(mood, 'WANT TO TALK', isMoodNotified);
     switch (currentState) {
         case states.DEAD: dying(); break;
         case states.SLEEPING: sleeping(); break;

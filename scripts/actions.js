@@ -3,10 +3,12 @@
 
 var gainConst = 4;
 var loseConst = 1;
+var actionAnimatonDelay = 500;
 function eating() {
     gainStat(satiety, gainConst);
     loseStat(energy, loseConst);
     loseStat(mood, loseConst);
+    eatingAnimation(actionAnimatonDelay);
 }
 function sleeping() {
     loseStat(satiety, loseConst);
@@ -17,7 +19,8 @@ function talking() {
     loseStat(satiety, loseConst);
     loseStat(energy, loseConst);
     gainStat(mood, gainConst * 5);
-    currentState = states.NOTHING;
+    setTimeout(() => { currentState = states.NOTHING }, 1000);
+    talkingAnimation(actionAnimatonDelay);
 }
 function nothing() {
     loseStat(satiety, loseConst);
@@ -26,4 +29,5 @@ function nothing() {
 }
 function dying() {
     deathText.innerHTML = 'ХРЮШКА УМЕРЛА';
+    dyingAnimation();
 }

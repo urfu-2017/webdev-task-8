@@ -9,6 +9,7 @@ var states = {
     TALKING: 'TALKING'
 }
 var currentState = states.NOTHING;
+var startStatValue = 100;
 
 var satiety = document.querySelector('.stat__amount_satiety');
 var energy = document.querySelector('.stat__amount_energy');
@@ -16,11 +17,12 @@ var mood = document.querySelector('.stat__amount_mood');
 var deathText = document.querySelector('.death-text');
 
 function resetState() {
-    localStorage.setItem('satiety', 100);
-    localStorage.setItem('energy', 100);
-    localStorage.setItem('mood', 100);
+    localStorage.setItem('satiety', startStatValue);
+    localStorage.setItem('energy', startStatValue);
+    localStorage.setItem('mood', startStatValue);
     currentState = states.NOTHING;
     deathText.innerHTML = '';
+    respawnAnimation();
 }
 function initState() {
     satiety.innerHTML = localStorage.getItem('satiety');

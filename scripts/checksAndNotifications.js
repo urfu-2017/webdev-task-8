@@ -1,33 +1,20 @@
 'use strict';
 /* eslint-disable */
 
-var notified = false;
-function checkStat(stat, text) {
-    if (!notified && parseInt(stat.innerHTML) <= 10) {
-        console.info(`Notification: ${text}`);
-        notifyMe(text);
-        notified = true;
-    }
-    if (notified && parseInt(stat.innerHTML) > 10) {
-        notified = false;
-    }
-}
+Notification = window.Notification || window.webkitNotification;
+Notification.requestPermission();
 function notifyMe(text) {
-    if (!('Notification' in window)) {
-        console.warn('Этот браузер не поддерживает веб-уведомления');
+    new Notification(text);
+}
+function checkStat(stat, text, isStatNotified) {
+    if (!isStatNotified && parseInt(stat.innerHTML) <= 10) {
+        notifyMe(text);
+        return true;
     }
-
-    else if (Notification.permission === 'granted') {
-        var notification = new Notification(text);
+    if (isStatNotified && parseInt(stat.innerHTML) > 10) {
+        return false;
     }
-
-    else if (Notification.permission !== 'denied') {
-        Notification.requestPermission(function (permission) {
-            if (permission === 'granted') {
-                var notification = new Notification(text);
-            }
-        });
-    }
+    return isStatNotified;
 }
 function checkDeath() {
     let satietyIsZero = parseInt(satiety.innerHTML) === 0;

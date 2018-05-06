@@ -3,15 +3,14 @@
 
 var sleepButton = document.querySelector('.sleep');
 var awakeButton = document.querySelector('.awake');
+var sleepAwakeDelay = 500;
 function failingASleep() {
     currentState = states.SLEEPING;
-    leftEye.animate({ transform: 's0.5' }, 1000, mina.linear);
-    rightEye.animate({ transform: 's0.5' }, 1000, mina.linear);
+    failingASleepAnimation(sleepAwakeDelay);
 }
 function awakening() {
     currentState = states.NOTHING;
-    leftEye.animate({ transform: 's1' }, 1000, mina.linear);
-    rightEye.animate({ transform: 's1' }, 1000, mina.linear);
+    awakeningAnimation(sleepAwakeDelay);
 }
 sleepButton.addEventListener('click', function (e) {
     failingASleep();
