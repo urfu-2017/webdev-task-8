@@ -15,12 +15,6 @@ function init(onStartCharging, onStopCharging) {
         });
 }
 
-function reset() {
-    navigator
-        .getBattery()
-        .then();
-}
-
 function updateCharging(onStartCharging, onStopCharging) {
     return function () {
         /* eslint-disable-next-line */
@@ -32,4 +26,4 @@ function updateCharging(onStartCharging, onStopCharging) {
     };
 }
 
-export default { isAvailable, init, reset };
+export default { isAvailable, init };

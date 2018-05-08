@@ -14,6 +14,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 
     DomNewGameButton.onclick = () => {
         hrundel.resetState();
+        initBattery();
         hrundel.startDying(); // lol
     };
 
@@ -31,14 +32,16 @@ function startGame() {
     window.onblur = () => hrundel.startSleeping();
     window.onfocus = () => hrundel.stopSleeping();
 
+    initBattery();
+
+    hrundel.startDying();
+}
+
+function initBattery() {
     if (battery.isAvailable()) {
         DomFeedButton.style.display = 'none';
         battery.init(hrundel.startEating.bind(hrundel), hrundel.stopEating.bind(hrundel));
     } else {
         DomFeedButton.onclick = hrundel.quickEat.bind(hrundel);
     }
-
-    hrundel.startDying();
 }
-
-
