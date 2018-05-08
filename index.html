@@ -4,7 +4,62 @@
     <meta charset="utf-8">
     <title>Хрюногочи</title>
     <link rel="stylesheet" href="./index.css">
+    <link rel="shortcut icon" href="./images/favicon.ico" type="image/x-icon">
+    <script src="./bundle.js"></script>
 </head>
 <body>
+    <div class="game">
+        <section class="state">
+            <div class="state__card satiety-card">
+                <div class="state__value satiety-value">?</div>
+                <div class="state__text">Сытость</div>
+            </div>
+            <div class="state__card energy-card">
+                <div class="state__value energy-value">?</div>
+                <div class="state__text">Энергия</div>
+            </div>
+            <div class="state__card mood-card">
+                <div class="state__value mood-value">?</div>
+                <div class="state__text">Настроение</div>
+            </div>
+        </section>
+
+        <section class="hrundel">
+            <div class="hrundel__text">Привет!</div>
+            <svg class="hrundel__img"></svg>
+        </section>
+
+        <section class="controllers">
+            <button class="controllers__button feed-button">Кормить</button>
+            <button class="controllers__button new-game-button">Новая игра</button>
+            <div class="controllers__sound">
+                <div class="controllers__sound-text">Громкость</div>
+                <input class="sound-controller"
+                    type="range" min="0" max="1" step="0.1" value="1">
+            </div>
+        </section>
+    </div>
+
+    <aside class="help">
+        <button type="button" class="help__close-button">
+            &times;
+        </button>
+        <ul class="help__list">
+            <li class="help__list-item">
+                Жми на Хрюнделя, чтобы поболтать с ним!
+            </li>
+            <li class="help__list-item">
+                Хрюндель питается, когда ты подключаешь зарядку к своему устройству!
+                (если такая возможность не поддерживается, то появится кнопка "Кормить")
+            </li>
+            <li class="help__list-item">
+                Хрюндель засыпает и набирается энергии, когда ты покидаешь вкладку!
+            </li>
+            <li class="help__list-item">
+                Если Хрюндель начнёт умирать,
+                а тебя не будет рядом, он отправит тебе уведомление!!!!!!!!!!!!!!!!!!!!!!!!
+            </li>
+        </ul>
+    </aside>
 </body>
 </html>

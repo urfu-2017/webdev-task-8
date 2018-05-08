@@ -1,3 +1,13 @@
+# Демка
+
+[hrugochi.now.sh](https://hrugochi.now.sh/)
+
+# Поднять локально
+
+ - `npm install`
+ - `npm run build`
+ - `npm run start`
+
 # Задача «Гейб слишком занят»
 
 Перед выполнением задания внимательно прочитайте:
