@@ -92,10 +92,11 @@ if (window.speechSynthesis) {
         if (window.dead) {
             return;
         }
-        var message = new SpeechSynthesisUtterance(window.speack);
+        var message = new SpeechSynthesisUtterance();
         var voices = window.speechSynthesis.getVoices();
+        message.text = window.speak;
         message.lang = 'ru-RU';
-        message.voice = voices[0];
+        message.voice = voices[3];
         message.rate = 2;
         message.pitch = 2;
         message.volume = voice;

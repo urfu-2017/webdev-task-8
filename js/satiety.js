@@ -1,7 +1,9 @@
+const food = window.svg.snap.image('./image/food-apple.svg', 30, 20, 35, 35);
+food.attr({ opacity: 0 });
+
 if (!navigator.getBattery) {
-    const food = window.svg.snap.image('./image/food-apple.svg', 30, 20, 35, 35);
-    if (window.health.satiety === 100) {
-        food.attr({ opacity: 0 });
+    if (window.health.satiety !== 100) {
+        food.attr({ opacity: 1 });
     }
     setInterval(function () {
         deleteSatiety();
@@ -14,6 +16,8 @@ if (!navigator.getBattery) {
             return;
         }
         if (window.health.satiety < 100) {
+            food.attr({ opacity: 0 });
+            setTimeout(()=> food.attr({ opacity: 1 }), 300);
             addSatiety(10);
         }
         if (window.health.satiety === 100) {
@@ -45,6 +49,21 @@ function addSatiety(count) {
     }
     window.mood.recognize.stop();
     window.mood.listening = false;
+    food.animate({
+        opacity: 1,
+        transform: 't115,220'
+    }, 400);
+    setTimeout(() => {
+        food.animate({
+            opacity: 0
+        }, 200);
+    }, 400);
+    setTimeout(() => {
+        food.attr({
+            transform: 't0,0',
+            opacity: 1
+        });
+    }, 700);
     const satiety = window.health.satiety + count <= 100 ? count : 100 - window.health.satiety;
     window.health.satiety += satiety;
     window.health.refresh(window.health.satietyHTML, window.health.satiety);

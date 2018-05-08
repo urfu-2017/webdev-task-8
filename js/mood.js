@@ -19,9 +19,16 @@ recognizer.lang = 'en-US';
 recognizer.continuous = true; // false по умолчанию
 
 // повзоляет получать промежуточные результаты
-// recognizer.interimResults = true; // false по умолчанию
-window.svg.snap.click(() => {
-    if (window.dead) {
+recognizer.interimResults = true; // false по умолчанию
+window.svg.snap.click((event) => {
+    if (window.dead || event.target.nodeName === 'image') {
+        return;
+    }
+    if (window.mood.listening) {
+        recognizer.stop();
+        window.mood.listening = false;
+        window.svg.state.earDown();
+
         return;
     }
     recognizer.start();

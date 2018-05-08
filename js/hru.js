@@ -181,5 +181,6 @@ window.svg.state = {
         window.svg.eyesSleep.attr({ opacity: 1 });
         window.svg.mouth.attr({ opacity: 0 });
         window.svg.mouthSleep.attr({ opacity: 1 });
+        window.svg.mouthSadly.attr({ opacity: 0 });
     }
 };
