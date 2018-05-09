@@ -1,0 +1,23 @@
+.characteristics__dead
+{
+    display: none;
+}
+
+.eat
+{
+    display: none;
+}
+
+.hrunogochi-svg
+{
+    display: block;
+    width: 100px;
+    height: 100px;
+}
+
+.hrunogochi-dead-svg
+{
+    display: none;
+    width: 100px;
+    height: 100px;
+}
