@@ -1,10 +1,61 @@
 <!DOCTYPE html>
 <html lang="ru">
+
 <head>
     <meta charset="utf-8">
     <title>Хрюногочи</title>
-    <link rel="stylesheet" href="./index.css">
+    <link rel="stylesheet" href="styles/styles.css">
 </head>
+
 <body>
+    <div class="menu">
+        <button class="reset-button">Revive</button>
+        <section class="params border">
+            <article class="hunger param">
+                <span class="param__name">Hunger</span>
+                <div class="container hunger__container">
+                    <div class="hunger-lack lack"></div>
+                </div>
+            </article>
+            <article class="enegry param">
+                <span class="param__name">Energy</span>
+                <div class="container energy__container">
+                    <div class="energy-lack lack"></div>
+                </div>
+            </article>
+            <article class="mood param">
+                <span class="param__name">Mood</span>
+                <div class="container mood__container">
+                    <div class="mood-lack lack"></div>
+                </div>
+            </article>
+        </section>
+        <section class="speech-recognition border">
+            <header class="speech-recognition__header">Press Hrundel to speak</header>
+            <div class="speech-recognition__words"></div>
+        </section>
+        <section class="battery border">
+            <div class="feed">Click here to feed Hrundel</div>
+        </section>
+        <section class="volume">
+            <header class="volume__header">Volume</header>
+            <div class="slidecontainer">
+                <input type="range" min="1" max="100" value="50" class="slider">
+            </div>
+        </section>
+    </div>
+    <div class="pig"></div>
+
+    <script src="/scripts/healthUpdater.js"></script>
+    <script src="/scripts/speech.js"></script>
+    <script src="/scripts/battery.js"></script>
+    <script src="/scripts/notifications.js"></script>
+    <script src="/scripts/light.js"></script>
+    <script src="/scripts/sounds.js"></script>
+    <script src="/scripts/tabChecker.js"></script>
+    <script src="/scripts/localStorage.js"></script>
+    <script src="/scripts/snap.svg-min.js"></script>
+    <script src="/scripts/svgCreator.js"></script>
 </body>
+
 </html>

@@ -1,6 +1,7 @@
 {
   "private": true,
   "scripts": {
+    "start": "node index.js",
     "test": "npm run lint && mocha ./node_modules/html-tests/task-stub/test",
     "lint": "eslint . && stylelint *.css **/*.css && html-validator --file index.html --verbose && htmllint *.html"
   },
@@ -12,6 +13,8 @@
     "htmllint-cli-alpha": "0.0.6",
     "mocha": "3.1.0",
     "stylelint": "7.3.1",
-    "stylelint-config-hrundel": "1.0.3"
+    "stylelint-config-hrundel": "1.0.3",
+    "express": "4.16.3",
+    "snapsvg": "0.5.1"
   }
 }
