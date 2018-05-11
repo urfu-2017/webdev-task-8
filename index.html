@@ -6,5 +6,25 @@
     <link rel="stylesheet" href="./index.css">
 </head>
 <body>
+    <div class="game">
+        <aside class="game__controls">
+            <div class="state">
+                <div class="state__item state__satiety">Cытость: <span>0</span>%</div>
+                <div class="state__item state__energy">Энергия: <span>0</span>%</div>
+                <div title="Цвет настроения синий" class="state__item state__mood">Настроение: <span>0</span>%</div>
+            </div>
+
+            <div class="controls">
+                <button class="controls__item eat">Накормить</button>
+                <button class="controls__item new-game">Новая игра</button>
+                <button class="controls__item say">Поговорить</button>
+            </div>
+        </aside>
+        <main class="game__area">
+            <svg width="200" height="200" class="svg"></svg>
+        </main>
+        <div class="text"></div>
+    </div>
+    <script src="./game/game.js"></script>
 </body>
 </html>

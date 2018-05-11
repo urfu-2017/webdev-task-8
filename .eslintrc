@@ -1,3 +1,10 @@
 {
-  "extends": "hrundel/browser"
+  "extends": "hrundel/browser",
+  "parserOptions": {
+    "sourceType": "module"
+  },
+  "rules": {
+    "newline-before-return": "off",
+    "no-return-assign": "off"
+  }
 }
