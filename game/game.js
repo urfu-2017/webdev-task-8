@@ -13,9 +13,16 @@ const moodDisplay = document.querySelector('.state__mood span');
 const satietyDisplay = document.querySelector('.state__satiety span');
 const textDisplay = document.querySelector('.text');
 
+const volumeControl = document.querySelector('.volume');
+volumeControl.addEventListener('change', event => Audio.changeVolume(event.target.value / 100));
+
+Audio.changeVolume(0.5);
+volumeControl.value = 50;
+
 let isSatietyMode = false;
 let isSleepMode = false;
 let isRecognizeMode = false;
+let idleTime = Date.now();
 
 if ('AmbientLightSensor' in window) {
     const sensor = new window.AmbientLightSensor();
@@ -54,7 +61,9 @@ window.addEventListener('focus', () => isSleepMode = false);
 
 document.querySelector('.new-game').addEventListener('click', () => hrunogochi.reset());
 document.querySelector('.eat').addEventListener('click', () => isSatietyMode = true);
-document.querySelector('.say').addEventListener('click', () => recognizer.start());
+document.querySelector('.say').addEventListener('click',
+    () => !isRecognizeMode && recognizer.start()
+);
 
 const svg = new SVG(heroDisplay, hrunogochi.state);
 
@@ -97,8 +106,10 @@ function setAction({ energy, mood, satiety }) {
     }
 
     if (params.state !== STATE.IDLE) {
+        idleTime = Date.now();
         Audio.stop();
-    } else if (Math.random() > 0.15) {
+    } else if (Date.now() - idleTime > 3000) {
+        // включаем звук, если хрюногочи без внимания 3 сек
         Audio.play();
     }
 

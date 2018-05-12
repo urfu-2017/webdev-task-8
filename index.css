@@ -59,6 +59,11 @@ body
     font-size: 14px;
 }
 
+.volume
+{
+    margin: 0 10px;
+}
+
 .game__area
 {
     padding: 64px;
