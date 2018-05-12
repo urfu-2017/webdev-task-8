@@ -1,0 +1,25 @@
+body
+{
+    width: 70%;
+    max-width: 800px;
+    margin: auto;
+    display: flex;
+    justify-content: space-between;
+}
+
+.inputs button,
+.inputs span 
+{
+    display: block;
+    margin-bottom: 10px;
+}
+
+.pig-image
+{
+    height: 500px;
+}
+
+#feed-me
+{
+    display: none;
+}
