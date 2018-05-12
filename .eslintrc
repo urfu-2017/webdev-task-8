@@ -1,3 +1,7 @@
 {
-  "extends": "hrundel/browser"
+  "extends": "hrundel/browser",
+  "parser": "babel-eslint",
+  "parserOptions": {
+    "sourceType": "module"
+  }
 }
