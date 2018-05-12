@@ -1,0 +1,25 @@
+.hrun
+{
+    width: 210px;
+    height: 165px;
+}
+
+.hidden
+{
+    display: none;
+}
+
+.game-container
+{
+    display: flex;
+}
+
+.characteristic-container
+{
+    padding: 20px;
+}
+
+.hrun-container
+{
+    padding: 20px;
+}

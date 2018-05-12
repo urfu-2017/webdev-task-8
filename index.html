@@ -3,8 +3,37 @@
 <head>
     <meta charset="utf-8">
     <title>Хрюногочи</title>
-    <link rel="stylesheet" href="./index.css">
+    <link rel="stylesheet" href="/static/index.css">
 </head>
 <body>
+    <div id="root">
+        <header>
+            <button class="new-game-button">Новая игра</button>
+            <button class="feed-button">Покормить</button>
+        </header>
+        <div class="game-container">
+            <div class="characteristic-container">
+                <div class="characteristic">
+                    <div class="characteristic__title">Сытость</div>
+                    <div class="characteristic__value ch-satiety-output"></div>
+                </div>
+                <div class="characteristic">
+                    <div class="characteristic__title">Энергия</div>
+                    <div class="characteristic__value ch-energy-output"></div>
+                </div>
+                <div class="characteristic">
+                    <div class="characteristic__title">Настроение</div>
+                    <div class="characteristic__value ch-happy-output"></div>
+                </div>
+            </div>
+            <div class="hrun-container">
+                <svg id="hrun" class="hrun"></svg>
+            </div>
+        </div>
+        <div>
+            <div class="speech-recognition-container"></div>
+        </div>
+    </div>
+    <script src='/static/dist/app.js'></script>
 </body>
 </html>
