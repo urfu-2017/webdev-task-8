@@ -4,7 +4,27 @@
     <meta charset="utf-8">
     <title>Хрюногочи</title>
     <link rel="stylesheet" href="./index.css">
+    <script defer type="text/javascript" src="./index.js"></script>
 </head>
 <body>
+    <div class="game">
+        <div class="state">
+            <div class="state-item satiety"><span class="state-item__name">Cытость</span>: <span class="state-item__value">0</span>%</div>
+            <div class="state-item energy"><span class="state-item__name">Энергия</span>: <span class="state-item__value">0</span>%</div>
+            <div class="state-item mood"><span class="state-item__name">Настроение</span>: <span class="state-item__value">0</span>%</div>
+        </div>
+
+        <div class="controls">
+            <button class="controls-item eat">Накормить</button>
+            <button class="controls-item reset">Начать заново</button>
+            <button class="controls-item speak">Поговорить</button>
+            <input class="controls-item volume" type="range">
+        </div>
+        <div class="log">Начните говорить</div>
+        <main class="game__area">
+            <svg width="200" height="200" class="svg"></svg>
+        </main>
+        <div class="text"></div>
+    </div>
 </body>
 </html>

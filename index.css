@@ -1,0 +1,32 @@
+html,
+body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+}
+
+body {
+    display: flex;
+}
+
+.game {
+    width: 40%;
+    margin: auto;
+}
+
+.state,
+.controls {
+    display: flex;
+}
+
+.state-item,
+.controls-item {
+    flex-grow: 1;
+    text-align: center;
+}
+
+.controls-item
+{
+    padding: 5px 10px;
+    font-size: 15px;
+}
