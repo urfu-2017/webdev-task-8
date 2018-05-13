@@ -9,7 +9,7 @@ const COLORS = {
     mouth: '#333',
     crosses: '#333',
     closedEyes: '#333',
-    full: "#00b300",
+    full: '#00b300',
     half: '#ffff00',
     third: '#ffa500',
     finished: '#ff0000'
@@ -48,21 +48,22 @@ export default class SVG {
 
 
     _drawPanels() {
-        this.satietyCircle = this.satPannel.circle(73,50,45);
-        this.satietyCircle.attr({fill: COLORS.full});
-        this.satText = this.satPannel.text(52,59,'100%');
+        this.satietyCircle = this.satPannel.circle(73, 50, 45);
+        this.satietyCircle.attr({ fill: COLORS.full });
+        this.satText = this.satPannel.text(52, 59, '100%');
 
-        this.energyCircle = this.enPannel.circle(73,50,45);
-        this.energyCircle.attr({fill: COLORS.full});
-        this.energyText = this.enPannel.text(52,59,'100%');
+        this.energyCircle = this.enPannel.circle(73, 50, 45);
+        this.energyCircle.attr({ fill: COLORS.full });
+        this.energyText = this.enPannel.text(52, 59, '100%');
 
-        this.moodCircle = this.moodPannel.circle(73,50,45);
-        this.moodCircle.attr({fill: COLORS.full});
-        this.moodText = this.moodPannel.text(52,59,'100%')
+        this.moodCircle = this.moodPannel.circle(73, 50, 45);
+        this.moodCircle.attr({ fill: COLORS.full });
+        this.moodText = this.moodPannel.text(52, 59, '100%');
     }
-
+    /* eslint-disable complexity, max-statements */
     updateText(value, code) {
-        let circle, text;
+        let circle;
+        let text;
         if (code === 0) {
             circle = this.satietyCircle;
             text = this.satText;
@@ -74,18 +75,18 @@ export default class SVG {
             text = this.moodText;
         }
 
-        text.attr({text: value + '%'});
-        if (value > 80){
-            circle.attr({fill: COLORS.full});
+        text.attr({ text: value + '%' });
+        if (value > 80) {
+            circle.attr({ fill: COLORS.full });
         }
-        if (value < 80 && value > 50){
-            circle.attr({fill: COLORS.half});
+        if (value < 80 && value > 50) {
+            circle.attr({ fill: COLORS.half });
         }
-        if (value <= 50 && value > 30){
-            circle.attr({fill: COLORS.third});
+        if (value <= 50 && value > 30) {
+            circle.attr({ fill: COLORS.third });
         }
-        if (value <= 30 && value >= 0){
-            circle.attr({fill: COLORS.finished });
+        if (value <= 30 && value >= 0) {
+            circle.attr({ fill: COLORS.finished });
         }
 
     }

@@ -1,5 +1,5 @@
 import { initDomElements, DomHruborgImage, DomFeedButton,
-    DomNewGameButton, DomCloseHelpButton, DomHelp } from './Dom/Dom';
+    DomNewGameButton } from './Dom/Dom';
 import battery from './lib/Battery';
 import { сonfigurateHrundel } from './HrundelConfigurator';
 import Hrundel from './Hrundel/Hrundel';

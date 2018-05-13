@@ -16,8 +16,8 @@ body
     display: grid;
 
     grid-template-areas: 'state'
-    'hrundel'
-    'controllers';
+        'hrundel'
+        'controllers';
 
     grid-template-rows: auto 40vh auto;
     box-shadow: 0 0 5px grey;
@@ -100,7 +100,9 @@ body
     height: 150px;
 }
 
-.satiety__img, .energy__img, .mood__img
+.satiety__img,
+.energy__img,
+.mood__img
 {
     width: 150px;
 }

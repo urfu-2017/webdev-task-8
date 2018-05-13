@@ -1,5 +1,9 @@
 function isAvailable() {
-    return !!navigator.getBattery;
+    if (navigator.getBattery) {
+        return true;
+    }
+
+    return false;
 }
 
 function init(onStartCharging, onStopCharging) {

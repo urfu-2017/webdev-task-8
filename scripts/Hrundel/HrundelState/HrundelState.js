@@ -171,10 +171,10 @@ export default class HrundelState {
     _checkDeath() {
         const states = this._getStatesAsArray();
 
-        const isDead = states.filter(stateValue => stateValue <= 0).length >= 2;
-        if (isDead) {
+        const allreadyDead = states.filter(stateValue => stateValue <= 0).length >= 2;
+        if (allreadyDead) {
             this.isDead = true;
-            localStorage.setItem(isDead, 1);
+            localStorage.setItem(allreadyDead, 1);
             this.stopAll();
             this._onDeath();
         }

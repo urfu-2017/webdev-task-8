@@ -1,7 +1,7 @@
-import { DomHruborgText, DomEnergy, DomSatiety, DomMood, DomSoundController,
+import { DomHruborgText, DomSoundController,
     DomEnergyCard, DomSatietyCard, DomMoodCard } from './Dom/Dom';
 import notifications from './lib/Notifications';
-import { hrundelPhrases,sounds, blinkingInteraval, periodicSoundInterval } from '../config/config';
+import { hrundelPhrases, sounds, blinkingInteraval, periodicSoundInterval } from '../config/config';
 import SVG from './Svg/SVG';
 
 const svgDraw = new SVG();

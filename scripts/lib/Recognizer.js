@@ -3,9 +3,11 @@ import { recognitionLanguage } from '../../config/config';
 let recognizer;
 
 function isAvailable() {
-    return !!(window.SpeechRecognition || window.webkitSpeechRecognition);
+    if (window.SpeechRecognition || window.webkitSpeechRecognition) {
+        return true;
+    }
 
-
+    return false;
 }
 
 function init() {
