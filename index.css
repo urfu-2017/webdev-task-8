@@ -1,26 +1,31 @@
 html,
-body {
+body
+{
     margin: 0;
     padding: 0;
     height: 100%;
 }
 
-body {
+body
+{
     display: flex;
 }
 
-.game {
-    width: 40%;
+.game
+{
+    width: 30%;
     margin: auto;
 }
 
 .state,
-.controls {
+.controls
+{
     display: flex;
 }
 
 .state-item,
-.controls-item {
+.controls-item
+{
     flex-grow: 1;
     text-align: center;
 }
@@ -29,4 +34,17 @@ body {
 {
     padding: 5px 10px;
     font-size: 15px;
+}
+
+.hero
+{
+    margin: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.hero__speech
+{
+    margin: 10px;
 }

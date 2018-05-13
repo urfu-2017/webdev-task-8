@@ -1,5 +1,6 @@
 import Hrunogochi from './hrunogochi';
 import { emptyHandler } from './utils';
+import drawer from './drawer';
 
 const storageKeys = {
     STATE: 'state',
@@ -7,29 +8,61 @@ const storageKeys = {
 };
 
 const ILLUMINANCE_THRESHOLD = 20;
+const NOTIFICATION_INTERVAL = 5000;
 
-const satiety = document.querySelector('.satiety .state-item__value');
-const energy = document.querySelector('.energy .state-item__value');
-const mood = document.querySelector('.mood .state-item__value');
+const satietyValue = document.querySelector('.satiety .state-item__value');
+const energyValue = document.querySelector('.energy .state-item__value');
+const moodValue = document.querySelector('.mood .state-item__value');
+const eatButton = document.querySelector('.controls-item.eat');
 const resetButton = document.querySelector('.controls-item.reset');
-const speakButton = document.querySelector('.controls-item.speak');
 const volume = document.querySelector('.controls-item.volume');
-const log = document.querySelector('.log');
+const heroPicture = document.querySelector('.hero__picture');
+const heroSpeech = document.querySelector('.hero__speech');
 
 volume.value = localStorage.getItem(storageKeys.VOLUME) || volume.value;
 const hruState = JSON.parse(localStorage.getItem(storageKeys.STATE));
 const hru = new Hrunogochi(hruState);
 
-const draw = () => {
-    satiety.textContent = hru.satiety;
-    energy.textContent = hru.energy;
-    mood.textContent = hru.mood;
+eatButton.onclick = () => {
+    hru.eating = true;
 };
 
 window.onbeforeunload = () => {
     hru.saveState(state => localStorage.setItem(storageKeys.STATE, JSON.stringify(state)));
     localStorage.setItem(storageKeys.VOLUME, volume.value);
 };
+
+const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+if (SpeechRecognition) {
+    const recognizer = new SpeechRecognition();
+    recognizer.lang = 'ru-RU';
+    recognizer.continious = true;
+
+    recognizer.onstart = () => {
+        hru.speaking = true;
+        heroSpeech.textContent = 'Внимательно тебя слушаю';
+        drawer.startSpeak();
+    };
+
+    recognizer.onresult = (e) => {
+        const index = e.resultIndex;
+        if (e.results[index].isFinal) {
+            const result = e.results[index][0].transcript.trim();
+            heroSpeech.textContent = result;
+            recognizer.stop();
+        }
+    };
+
+    recognizer.onend = () => {
+        hru.speaking = false;
+        heroSpeech.textContent = 'Я готов поговорить';
+        drawer.stopSpeak();
+    };
+
+    heroPicture.onclick = () => {
+        recognizer.start();
+    };
+}
 
 window.onblur = () => {
     hru.sleeping = true;
@@ -52,30 +85,6 @@ if (window.speechSynthesis) {
     };
 }
 
-const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
-if (SpeechRecognition) {
-    const recognizer = new SpeechRecognition();
-    recognizer.lang = 'ru-RU';
-    recognizer.contionious = true;
-    recognizer.interimResults = true;
-
-    speakButton.onclick = () => {
-        log.textContent = 'Хрюндель слушает вас';
-        recognizer.start();
-    };
-
-    recognizer.onresult = (e) => {
-        const index = e.resultIndex;
-        const result = e.results[index][0].transcript.trim();
-
-        log.textContent = result;
-    };
-
-    recognizer.onend = () => {
-        log.textContent = 'Начните говорить';
-    };
-}
-
 if ('AmbientLightSensor' in window) {
     // eslint-disable-next-line no-undef
     var sensor = new AmbientLightSensor();
@@ -90,6 +99,7 @@ if ('AmbientLightSensor' in window) {
 }
 
 if (navigator.getBattery) {
+    eatButton.remove();
     navigator
         .getBattery()
         .then(battery => {
@@ -100,14 +110,15 @@ if (navigator.getBattery) {
         });
 }
 
-let notify = emptyHandler;
+let tryNotify = emptyHandler;
 if (('Notification' in window)) {
     Notification.requestPermission(permission => {
         if (permission !== 'granted') {
             return;
         }
 
-        notify = ({ mood, satiety }) => {
+        let wasRecentlyNotified = false;
+        tryNotify = ({ mood, satiety }) => {
             let message = '';
 
             if (mood < 10) {
@@ -116,14 +127,37 @@ if (('Notification' in window)) {
                 message = 'Запас сытости менее 10%';
             }
 
-            if (message) {
+            if (message && !wasRecentlyNotified && hru.sleeping) {
                 // eslint-disable-next-line no-new
-                new Notification('Хрюногочи нужнл уделить внимание', { body: message });
+                new Notification('Хрюногочи нужно уделить внимание', { body: message });
+
+                wasRecentlyNotified = true;
+                setTimeout(() => {
+                    wasRecentlyNotified = false;
+                }, NOTIFICATION_INTERVAL);
             }
         };
     });
 }
 
-hru.onStart = () => console.info('start game with state', hru._state);
-hru.onUpdate = draw;
+hru.onStart = () => {
+    drawer.drawHero();
+};
+
+hru.onUpdate = () => {
+    satietyValue.textContent = hru.satiety;
+    energyValue.textContent = hru.energy;
+    moodValue.textContent = hru.mood;
+    tryNotify(hru.state);
+};
+
+hru.onReset = () => {
+    heroSpeech.textContent = 'Я готов поговорить';
+    drawer.stopSpeak();
+};
+
+hru.onDeath = () => {
+    drawer.animateDeath();
+};
+
 hru.start();

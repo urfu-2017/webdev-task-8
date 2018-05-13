@@ -1,17 +1,28 @@
 import { emptyHandler, bounded } from './utils';
 
+const TICK_INTERVAL = 1500;
+
+const phrases = [
+    'Хрю-хрю',
+    'Поиграй со мной',
+    'Эх...'
+];
+
 export default class Hrunogochi {
     constructor(state) {
         this._init(state);
         this._onStart = emptyHandler;
+        this._onReset = emptyHandler;
         this._onUpdate = emptyHandler;
         this._onSpeak = emptyHandler;
+        this._onDeath = emptyHandler;
     }
 
-    _init(state = this._getInitialState()) {
-        this._state = state;
+    _init(state) {
+        this._state = state || this._getInitialState();
         this._eating = false;
         this._sleeping = false;
+        this._speaking = false;
     }
 
     get isDead() {
@@ -36,6 +47,14 @@ export default class Hrunogochi {
         this._sleeping = value;
     }
 
+    get speaking() {
+        return this._speaking;
+    }
+
+    set speaking(value) {
+        this._speaking = value;
+    }
+
     get energy() {
         return this._state.energy;
     }
@@ -58,6 +77,10 @@ export default class Hrunogochi {
 
     set mood(value) {
         this._state.mood = bounded(value);
+    }
+
+    get state() {
+        return this._state;
     }
 
     _getInitialState() {
@@ -90,23 +113,27 @@ export default class Hrunogochi {
     }
 
     start() {
+        // eslint-disable-next-line max-statements
         const tick = () => {
             if (this.isDead) {
+                this.onDeath();
+
                 return this.stop();
             }
 
             if (Math.random() > 0.75) {
-                this.speak('Хрю-хрю');
+                const chosenPhrase = phrases[Math.floor(Math.random() * phrases.length)];
+                this.speak(chosenPhrase);
             }
 
             let { satiety, energy, mood } = this;
 
-            if (this.eating) {
-                satiety += 3;
-            }
-
-            if (this.sleeping) {
+            if (this.speaking) {
+                mood += 3;
+            } else if (this.sleeping) {
                 energy += 3;
+            } else if (this.eating) {
+                satiety += 3;
             }
 
             satiety--;
@@ -119,11 +146,10 @@ export default class Hrunogochi {
                 mood
             });
 
-            this._tickId = setTimeout(tick, 1000);
+            this._tickId = setTimeout(tick, TICK_INTERVAL);
         };
 
         tick();
-
         this.onStart();
     }
 
@@ -132,6 +158,7 @@ export default class Hrunogochi {
     }
 
     reset() {
+        this.onReset();
         this.stop();
         this._setState(this._getInitialState());
         this.start();
@@ -153,11 +180,27 @@ export default class Hrunogochi {
         this._onUpdate = handler;
     }
 
+    get onReset() {
+        return this._onReset;
+    }
+
+    set onReset(handler) {
+        this._onReset = handler;
+    }
+
     get onSpeak() {
         return this._onSpeak;
     }
 
     set onSpeak(handler) {
         this._onSpeak = handler;
+    }
+
+    get onDeath() {
+        return this._onDeath;
+    }
+
+    set onDeath(handler) {
+        this._onDeath = handler;
     }
 }
