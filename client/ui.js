@@ -107,12 +107,13 @@ export default class UI {
         this.root.addEventListener('game:warning', (e) => {
             const { warningStates } = e.detail;
             if (Notification.permission === 'granted' && !this.isActiveTab) {
-                const text = warningStates
-                    .filter(s => s.name !== 'energy')
-                    .map(s => this.mapStates[s.name])
-                    .join(' и ');
-                const notification = // eslint-disable-line no-unused-vars
-                    new Notification(`Иди сюда я хочу ${text}!!`);
+                const states = warningStates
+                    .filter(s => s.name !== 'energy');
+                if (states.length > 0) {
+                    const text = states.map(s => this.mapStates[s.name]).join(' и ');
+                    const notification = // eslint-disable-line no-unused-vars
+                        new Notification(`Иди сюда я хочу ${text}!!`);
+                }
             }
         });
     }
