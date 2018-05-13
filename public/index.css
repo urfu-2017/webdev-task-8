@@ -1,0 +1,32 @@
+.hrundel_controls_feed,
+.hrundel_controls_sleep,
+.hrundel_controls_play {
+    width: 50px;
+    height: 50px;
+    margin-left: 20px;
+    cursor: pointer;
+}
+
+.hrundel_img {
+    display: inline-block;
+}
+
+.hrundel_states {
+    display: inline-block;
+}
+
+.hrundel_states > div {
+    margin-top: 20px;
+}
+
+.regame {
+    margin-top: 20px;
+    margin-left: 45px; 
+    width: 150px;
+    height: 50px;
+}
+
+.hrundel_img {
+    width: 25%;
+    height: 25%;
+}
