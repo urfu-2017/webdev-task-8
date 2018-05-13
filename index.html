@@ -4,7 +4,39 @@
     <meta charset="utf-8">
     <title>Хрюногочи</title>
     <link rel="stylesheet" href="./index.css">
+    <script src="./bundle.js"></script>
 </head>
 <body>
+<div class="game">
+    <section class="state">
+        <div class="state__card satiety-card">
+            <div class="state__text">Сытость</div>
+            <svg class="satiety__img"></svg>
+        </div>
+        <div class="state__card energy-card">
+            <div class="state__text">Энергия</div>
+            <svg class="energy__img"></svg>
+        </div>
+        <div class="state__card mood-card">
+            <div class="state__text">Настроение</div>
+            <svg class="mood__img"></svg>
+        </div>
+    </section>
+
+    <section class="hrundel">
+        <div class="hrundel__text">Привет!</div>
+        <svg class="hrundel__img"></svg>
+    </section>
+
+    <section class="controllers">
+        <button class="controllers__button feed-button">Кормить</button>
+        <button class="controllers__button new-game-button">Новая игра</button>
+        <div class="controllers__sound">
+            <div class="controllers__sound-text">Громкость</div>
+            <input class="sound-controller"
+                   type="range" min="0" max="1" step="0.1" value="1">
+        </div>
+    </section>
+</div>
 </body>
 </html>
