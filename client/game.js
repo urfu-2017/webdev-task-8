@@ -72,7 +72,7 @@ export class Game {
         return isDeath;
     }
 
-    checkisWarning() {
+    checkIsWarning() {
         const warningStates = this.states.warningStates;
         if (warningStates.length > 0) {
             this.root.dispatchEvent(createWarningEvent(warningStates));
@@ -103,6 +103,8 @@ export class Game {
         if (this.checkIsDeath()) {
             return;
         }
+
+        this.checkIsWarning();
 
         this.handleStates();
 

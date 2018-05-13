@@ -6,6 +6,7 @@ import {
 } from './events';
 
 const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+const Notification = window.Notification || window.webkitNotification;
 
 class CharacteristicOutput {
     constructor(selector, initial) {
@@ -45,6 +46,8 @@ export default class UI {
             '.ch-happy-output',
             this.game.states.happy.value
         );
+
+        Notification.requestPermission();
     }
 
     onUpdate() {
@@ -95,6 +98,25 @@ export default class UI {
         }
     }
 
+    linkNotificationEvent() {
+        this.mapStates = {
+            'happy': 'общаться',
+            'satiety': 'кушать'
+        };
+
+        this.root.addEventListener('game:warning', (e) => {
+            const { warningStates } = e.detail;
+            if (Notification.permission === 'granted' && !this.isActiveTab) {
+                const text = warningStates
+                    .filter(s => s.name !== 'energy')
+                    .map(s => this.mapStates[s.name])
+                    .join(' и ');
+                const notification = // eslint-disable-line no-unused-vars
+                    new Notification(`Иди сюда я хочу ${text}!!`);
+            }
+        });
+    }
+
     link() {
         this.newGameButton.addEventListener('click', () => {
             this.game.newGame();
@@ -104,6 +126,7 @@ export default class UI {
         });
 
         this.linkRecognitionEvent();
+        this.linkNotificationEvent();
 
         this.root.addEventListener('window:changeState', (e) => {
             this.isActiveTab = e.detail.state;
