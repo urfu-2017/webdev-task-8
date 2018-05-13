@@ -1,0 +1,108 @@
+@import url('https://fonts.googleapis.com/css?family=Oswald');
+
+body
+{
+    display: flex;
+    justify-content: center;
+
+    font-family: 'Oswald', sans-serif;
+    font-size: 26px;
+}
+
+.game
+{
+
+    width: 500px;
+    display: grid;
+
+    grid-template-areas: 'state'
+        'hrundel'
+        'controllers';
+
+    grid-template-rows: auto 40vh auto;
+    box-shadow: 0 0 5px grey;
+}
+
+.state
+{
+    grid-area: state;
+
+    text-align: center;
+
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.state__card
+{
+    margin: 5px;
+    padding: 5px;
+}
+
+.hrundel
+{
+    grid-area: hrundel;
+
+    border-left: none;
+    border-right: none;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.hrundel__text
+{
+    margin: 0 20px;
+    text-align: center;
+}
+
+.controllers
+{
+    grid-area: controllers;
+
+    display: flex;
+    justify-content: space-evenly;
+    margin-top: -30px;
+    margin-bottom: 20px;
+}
+
+.controllers__button
+{
+    font-size: 26px;
+    font-family: 'Oswald', sans-serif;
+    cursor: pointer;
+    outline: none;
+    border: none;
+    background: none;
+}
+
+.controllers__button:hover
+{
+    text-decoration: underline;
+}
+
+.controllers__sound
+{
+    margin-top: 35px;
+}
+
+.controllers__sound-text
+{
+    text-align: center;
+}
+
+.hrundel__img
+{
+    cursor: pointer;
+    width: 150px;
+    height: 150px;
+}
+
+.satiety__img,
+.energy__img,
+.mood__img
+{
+    width: 150px;
+}
