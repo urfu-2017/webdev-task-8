@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="utf-8">
+    <title>Хрюногочи</title>
+    <link rel="stylesheet" href="index.css">
+</head>
+<body>
+    <div class="characteristics">
+        <div class="characteristics__title">Характеристики</div>
+        <div class="characteristics__element">
+            <div class="characteristics__describe">Сытость</div>
+            <div id="satiety" class="characteristics__scale">
+                <div class="characteristics__value"></div>
+            </div>
+        </div>
+        <div class="characteristics__element">
+            <div class="characteristics__describe">Энергия</div>
+            <div id="energy" class="characteristics__scale">
+                <div class="characteristics__value"></div>
+            </div>
+        </div>
+        <div class="characteristics__element">
+            <div class="characteristics__describe">Настроение</div>
+            <div id="mood" class="characteristics__scale">
+                <div class="characteristics__value"></div>
+            </div>
+        </div>
+    </div>
+    <div class="control">
+        <div class="control__title">Управление</div>
+        <input id="new-game" class="control__element" type="button" value="Начать новую игру">
+        <div class="control__element">
+            <div class="control__describe">Громкость Хрюнделя</div>
+            <input id="volume-hrundel" type="range" min="0" max="100" step="1" value="100">
+        </div>
+        <div class="control__element hide">
+            <input id="feed-hrundel" class="control__feed-hrundel" type="button" value="Покормить Хрюнделя">
+        </div>
+        <div class="control__element">
+            <div class="control__describe">Пообщаться с Хрюнделем</div>
+            <textarea id="chat-with-hrundel" class="chat-with-hrundel" disabled></textarea>
+        </div>
+    </div>
+    <div class="hrundel">
+        <div id="hrundel__phrase" class="hrundel__phrase"></div>
+        <svg xmlns="http://www.w3.org/2000/svg" id="hrundel__image" class="hrundel__image">
+            <!-- голова -->
+            <circle cx="60" cy="60" r="40" fill="#ffb6c1"></circle>
+            <!-- глаза в живом состоянии-->
+            <ellipse class="hrundel__eye_alive" cx="48" cy="45" rx="5" ry="5" fill="#000"></ellipse>
+            <ellipse class="hrundel__eye_alive" cx="72" cy="45" rx="5" ry="5" fill="#000"></ellipse>
+            <!-- глаза в мёртвом состоянии -->
+            <g class="hrundel__eye_dead hide">
+                <line x1="43" y1="40" x2="53" y2="50" stroke="black" stroke-width="2px"></line>
+                <line x1="43" y1="50" x2="53" y2="40" stroke="black" stroke-width="2px"></line>
+            </g>
+            <g class="hrundel__eye_dead hide">
+                <line x1="67" y1="40" x2="77" y2="50" stroke="black" stroke-width="2px"></line>
+                <line x1="67" y1="50" x2="77" y2="40" stroke="black" stroke-width="2px"></line>
+            </g>
+            <!-- нос -->
+            <circle cx="60" cy="65" r="9" stroke="#db7093" stroke-width="3px" fill="#ffb6c1"></circle>
+            <circle cx="57" cy="65" r="2" fill="#db7093"></circle>
+            <circle cx="63" cy="65" r="2" fill="#db7093"></circle>
+            <!-- уши -->
+            <ellipse rx="12" ry="15" cx="80" cy="22" fill="#ffb6c1" transform="rotate(35 80 22)"></ellipse>
+            <ellipse rx="12" ry="15" cx="40" cy="22" fill="#ffb6c1" transform="rotate(-35 40 22)"></ellipse>
+            <!-- рот -->
+            <ellipse class="hrundel__month" rx="16" ry="1" cx="60" cy="84"></ellipse>
+        </svg>
+    </div>
+
+    <script src="./assembledIndex.js"></script>
+</body>
+</html>

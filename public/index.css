@@ -1,0 +1,100 @@
+.characteristics
+{
+    display: inline-block;
+    vertical-align: top;
+    width: 200px;
+}
+
+.characteristics__element
+{
+    margin-bottom: 10px;
+}
+
+.characteristics__title
+{
+    font-size: 24px;
+    font-weight: 600;
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+.characteristics__describe
+{
+    text-align: center;
+}
+
+.characteristics__scale
+{
+    background: grey;
+    height: 20px;
+    border: solid 1px black;
+}
+
+.characteristics__value
+{
+    width: 0;
+    background: green;
+    height: 20px;
+}
+
+.control
+{
+    display: inline-block;
+    vertical-align: top;
+    margin-left: 50px;
+    text-align: center;
+}
+
+.control__title
+{
+    font-size: 24px;
+    font-weight: 600;
+    margin-bottom: 25px;
+}
+
+.control__element
+{
+    margin-bottom: 18px;
+}
+
+.control__describe
+{
+    text-align: center;
+    margin-bottom: 15px;
+}
+
+.hrundel
+{
+    margin-left: 50px;
+    display: inline-block;
+}
+
+.hrundel__phrase
+{
+    height: 50px;
+}
+
+.hrundel__image
+{
+    cursor: pointer;
+    width: 120px;
+    height: 110px;
+}
+
+.hide
+{
+    display: none;
+}
+
+.control__feed-hrundel
+{
+    width: 160px;
+    text-align: center;
+}
+
+.chat-with-hrundel
+{
+    width: 200px;
+    height: 300px;
+    padding: 10px;
+}
