@@ -1,42 +1,22 @@
 (function () {
 
 
-    const { polylinearScale } = window;
+    const { hruStorage, ScaleBuilder } = window;
 
-
-    function setObject(key, value) {
-        if (value === null) {
-            localStorage.removeItem(key);
-        } else {
-            localStorage.setItem(key, JSON.stringify(value));
-        }
-    }
-
-    function getObject(key) {
-        const value = localStorage.getItem(key);
-
-        return value === null
-            ? null
-            : JSON.parse(value);
-    }
-
-    function setDate(key, value) {
-        setObject(key, value);
-    }
-
-    function getDate(key) {
-        const value = getObject(key);
-
-        return value === null
-            ? null
-            : new Date(value);
-    }
-
-    const PERIOD_DURATION = 30;
     const MAX_STAT_LEVEL = 100;
-    const DECREASE_SPEED = MAX_STAT_LEVEL / PERIOD_DURATION;
+    const SECOND = 1;
+    const MINUTE = 60 * SECOND;
+    // const HOUR = 60 * MINUTE;
+    // const DAY = 24 * HOUR;
+    const decreaseSpeedConfig = {
+        'games': MAX_STAT_LEVEL / (3 * MINUTE),
+        'feedings': MAX_STAT_LEVEL / (2 * MINUTE),
+        'naps': MAX_STAT_LEVEL / (2.5 * MINUTE)
+    };
     const REGEN_RATE = 3;
 
+    const scaleBuilderInstance = new ScaleBuilder(
+        { MAX_STAT_LEVEL, REGEN_RATE, decreaseSpeedConfig });
     window.hrundel = {
         get mood() {
             return this.getStatValue('games');
@@ -46,76 +26,29 @@
             return this.getStatValue('feedings');
         },
 
-
         get energy() {
             return this.getStatValue('naps');
         },
 
         get bornDate() {
-            return getDate('bornDate');
+            return hruStorage.getDate('bornDate');
         },
 
         get isAlive() {
             return [this.energy, this.food, this.mood].filter(x => x === 0).length < 2;
         },
 
+        get scaleBuilder() {
+            return scaleBuilderInstance;
+        },
+
         getStatValue(periodCollectionName) {
-            return this.getStatScale(periodCollectionName)(this.age);
+            return scaleBuilderInstance.getStatScale(periodCollectionName)(this.age);
         },
-        getStatScale(periodCollectionName) {
-            const X = [0];
-            const Y = [MAX_STAT_LEVEL];
-            const endPeriod = this.endPeriod;
 
-            function pushPoint(x, y) {
-                X.push(x);
-                Y.push(y);
-            }
-
-
-            function addPoint(x, k) {
-                const x0 = X[X.length - 1];
-                const b = Y[Y.length - 1];
-                const y = Number((k * (x - x0) + b).toFixed(5));
-
-                function boundTo(yValue) {
-                    const xRoot = (yValue + k * x0 - b) / k;
-                    pushPoint(xRoot, yValue);
-                    pushPoint(x, yValue);
-
-                    return xRoot;
-                }
-
-                if (y < 0) {
-                    boundTo(0);
-                } else if (y > MAX_STAT_LEVEL) {
-                    const xRoot = boundTo(MAX_STAT_LEVEL);
-                    endPeriod(periodCollectionName, xRoot);
-                } else {
-                    pushPoint(x, y);
-                }
-
-            }
-
-            const periods = getObject(periodCollectionName);
-            if (!periods) {
-                periods.forEach(period => {
-                    const start = period[0];
-                    const end = period[1] || this.age;
-                    addPoint(start, -DECREASE_SPEED);
-                    addPoint(end, DECREASE_SPEED * REGEN_RATE);
-                });
-            }
-
-            if (periods.length === 0 || periods[periods.length - 1].length !== 1) {
-                addPoint(this.age, -DECREASE_SPEED);
-            }
-
-            return polylinearScale(X, Y);
-        },
 
         set bornDate(value) {
-            setDate('bornDate', value);
+            hruStorage.setDate('bornDate', value);
         },
 
         get age() {
@@ -152,30 +85,29 @@
         },
 
         startPeriod(collectionName) {
-            const periods = getObject(collectionName);
+            const periods = hruStorage.getObject(collectionName);
             const lastPeriod = periods[periods.length - 1];
             if (!lastPeriod || lastPeriod.length !== 1) {
                 periods.push([this.age]);
-                setObject(collectionName, periods);
+                hruStorage.setObject(collectionName, periods);
             }
         },
 
         endPeriod(collectionName, when) {
-            const periods = getObject(collectionName);
+            const periods = hruStorage.getObject(collectionName);
             const lastPeriod = periods[periods.length - 1];
             if (lastPeriod && lastPeriod.length === 1) {
                 lastPeriod.push(when || this.age);
-                setObject(collectionName, periods);
+                hruStorage.setObject(collectionName, periods);
             }
         },
 
         reborn() {
             this.bornDate = new Date();
-            setObject('naps', []);
-            setObject('games', []);
-            setObject('feedings', []);
+            hruStorage.setObject('naps', []);
+            hruStorage.setObject('games', []);
+            hruStorage.setObject('feedings', []);
         }
-
     };
 
 

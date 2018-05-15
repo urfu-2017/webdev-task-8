@@ -1,0 +1,54 @@
+.page
+{
+    display: grid;
+    height: 100vh;
+    grid-template-areas: 'avatar'
+        'stats'
+        'buttons'
+        'volume'
+        'recognition'
+        'graphs';
+    grid-template-rows: auto auto auto auto auto 1fr;
+    grid-row-gap: 10px;
+    margin: 0;
+    padding: 10px;
+    font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+.page__graphs
+{
+    grid-area: graphs;
+}
+
+.page__avatar
+{
+    grid-area: avatar;
+    height: 250px;
+}
+
+.page__stats
+{
+    grid-area: stats;
+    width: 150px;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+.page__buttons
+{
+    grid-area: buttons;
+}
+
+.page__volume
+{
+    grid-area: volume;
+}
+
+.page__recognition
+{
+    grid-area: recognition;
+    border: black solid 1px;
+    border-radius: 5px;
+    width: 200px;
+    padding: 10px;
+}

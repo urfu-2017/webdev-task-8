@@ -1,11 +1,10 @@
 window.addEventListener('load', async function () {
     const { hrundel, document } = window;
+    const $buttonsContainer = document.querySelector('.page__buttons');
 
     const battery = navigator.battery || navigator.getBattery ? await navigator.getBattery() : null;
     if (battery) {
         battery.addEventListener('chargingchange', function () {
-
-
             if (battery.charging) {
                 hrundel.startFeeding();
             } else {
@@ -23,7 +22,7 @@ window.addEventListener('load', async function () {
                 button.disabled = false;
             }, 3000);
         };
-        document.body.appendChild(button);
+        $buttonsContainer.appendChild(button);
     }
 
 }, false);

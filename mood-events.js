@@ -1,28 +1,39 @@
 window.addEventListener('load', async function () {
     const { hrundel, document } = window;
     const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+    const $result = document.querySelector('.page__recognition');
     let recognizer = { start: () => null, stop: () => null };
     if (SpeechRecognition) {
         recognizer = new SpeechRecognition();
         recognizer.lang = 'ru-RU';
         recognizer.continuous = true;
+        recognizer.maxAlternatives = 1;
 
     }
 
 
-    const button = document.createElement('button');
-    button.innerText = 'играть';
-    button.onclick = function () {
+    recognizer.addEventListener('result', (e) => {
+        $result.innerHTML = e.results[0][0].transcript;
+    });
+    recognizer.addEventListener('nomatch', () => {
+        $result.innerHTML = 'Не осознал, повтори!';
+    });
+
+    const avatar = document.getElementById('avatar');
+    avatar.onclick = function () {
+        if (avatar.disabled) {
+            return;
+        }
         hrundel.startGame();
         recognizer.start();
-        button.disabled = true;
+        avatar.disabled = true;
         setTimeout(() => {
             hrundel.endGame();
             recognizer.stop();
-            button.disabled = false;
-        }, 3000);
+            avatar.disabled = false;
+        }, 5000);
     };
-    document.body.appendChild(button);
+    document.body.appendChild(avatar);
 
 }, false);
 
