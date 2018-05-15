@@ -24,8 +24,8 @@ let interval;
 const startSleeping = () => {
     interval = setInterval(() => {
         let newEnergyValue = Number(localStorage.getItem('energy')) + 5;
-        if (newEnergyValue > 100) {
-            newEnergyValue = 100;
+        if (newEnergyValue > 101) {
+            newEnergyValue = 101;
         }
         localStorage.setItem('energy', newEnergyValue);
     }, 500);

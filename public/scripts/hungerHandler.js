@@ -31,8 +31,8 @@ function getCurrentValue() {
 }
 
 function normalizeValue(newValue) {
-    if (newValue > 100) {
-        return 100;
+    if (newValue > 101) {
+        return 101;
     }
 
     return newValue;

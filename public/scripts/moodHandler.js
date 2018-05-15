@@ -34,8 +34,8 @@ if (SpeechRecognition) {
             recognizer.stop();
             field.innerHTML = 'свинья вас не слушает';
         }
-        if (newMood > 100) {
-            newMood = 100;
+        if (newMood > 101) {
+            newMood = 101;
             recognizer.stop();
             field.innerHTML = 'свинья вас не слушает';
         }
