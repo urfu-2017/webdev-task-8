@@ -42,6 +42,7 @@
     display: inline-block;
     vertical-align: top;
     margin-left: 50px;
+    text-align: center;
 }
 
 .control__title
@@ -59,18 +60,41 @@
 .control__describe
 {
     text-align: center;
+    margin-bottom: 15px;
 }
 
 .hrundel
 {
     margin-left: 50px;
     display: inline-block;
-    width: 200px;
-    height: 200px;
-    background: red;
+}
+
+.hrundel__phrase
+{
+    height: 50px;
+}
+
+.hrundel__image
+{
+    cursor: pointer;
+    width: 120px;
+    height: 110px;
 }
 
 .hide
 {
     display: none;
+}
+
+.control__feed-hrundel
+{
+    width: 160px;
+    text-align: center;
+}
+
+.chat-with-hrundel
+{
+    width: 200px;
+    height: 300px;
+    padding: 10px;
 }
