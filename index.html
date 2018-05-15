@@ -1,10 +1,32 @@
 <!DOCTYPE html>
 <html lang="ru">
-<head>
-    <meta charset="utf-8">
-    <title>Хрюногочи</title>
-    <link rel="stylesheet" href="./index.css">
-</head>
-<body>
-</body>
+    <head>
+        <meta charset="utf-8">
+        <title>Хрюногочи</title>
+        <link rel="stylesheet" href="./index.css">
+        <script src="./js/snap.svg-min.js"></script>
+        <script src="./js/index.js"></script>
+    </head>
+    <body>
+        <aside class="controls">
+            <div class="controlRow">
+                <span class="controlLabel">Satiety</span>
+                <span class="controlValue" id="satietyValue"></span>
+            </div>
+            <div class="controlRow">
+                <span class="controlLabel">Energy</span>
+                <span class="controlValue" id="energyValue"></span>
+            </div>
+            <div class="controlRow">
+                <span class="controlLabel">Mood</span>
+                <span class="controlValue" id="moodValue"></span>
+            </div>
+        </aside>
+        <main>
+            <svg class="hrun" width="400px" height="400px"></svg>
+
+            <textarea cols="30" rows="10" class="speech" id="speech"></textarea>
+        </main>
+
+    </body>
 </html>
