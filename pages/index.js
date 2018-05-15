@@ -2,10 +2,17 @@
 
 import React from 'react';
 import './index.css';
+import _ from 'underscore';
+
+import SoundPlayer from '../server/models/soundPlayer';
+import StateStorage from '../server/models/stateStorage';
 
 const decreaseTimeout = 3000;
 const maxIndicatorValue = 100;
+const decreaseSpeed = 1;
+const increaseSpeed = 5;
 
+/* eslint-disable no-undef */
 export default class MainPage extends React.Component {
     constructor(props) {
         super(props);
@@ -15,56 +22,54 @@ export default class MainPage extends React.Component {
                 energy: maxIndicatorValue,
                 mood: maxIndicatorValue
             },
-            catState: 'smile'
+            catState: 'smile',
+            isFocused: true,
+            speechText: ''
         };
     }
 
-    componentDidMount() {
-        this.loadStateFromLocalStorage();
+    async componentDidMount() {
+        /* eslint-disable react/no-did-mount-set-state*/
+        this.setState(StateStorage.load());
+        window.onfocus = () => this.setState({ isFocused: true });
         window.onblur = () => {
             if (this.state.catState !== 'dead') {
-                this.setState({ catState: 'sleep' });
+                this.speechRecognizer.stop();
+                this.setState({ catState: 'sleep', isFocused: false });
             }
         };
 
+        this.soundPlayer = new SoundPlayer();
+        this.speechRecognizer = this.initSpeechRecognizer();
+
+        this.Notification = window.Notification || window.webkitNotification;
+        const response = await this.Notification.requestPermission();
+
+        this.notificationsIsAllowed = response !== 'denied';
+
         setInterval(() => this.updateIndicators(), decreaseTimeout);
-        window.onbeforeunload = () => this.saveStateToLocalStorage();
+        window.onbeforeunload = () => StateStorage.save(this.state);
     }
 
-    loadStateFromLocalStorage() {
-        let indicators = localStorage.getItem('indicators');
+    initSpeechRecognizer() {
+        const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+        const speechRecognizer = new SpeechRecognition();
 
-        if (indicators) {
-            this.setState({
-                indicators: JSON.parse(indicators),
-                catState: localStorage.getItem('catState')
-            });
-        } else {
-            indicators = {
-                satiety: maxIndicatorValue,
-                energy: maxIndicatorValue,
-                mood: maxIndicatorValue
-            };
-            localStorage.setItem('indicators', JSON.stringify(indicators));
-            localStorage.setItem('catState', 'smile');
-            this.setState({ indicators, catState: 'smile' });
-        }
-    }
+        speechRecognizer.lang = 'en-US';
+        speechRecognizer.continuous = true;
+        speechRecognizer.interimResults = true;
+        speechRecognizer.onresult = e => this.listen(e);
 
-    saveStateToLocalStorage() {
-        localStorage.indicators = JSON.stringify(this.state.indicators);
-        localStorage.catState = this.state.catState;
+        return speechRecognizer;
     }
 
     updateIndicators() {
-        const { indicators } = this.state;
+        let { indicators } = this.state;
 
-        for (const key of Object.keys(indicators)) {
-            indicators[key] = Math.max(indicators[key] - 1, 0);
-        }
+        indicators = _.mapObject(indicators, val => Math.max(val - decreaseSpeed, 0));
 
         if (this.state.catState === 'sleep') {
-            indicators.energy = Math.min(indicators.energy + 6, 100);
+            indicators.energy = Math.min(indicators.energy + increaseSpeed, 100);
         }
 
         const catState = this.detectCatState();
@@ -72,28 +77,59 @@ export default class MainPage extends React.Component {
         this.setState({ indicators, catState });
     }
 
-    detectCatState() {
-        const { indicators } = this.state;
-        const criticalIndicators = Object.keys(indicators).filter(x => indicators[x] === 0);
+    getWorstIndicator() {
+        return _.chain(this.state.indicators)
+            .pairs()
+            .sortBy(pair => pair[1])
+            .first()
+            .value();
+    }
 
-        if (criticalIndicators.length >= 2) {
+    isDead() {
+        const criticalIndicators = _.chain(this.state.indicators)
+            .pairs()
+            .filter(pair => pair[1] === 0)
+            .value();
+
+        return criticalIndicators.length >= 2;
+    }
+
+    /* eslint-disable */
+    detectCatState() {
+        if (this.isDead()) {
             return 'dead';
         }
 
-        const [worstIndicator] = Object
-            .keys(indicators)
-            .map(key => [key, indicators[key]])
-            .sort((a, b) => a[1] - b[1]);
+        if (this.state.catState === 'listen') {
+            return 'listen'
+        }
 
-        if (worstIndicator[1] >= 50) {
+        const [worstIndicatorName, worstIndicatorValue] = this.getWorstIndicator();
+
+        if (worstIndicatorValue >= 50) {
             return 'smile';
         }
 
-        if (worstIndicator[0] === 'mood') {
-            return 'angry';
+        if (worstIndicatorValue === 10) {
+            this.sendNotification(worstIndicatorName);
         }
 
-        return 'sad';
+        return worstIndicatorName === 'mood' ? 'angry' : 'sad';
+    }
+
+    sendNotification(worstState) {
+        if (!this.notificationsIsAllowed || this.state.isFocused) {
+            return;
+        }
+
+        /* eslint-disable no-new */
+        new this.Notification(
+            'my little kitty',
+            {
+                body: worstState === 'mood' ? 'I miss you' : 'i am so hungry! Please feed me',
+                icon: `/static/sad.svg`
+            }
+        );
     }
 
     revive() {
@@ -111,26 +147,55 @@ export default class MainPage extends React.Component {
         if (this.state.catState === 'dead') {
             return;
         }
-
-        this.setState({ catState: 'eat' });
         const { indicators } = this.state;
 
-        indicators.satiety = Math.min(indicators.satiety + 5, maxIndicatorValue);
-        this.setState({ indicators });
+        this.speechRecognizer.stop();
+        indicators.satiety = Math.min(indicators.satiety + increaseSpeed, maxIndicatorValue);
+        this.setState({ indicators, catState: 'eat' });
+    }
+
+    startListen() {
+        if (this.state.indicators.mood === maxIndicatorValue 
+            || this.state.catState === 'dead' 
+            || this.state.catState === 'listen') {
+            return;
+        }
+        this.speechRecognizer.start();
+        this.setState({ catState: 'listen' });
+    }
+
+    listen(speechEvent) {
+        if (this.state.mood === maxIndicatorValue) {
+            this.speechRecognizer.stop();
+        }
+
+        let speechText = '';
+
+        for (let i = speechEvent.resultIndex; i < event.results.length; i += 1) {
+            speechText += speechEvent.results[i][0].transcript;
+        }
+
+        const { indicators } = this.state;
+
+        indicators.mood = Math.min(indicators.mood + increaseSpeed, maxIndicatorValue);
+        this.setState({ speechText, indicators });
     }
 
     render() {
         return (
             <main className="main">
-                <div className="cat-indicators">
-                    <p>satiety: {this.state.indicators.satiety}</p>
-                    <p>energy: {this.state.indicators.energy}</p>
-                    <p>mood: {this.state.indicators.mood}</p>
-                    <p>state: {this.state.catState}</p>
-                    <button onClick={this.feed()}>feed</button>
-                    <button onClick={this.revive()}>revive</button>
+                <div className="game-region">
+                    <div className="cat-indicators">
+                        <p>satiety: {this.state.indicators.satiety}</p>
+                        <p>energy: {this.state.indicators.energy}</p>
+                        <p>mood: {this.state.indicators.mood}</p>
+                        <p>state: {this.state.catState}</p>
+                        <textarea className="speech-output" value={this.state.speechText} readOnly />
+                        <button onClick={() => this.feed()}>feed</button>
+                        <button onClick={() => this.revive()}>revive</button>
+                    </div>
+                    <img className="cat" onClick={() => this.startListen()} src={`/static/${this.state.catState}.svg`} alt="cat smile" />
                 </div>
-                <img className="cat" src={`/static/${this.state.catState}.svg`} alt="cat smile" />
             </main>
         );
     }

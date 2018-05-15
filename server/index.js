@@ -1,6 +1,7 @@
 'use strict';
 
 /* eslint-disable no-undef */
+/* eslint-disable no-undef */
 const express = require('express');
 const next = require('next');
 const path = require('path');

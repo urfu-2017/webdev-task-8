@@ -1,6 +1,18 @@
-.main 
+.main
 {
     display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.game-region
+{
+    display: flex;
+}
+
+.speech-output
+{
+    color: black;
 }
 
 button
