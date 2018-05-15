@@ -4,7 +4,21 @@
     <meta charset="utf-8">
     <title>Хрюногочи</title>
     <link rel="stylesheet" href="./index.css">
+    <script src="./snap.svg-min.js"></script>
+    <script src="./index.js"></script>
 </head>
 <body>
+    <main class="game">
+        <div class="message">
+        </div>
+        <svg class="hru"></svg>
+        <div class="controls">
+            <button class="eat-btn">ЕСТЬ</button>
+            <button class="listen-btn">СЛУШАТЬ</button>
+            <button class="reset-btn">RESET</button>
+            <input class="volume" type="range" min="0" max="100" value="50">
+        </div>
+        <div class="indicators"></div>
+    </main>
 </body>
 </html>
