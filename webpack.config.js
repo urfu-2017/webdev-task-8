@@ -7,7 +7,7 @@ module.exports = {
     entry: './public/index.js',
     output: {
         path: path.resolve(__dirname, 'public', './'),
-        filename: 'assembled-index.js'
+        filename: 'assembledIndex.js'
     },
     // https://github.com/adobe-webplatform/Snap.svg/issues/483
     module: {

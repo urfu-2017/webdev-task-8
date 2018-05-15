@@ -2,10 +2,10 @@
   "private": true,
   "scripts": {
     "test": "npm run lint && mocha ./node_modules/html-tests/task-stub/test",
-    "lint": "eslint . && stylelint *.css **/*.css && html-validator --file index.html --verbose && htmllint *.html",
-    "build": "webpack --watch",
+    "lint": "eslint . && stylelint *.css **/*.css && html-validator --file public/index.html --verbose && htmllint *.html",
+    "build": "webpack",
     "start": "node index.js",
-    "dev": "npm-run-all --parallel build start"
+    "dev": "npm-run-all --parallel webpack --watch start"
   },
   "dependencies": {
     "express": "4.16.3",
