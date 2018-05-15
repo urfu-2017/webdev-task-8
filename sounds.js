@@ -2,8 +2,8 @@ window.addEventListener('load', async function () {
     const { speechSynthesis } = window;
 
     function getRandomDelay() {
-        const min = 2500;
-        const max = 8500;
+        const min = 25000;
+        const max = 85000;
         let rand = min + Math.random() * (max + 1 - min);
         rand = Math.floor(rand);
 
