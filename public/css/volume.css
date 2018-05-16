@@ -1,0 +1,16 @@
+.volume
+{
+    width: 400px;
+    margin: 0 auto;
+    display: flex;
+}
+
+.volume__slider
+{
+    flex-grow: 2;
+}
+
+.volume__text
+{
+    flex-grow: 1;
+}
