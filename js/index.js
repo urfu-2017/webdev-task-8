@@ -1,9 +1,9 @@
 const health = window.health = {
-    satiety: 20, // сытость
+    satiety: 100, // сытость
     satietyHTML: 'health__satiety-value',
-    energy: 70,
+    energy: 100,
     energyHTML: 'health__energy-value',
-    mood: 50, // настроение
+    mood: 100, // настроение
     moodHTML: 'health__mood-value',
     dead() {
         let count = 0;
@@ -24,7 +24,9 @@ const health = window.health = {
                 count++;
             }
         }
-        this.howMooth(count, threshold);
+        if (!window.isSleep) {
+            this.howMooth(count, threshold);
+        }
     },
     refresh(classHealth, value) {
         const elem = document.getElementsByClassName(classHealth)[0];
@@ -35,7 +37,7 @@ const health = window.health = {
         addCookies();
     },
     howMooth(count, threshold) {
-        if (count !== 0 || !window.isSleep) {
+        if (count !== 0) {
             if (threshold === 10) {
                 window.svg.mouth.attr({ opacity: 1 });
                 window.svg.mouthSadly.attr({ opacity: 0 });
@@ -69,7 +71,9 @@ function addCookies() {
 
 setInterval(addCookies, 1000 * 60);
 
-document.querySelector('.newGame').addEventListener('click', () => {
+document.querySelector('.newGame').addEventListener('click', newGame);
+
+function newGame() {
     health.satiety = 100;
     health.mood = 100;
     health.energy = 100;
@@ -79,7 +83,7 @@ document.querySelector('.newGame').addEventListener('click', () => {
     health.refresh(health.moodHTML, health.mood);
     window.svg.state.default();
     window.svg.dead = false;
-});
+}
 
 document.querySelector('.voice').addEventListener('click', (event) => {
     if (event.target.innerHTML === '+') {

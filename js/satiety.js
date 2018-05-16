@@ -29,6 +29,11 @@ if (!navigator.getBattery) {
         .getBattery()
         .then(initBattery);
 }
+
+setInterval(function () {
+    deleteSatiety();
+}, 10000);
+
 function initBattery(battery) {
     battery.onlevelchange = updateLevel;
     battery.onlevelchange();
@@ -37,9 +42,6 @@ function initBattery(battery) {
 function updateLevel() {
     if (this.charging && window.health.satiety < 100) {
         addSatiety();
-    }
-    if (!this.charging) {
-        deleteSatiety();
     }
 }
 
