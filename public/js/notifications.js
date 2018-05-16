@@ -16,7 +16,7 @@
         hungry: null,
         tired: null,
         sad: null
-    }
+    };
 
     const createNotification = (key) => {
         if (notifications[key] !== null) {
