@@ -13,3 +13,11 @@ module.exports.initState = () => {
 
     return JSON.parse(localStorage.state);
 };
+
+module.exports.saveState = (state) => {
+    localStorage.state = JSON.stringify(state);
+};
+
+module.exports.clearState = () => {
+    localStorage.removeItem('state');
+};

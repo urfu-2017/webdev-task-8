@@ -1,5 +1,5 @@
 const { alternate, reset } = require('../../scripts/helpers/animation');
-const { initState } = require('../../scripts/helpers/init-state');
+const { initState, saveState, clearState } = require('../helpers/state');
 
 module.exports = class Hrundel {
     constructor(hrundel) {
@@ -34,7 +34,7 @@ module.exports = class Hrundel {
         }, 250);
     }
 
-    tick(cb) {
+    tick(onUpdate) {
         if (this.isDead()) {
             clearInterval(this.deathLine);
             clearInterval(this.lifeLine);
@@ -42,26 +42,32 @@ module.exports = class Hrundel {
 
             return;
         }
-        cb(this.state);
 
         this.state.energy -= this.isSleeping ? 0 : 1;
         this.state.mood -= this.isEnjoying ? 0 : 1;
         this.state.satiety -= this.isEating ? 0 : 1;
+
+        onUpdate(this.state);
+        saveState(this.state);
     }
 
-    fill(cb, onFed, onEnjoyed, onOverslept) {
+    fill(onUpdate, onFed, onEnjoyed, onOverslept) {
         this.checkState(onFed, onEnjoyed, onOverslept);
-        cb(this.state);
 
         this.state.energy += this.isSleeping ? 1 : 0;
         this.state.mood += this.isEnjoying ? 1 : 0;
         this.state.satiety += this.isEating ? 1 : 0;
+
+        onUpdate(this.state);
+        saveState(this.state);
     }
 
     checkState(onFed, onEnjoyed, onOverslept) {
         if (this.state.energy === 100) {
-            this.isSleeping = false;
-            onOverslept();
+            if (this.isSleeping) {
+                this.state.energy = 99;
+                onOverslept();
+            }
         }
         if (this.state.satiety === 100) {
             this.isEating = false;
@@ -106,9 +112,22 @@ module.exports = class Hrundel {
         }, time);
     }
 
-    awake() {
-        this.resetPosition(700);
-        this.openEyes(700);
+    clear() {
+        clearInterval(this.lifeLine);
+        clearInterval(this.deathLine);
+        this.resetPosition(0);
+
+        let path = this.hrundel.select('path');
+        if (path) {
+            path.remove();
+        }
+
+        let text = this.hrundel.select('text');
+        if (text) {
+            text.remove();
+        }
+
+        clearState();
     }
 
     greet() {
@@ -133,7 +152,16 @@ module.exports = class Hrundel {
         }, 300, 2);
     }
 
+    awake() {
+        this.isSleeping = false;
+
+        this.resetPosition(700);
+        this.openEyes(700);
+    }
+
     sleep() {
+        this.isSleeping = true;
+
         const duration = 1000;
 
         this.leftEye.animate({
@@ -173,22 +201,22 @@ module.exports = class Hrundel {
             }, 1500);
         }
 
-        this.hrundel.path('M55 29 L65 39 M65 29 L 55 39 M98 29 L108 39 M 108 29 L 98 39')
+        this.head.path('M55 29 L65 39 M65 29 L 55 39 M98 29 L108 39 M 108 29 L 98 39')
             .attr({
                 stroke: '#000',
                 strokeWidth: 2,
                 opacity: 0
             })
-            .animate({
+            .attr({
                 opacity: 1
-            }, 500);
+            });
 
-        this.leftEye.animate({
+        this.leftEye.attr({
             opacity: 0
-        }, 500);
+        });
 
-        this.rightEye.animate({
+        this.rightEye.attr({
             opacity: 0
-        }, 500);
+        });
     }
 };

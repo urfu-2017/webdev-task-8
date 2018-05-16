@@ -3,11 +3,27 @@ const Hrundel = require('./scripts/models/hrundel');
 const moodContainer = document.querySelector('.stats__mood .stats__value');
 const energyContainer = document.querySelector('.stats__energy .stats__value');
 const satietyContainer = document.querySelector('.stats__satiety .stats__value');
+const restartButton = document.querySelector('.restart');
 
-const hrundel = new Hrundel(Snap('#hrundel'));
+let hrundel = new Hrundel(Snap('#hrundel'));
+
+moodContainer.innerHTML = hrundel.state.mood;
+satietyContainer.innerHTML = hrundel.state.satiety;
+energyContainer.innerHTML = hrundel.state.energy;
+
+restartButton.addEventListener('click', () => {
+    hrundel.clear();
+    hrundel = new Hrundel(Snap('#hrundel'));
+
+    start();
+});
+
+start();
 
 function start() {
-    hrundel.initLifecycle(onStateChange, () => {}, () => {}, () => {});
+    hrundel.greet();
+
+    hrundel.initLifecycle(onStateChange, () => {}, () => {}, onOverslept);
 }
 
 function onStateChange(state) {
@@ -22,6 +38,17 @@ function onFed() {
     hrundel.enjoy();
 }
 
-start();
+function onOverslept() {
+    if (document.hasFocus()) {
+        hrundel.awake();
+    }
+}
 
+window.onfocus = () => {
+    hrundel.awake();
+};
+
+window.onblur = () => {
+    hrundel.sleep();
+};
 
