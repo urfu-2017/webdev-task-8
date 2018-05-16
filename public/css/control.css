@@ -1,0 +1,23 @@
+.control
+{
+    padding-top: 10px;
+    width: 200px;
+    margin: 0 auto;
+}
+
+.control__reset,
+.control__feed
+{
+    margin: 10px 0;
+    width: 100%;
+}
+
+.control__feed
+{
+    display: none;
+}
+
+.control__feed_visible
+{
+    display: block;
+}

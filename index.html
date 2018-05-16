@@ -3,8 +3,49 @@
 <head>
     <meta charset="utf-8">
     <title>Хрюногочи</title>
-    <link rel="stylesheet" href="./index.css">
+    <link rel="stylesheet" href="./public/css/common.css">
+    <link rel="stylesheet" href="./public/css/control.css">
+    <link rel="stylesheet" href="./public/css/states.css">
+    <link rel="stylesheet" href="./public/css/pig.css">
+    <link rel="stylesheet" href="./public/css/speech.css">
+    <link rel="stylesheet" href="./public/css/volume.css">
 </head>
 <body>
+    <div class="wrapper">
+        <section class="control">
+            <button class="control__reset">Reset</button>
+            <button class="control__feed">Feed</button>
+        </section>
+        <section class="states">
+            <div class="hanger">
+                <div class="hunger__residue"></div>
+            </div>
+            <div class="energy">
+                <div class="energy__residue"></div>
+            </div>
+            <div class="mood">
+                <div class="mood__residue"></div>
+            </div>
+        </section>
+        <section class="pig">
+            <svg class="pig__svg"></svg>
+        </section>
+        <section class="volume">
+            <span class="volume__text">Громкость</span>
+            <input class="volume__slider" type="range">
+        </section>
+        <div class="speech">
+            <div class="speech__words"></div>
+        </div>
+    </div>
+    <script src="public/js/snap.svg-min.js"></script>
+    <script src="public/js/pig.js"></script>
+    <script src="public/js/states-reducer.js"></script>
+    <script src="public/js/battery.js"></script>
+    <script src="public/js/tab-checker.js"></script>
+    <script src="public/js/speech.js"></script>
+    <script src="public/js/notifications.js"></script>
+    <script src="public/js/sounds.js"></script>
+    <script src="public/js/light.js"></script>
 </body>
 </html>
