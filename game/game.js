@@ -60,7 +60,7 @@ window.addEventListener('blur', () => isSleepMode = true);
 window.addEventListener('focus', () => isSleepMode = false);
 
 document.querySelector('.new-game').addEventListener('click', () => hrunogochi.reset());
-document.querySelector('.eat').addEventListener('click', () => isSatietyMode = true);
+document.querySelector('.eat').addEventListener('click', () => hrunogochi.setSatiety());
 document.querySelector('.say').addEventListener('click',
     () => !isRecognizeMode && recognizer.start()
 );
@@ -77,8 +77,6 @@ function draw({ energy, mood, satiety, state }) {
 
 // eslint-disable-next-line complexity
 function setAction({ energy, mood, satiety }) {
-    hrunogochi.setIdle();
-
     if (isSatietyMode && satiety < 100) {
         hrunogochi.setSatiety();
     }
@@ -98,8 +96,8 @@ function setAction({ energy, mood, satiety }) {
     localStorage.setItem('state', JSON.stringify(Object.assign({}, hrunogochi.params)));
     const params = hrunogochi.params;
 
-    draw(params);
     setAction(params);
+    draw(hrunogochi.params);
 
     if (params.state !== STATE.DEAD && isSleepMode) {
         notify(params);

@@ -37,33 +37,25 @@ export class Hrunogochi {
 
         this._calculateNewState();
         this._normalizeParams();
+        this.setIdle();
     }
 
     setEnergy() {
         if (this.energy < 100) {
             this.state = STATE.SLEEP;
-            return;
         }
-
-        this.setIdle();
     }
 
     setMood() {
         if (this.mood < 100) {
             this.state = STATE.MOOD;
-            return;
         }
-
-        this.setIdle();
     }
 
     setSatiety() {
         if (this.satiety < 100) {
             this.state = STATE.SATIETY;
-            return;
         }
-
-        this.setIdle();
     }
 
     setIdle() {
