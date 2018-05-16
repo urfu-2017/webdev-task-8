@@ -35,7 +35,7 @@ if ('AmbientLightSensor' in window && !window.dead) {
 }
 
 function sleep() {
-    window.speak = 'хррр хррр';
+    window.speak = 'sleep sleep';
     window.isSleep = true;
     window.mood.recognize.stop();
     window.mood.listening = false;
@@ -47,7 +47,7 @@ function sleep() {
 }
 
 function up() {
-    window.speak = 'хрю хрю';
+    window.speak = 'oink oink';
     clearInterval(timeOff);
     window.isSleep = false;
     setTimeout(() => {

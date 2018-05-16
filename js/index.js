@@ -51,7 +51,7 @@ const health = window.health = {
 };
 let voice = 0.5;
 window.dead = false;
-window.speak = 'хрю хрю';
+window.speak = 'oink oink';
 
 if (Cookies.get('satiety')) { // eslint-disable-line
     health.satiety = parseInt(Cookies.get('satiety')); // eslint-disable-line
@@ -107,7 +107,7 @@ if (window.speechSynthesis) {
         var message = new SpeechSynthesisUtterance(window.speak);
         var voices = window.speechSynthesis.getVoices();
         message.text = window.speak;
-        message.lang = 'ru-RU';
+        message.lang = 'en-En';
         message.voice = voices[15];
         message.rate = 2;
         message.pitch = 2;
