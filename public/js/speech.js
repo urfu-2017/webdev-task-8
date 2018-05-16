@@ -1,5 +1,5 @@
-'use strict';
 (() => {
+    'use strict';
     const SpeechRecognition = window.SpeechRecognition ||
         window.webkitSpeechRecognition;
     const field = document.querySelector('.speech__words');

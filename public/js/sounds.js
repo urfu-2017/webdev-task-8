@@ -1,6 +1,5 @@
-'use strict';
-
 (() => {
+    'use strict';
     let random;
     const volume = document.querySelector('.volume__slider');
 

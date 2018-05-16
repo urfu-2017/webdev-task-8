@@ -1,6 +1,5 @@
-'use strict';
-
 (() => {
+    'use strict';
     const feedButton = document.querySelector('.control__feed');
     feedButton.addEventListener('click', () => {
         window.Pig.states.changeHunger(window.Pig.speed.eating);

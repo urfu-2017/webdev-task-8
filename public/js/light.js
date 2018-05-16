@@ -1,6 +1,5 @@
-'use strict';
-
 (() => {
+    'use strict';
     const limitIlluminance = 10;
     const sleepInDark = (illuminance) => {
         if (limitIlluminance < illuminance) {

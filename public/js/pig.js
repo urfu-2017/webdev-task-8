@@ -1,7 +1,6 @@
-'use strict';
-
 /* eslint-disable max-statements */
 (function () {
+    'use strict';
     const noseColor = '#FFAD61';
     const headColor = '#FFE6B8';
     const strokeColor = '#4D3D36';
@@ -205,11 +204,8 @@
             // console.info('set interval ' + action);
             let state = this._stateByAction[action];
             this[`_${action}Interval`] = setInterval(() => {
-                this.states._changeState(this._stateByAction[action], this.speed[action]);
+                this.states._changeState(state, this.speed[action]);
                 if (this.states[`_${state}`] === 100) {
-                    if (action === this._actions.sleeping) {
-                        this._animateAwake();
-                    }
                     this._finishAction(action);
                 }
             }, interval);
@@ -224,11 +220,20 @@
             // когда заряжается, чтобы можно было говорить с Хрюнделем
         }
 
+        _awakeSomeTime(pig) {
+            if (!pig.isSleeping()) {
+                pig._animateAwake();
+            } else {
+                setTimeout(pig._awakeSomeTime, interval, pig);
+            }
+        }
+
         startSleeping() {
             this._startAction(this._actions.sleeping);
             this._finishAction(this._actions.eating);
             this._finishAction(this._actions.enjoying);
             this._animateSleep();
+            setTimeout(this._awakeSomeTime, interval, this);
         }
 
         startEnjoying() {
@@ -257,7 +262,6 @@
 
         finishAllActions() {
             this.finishEating();
-            this._animateAwake();
             this.finishSleeping();
             this.finishEnjoying();
         }

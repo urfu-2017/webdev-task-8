@@ -1,10 +1,5 @@
-'use strict';
 (() => {
-
-    /*
-        почему то всегда пишет 'Мне грустно!',
-        даже если делаю new Notification(..) в консоли с другим title
-    */
+    'use strict';
     const Notification = window.Notification ||
         window.webkitNotification;
     const messages = {

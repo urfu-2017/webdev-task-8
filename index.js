@@ -9,5 +9,7 @@ app.get('/', (req, res) => {
     res.sendFile(path.join(__dirname, 'index.html'));
 });
 app.get('*', (req, res) => res.sendStatus(404));
-app.listen(3000);
-console.info('started at 3000 port');
+app.listen(3000, () => {
+    console.info('started at 3000 port');
+});
+

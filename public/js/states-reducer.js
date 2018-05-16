@@ -1,6 +1,5 @@
-'use strict';
-
 (() => {
+    'use strict';
     const reduceSpeed = 5;
 
     setInterval(() => {
