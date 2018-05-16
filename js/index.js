@@ -99,11 +99,16 @@ if (window.speechSynthesis) {
         if (window.dead) {
             return;
         }
-        var message = new SpeechSynthesisUtterance();
+        if (!window.speechSynthesis) {
+            console.warn('Speech Synthesis is not supported!');
+
+            return;
+        }
+        var message = new SpeechSynthesisUtterance(window.speak);
         var voices = window.speechSynthesis.getVoices();
         message.text = window.speak;
         message.lang = 'ru-RU';
-        message.voice = voices[3];
+        message.voice = voices[15];
         message.rate = 2;
         message.pitch = 2;
         message.volume = voice;

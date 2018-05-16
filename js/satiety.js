@@ -32,7 +32,7 @@ if (!navigator.getBattery) {
 
 setInterval(function () {
     deleteSatiety();
-}, 10000);
+}, 1000 * 60);
 
 function initBattery(battery) {
     battery.onlevelchange = updateLevel;
