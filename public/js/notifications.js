@@ -12,10 +12,24 @@
         tired: 'Я хочу спать!',
         sad: 'Мне грустно!'
     };
+    const notifications = {
+        hungry: null,
+        tired: null,
+        sad: null
+    }
 
     const createNotification = (key) => {
+        if (notifications[key] !== null) {
+            let notificationToClose = notifications[key];
+            setTimeout(() => {
+                notificationToClose.close();
+            }, 400);
+            notifications[key] = null;
+
+            return;
+        }
         if (Notification.permission === 'granted') {
-            return new Notification(messages[key]);
+            notifications[key] = new Notification(messages[key]);
         }
     };
     const notificationInterval = 1000;
