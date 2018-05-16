@@ -19,7 +19,7 @@ recognizer.lang = 'en-US';
 recognizer.continuous = true; // false по умолчанию
 
 // повзоляет получать промежуточные результаты
-recognizer.interimResults = true; // false по умолчанию
+// recognizer.interimResults = true; // false по умолчанию
 window.svg.snap.click((event) => {
     if (window.dead || event.target.nodeName === 'image') {
         return;
@@ -39,16 +39,20 @@ window.svg.snap.click((event) => {
 recognizer.onresult = function (e) {
     const index = e.resultIndex;
     const result = e.results[index][0].transcript.trim();
-    window.health.mood += window.health.mood + result.length * 2 < 100
-        ? result.length * 2
-        : 100 - window.health.mood + result.length;
+    window.health.mood += window.health.mood + result.length <= 100
+        ? result.length
+        : (window.health.mood + result.length) - 100;
+    if (window.health.mood > 100) {
+        window.health.mood = 100;
+    }
+    window.health.refresh(window.health.moodHTML, window.health.mood);
     if (window.health.mood === 100) {
         recognizer.stop();
         window.mood.listening = false;
-    }
-    document.querySelector('.answer').target.innerHTML = result;
-    setTimeout(() => {
-        document.querySelector('.answer').target.innerHTML = '';
         window.svg.state.earDown();
+    }
+    document.querySelector('.answer').innerHTML = result;
+    setTimeout(() => {
+        document.querySelector('.answer').innerHTML = '';
     }, 4000);
 };

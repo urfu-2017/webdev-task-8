@@ -44,7 +44,7 @@ function updateLevel() {
 }
 
 function addSatiety(count) {
-    if (window.dead || window.isSleep) {
+    if (window.isSleep || window.dead) {
         return;
     }
     window.mood.recognize.stop();
@@ -67,6 +67,9 @@ function addSatiety(count) {
     const satiety = window.health.satiety + count <= 100 ? count : 100 - window.health.satiety;
     window.health.satiety += satiety;
     window.health.refresh(window.health.satietyHTML, window.health.satiety);
+    if (window.health.satiety === 100) {
+        food.attr({ opacity: 0 });
+    }
 }
 
 function deleteSatiety() {

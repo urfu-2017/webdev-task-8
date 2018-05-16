@@ -39,11 +39,11 @@ function sleep() {
     window.isSleep = true;
     window.mood.recognize.stop();
     window.mood.listening = false;
-    window.svg.state.sleep();
     timeOff = setInterval(function () {
         window.health.energy += window.health.energy + 1 > 100 ? 0 : 1;
         window.health.refresh(window.health.energyHTML, window.health.energy);
     }, 1000 * 15);
+    window.svg.state.sleep();
 }
 
 function up() {

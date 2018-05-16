@@ -1,9 +1,9 @@
 const health = window.health = {
-    satiety: 0, // сытость
+    satiety: 20, // сытость
     satietyHTML: 'health__satiety-value',
-    energy: 6,
+    energy: 70,
     energyHTML: 'health__energy-value',
-    mood: 5, // настроение
+    mood: 50, // настроение
     moodHTML: 'health__mood-value',
     dead() {
         let count = 0;
@@ -24,7 +24,18 @@ const health = window.health = {
                 count++;
             }
         }
-        if (count !== 0) {
+        this.howMooth(count, threshold);
+    },
+    refresh(classHealth, value) {
+        const elem = document.getElementsByClassName(classHealth)[0];
+        elem.innerHTML = value + '%';
+        this.dead();
+        this.state(50);
+        this.state(10);
+        addCookies();
+    },
+    howMooth(count, threshold) {
+        if (count !== 0 || !window.isSleep) {
             if (threshold === 10) {
                 window.svg.mouth.attr({ opacity: 1 });
                 window.svg.mouthSadly.attr({ opacity: 0 });
@@ -34,14 +45,6 @@ const health = window.health = {
                 window.svg.mouthSadly.attr({ opacity: 1 });
             }
         }
-    },
-    refresh(classHealth, value) {
-        const elem = document.getElementsByClassName(classHealth)[0];
-        elem.innerHTML = value + '%';
-        this.dead();
-        this.state(50);
-        this.state(10);
-        addCookies();
     }
 };
 let voice = 0.5;
@@ -101,5 +104,5 @@ if (window.speechSynthesis) {
         message.pitch = 2;
         message.volume = voice;
         window.speechSynthesis.speak(message);
-    }, 1000 * 60);
+    }, 1000 * 20);
 }
