@@ -2,8 +2,10 @@
 <html lang="ru">
 <head>
     <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>Хрюногочи</title>
     <link rel="stylesheet" href="./index.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/snap.svg/0.5.1/snap.svg-min.js"></script>
 </head>
 <body>
 <svg id="hrundel" class="hrundel" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 160.38 203.4">
@@ -12,12 +14,15 @@
         <circle id="body" cx="80.33" cy="118.91" r="45.54" fill="#fedbdf" stroke="#231f20" stroke-linecap="round"
                 stroke-miterlimit="10"></circle>
         <polygon id="left-hand" points="1.36 85.39 40.02 86.74 30.16 111.21 1.36 85.39" fill="#fcc8d0" stroke="#231f20"
-                  stroke-miterlimit="10"></polygon>
-        <polygon id="right-hand" points="159.02 85.39 120.36 86.74 130.22 111.21 159.02 85.39" fill="#fcc8d0" stroke="#231f20"
+                 stroke-miterlimit="10"></polygon>
+        <polygon id="right-hand" points="159.02 85.39 120.36 86.74 130.22 111.21 159.02 85.39" fill="#fcc8d0"
+                 stroke="#231f20"
                  stroke-linecap="round" stroke-miterlimit="10"></polygon>
-        <polygon id="left-leg" points="43.16 201.81 48.73 157.34 72.3 167.75 43.16 201.81" fill="#fcc8d0" stroke="#231f20"
+        <polygon id="left-leg" points="43.16 201.81 48.73 157.34 72.3 167.75 43.16 201.81" fill="#fcc8d0"
+                 stroke="#231f20"
                  stroke-linecap="round" stroke-miterlimit="10"></polygon>
-        <polygon id="right-leg" points="119.3 201.81 113.74 157.34 90.17 167.75 119.3 201.81" fill="#fcc8d0" stroke="#231f20"
+        <polygon id="right-leg" points="119.3 201.81 113.74 157.34 90.17 167.75 119.3 201.81" fill="#fcc8d0"
+                 stroke="#231f20"
                  stroke-linecap="round" stroke-miterlimit="10"></polygon>
     </g>
     <g id="Head">
@@ -25,9 +30,11 @@
                 stroke-miterlimit="10"></circle>
         <polygon id="left-ear" points="35.31 22.48 29.05 0.69 51.04 6.17 35.31 22.48" fill="#fcc8d0" stroke="#231f20"
                  stroke-linecap="round" stroke-miterlimit="10"></polygon>
-        <polygon id="right-ear" points="124.78 22.48 131.04 0.69 109.05 6.17 124.78 22.48" fill="#fcc8d0" stroke="#231f20"
+        <polygon id="right-ear" points="124.78 22.48 131.04 0.69 109.05 6.17 124.78 22.48" fill="#fcc8d0"
+                 stroke="#231f20"
                  stroke-linecap="round" stroke-miterlimit="10"></polygon>
-        <ellipse id="nose" cx="80.91" cy="59.78" rx="16.75" ry="14.38" fill="#f792a6" stroke="#231f20" stroke-linecap="round"
+        <ellipse id="nose" cx="80.91" cy="59.78" rx="16.75" ry="14.38" fill="#f792a6" stroke="#231f20"
+                 stroke-linecap="round"
                  stroke-miterlimit="10"></ellipse>
         <circle id="left-eye" cx="60" cy="34" r="5" fill="#e6e7e8" stroke="#231f20" stroke-linecap="round"
                 stroke-miterlimit="10"></circle>
@@ -57,7 +64,13 @@
     <button class="restart buttons__restart">Заново</button>
     <button class="feed buttons__feed">Накормить</button>
 </div>
-<script src="./scripts/snap.svg-min.js"></script>
+<div class="volume-holder">
+    0
+    <input type="range" class="volume" title="Громкость" min="0" max="100" step="1">
+    100
+</div>
+<div class="reply"></div>
+<audio class="sound-hru sound" src="./sounds/hru.mp3"></audio>
 <script src="./dist/bundle.js"></script>
 </body>
 </html>

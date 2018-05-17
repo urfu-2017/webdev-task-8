@@ -3,6 +3,8 @@
     max-width: 200px;
     height: auto;
     margin: 0 auto 20px;
+
+    cursor: pointer;
 }
 
 .stats {
@@ -19,11 +21,29 @@
 
 .buttons {
     max-width: 200px;
-    margin: 0 auto;
+    margin: 0 auto 20px;
     display: flex;
     justify-content: space-between;
 }
 
 .buttons__feed {
+    display: none;
+}
+
+.reply {
+    max-width: 200px;
+    margin: 0 auto;
+
+    text-align: center;
+}
+
+.volume-holder {
+    display: flex;
+    justify-content: space-between;
+    max-width: 200px;
+    margin: 0 auto;
+}
+
+.sound {
     display: none;
 }

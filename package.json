@@ -2,8 +2,9 @@
   "private": true,
   "scripts": {
     "test": "npm run lint && mocha ./node_modules/html-tests/task-stub/test",
-    "lint": "eslint . && stylelint *.css **/*.css && html-validator --file index.html --verbose && htmllint *.html",
-    "watch": "watchify index.js --outfile=dist/bundle.js"
+    "lint": "eslint . && stylelint *.css **/*.css",
+    "watch": "watchify index.js --outfile=dist/bundle.js",
+    "build": "browserify index.js -o dist/bundle.js"
   },
   "dependencies": {
     "eslint": "4.18.0",
