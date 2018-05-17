@@ -63,9 +63,9 @@ class Hrundel {
     }
 
     liveTick() {
-        this.setCharacteristic('satiety', -10);
-        this.setCharacteristic('mood', -10);
-        this.setCharacteristic('energy', -10);
+        this.setCharacteristic('satiety', -1);
+        this.setCharacteristic('mood', -1);
+        this.setCharacteristic('energy', -1);
         switch (this.getState()) {
             case 'eating':
                 this.setCharacteristic('satiety', 4);
@@ -76,9 +76,9 @@ class Hrundel {
             default:
                 break;
         }
-        //if (this.characteristics.satiety <= 10 || this.characteristics.mood <= 10) {
-        //    notice();
-        //}
+        if (this.characteristics.satiety <= 10 || this.characteristics.mood <= 10) {
+            notice();
+        }
         renderCharacteristics(this.characteristics);
         document.cookie = `characteristics=${JSON.stringify(this.characteristics)}`;
     }
