@@ -15,12 +15,12 @@ function initBattery(battery) {
 }
 
 function updateCharging(battery) {
-    if (battery.target.charging && hrundel.characteristics.satiety < 100 &&
-            hrundel.characteristics.state !== 'sleeping') {
-        hrundel.characteristics.state = 'eating';
+    let satiety = hrundel.getCharacteristic('satiety');
+    if (battery.target.charging && satiety < 100) {
+        hrundel.setState('eating');
     }
-    if (hrundel.characteristics.satiety === 100) {
-        hrundel.characteristics.state = 'life';
+    if (satiety === 100) {
+        hrundel.setState('live');
     }
 }
 

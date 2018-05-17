@@ -20,6 +20,8 @@ function startGame(characteristics) {
     mood.innerHTML = `Mood: ${characteristics.mood}%`;
     energy.innerHTML = `Energy: ${characteristics.energy}%`;
     hrundel = new Hrundel(characteristics);
+    const hello = new SpeechSynthesisUtterance('Привет хозяин');
+    window.speechSynthesis.speak(hello);
 }
 
 window.onload = () => {
@@ -29,20 +31,22 @@ window.onload = () => {
     } else {
         startGame(defaultCharacteristics);
     }
-    const hello = new SpeechSynthesisUtterance('Привет хозяин');
-    window.speechSynthesis.speak(hello);
-    speak();
 };
 
 
 window.onblur = () => {
-    svgSleep();
-    hrundel.characteristics.state = 'sleeping';
+    if (hrundel.getState() !== 'dead') {
+        svgSleep();
+        hrundel.setState('sleeping');
+    }
+    
 };
 
 window.onfocus = () => {
-    svgLife();
-    hrundel.characteristics.state = 'life';
+    if (hrundel.getState() !== 'dead') {
+        svgLive();
+        hrundel.setState('live');
+    }
 };
 
 regame.onclick = () => {

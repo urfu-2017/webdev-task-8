@@ -4,13 +4,14 @@
 if ('AmbientLightSensor' in window) {
     const sensor = new AmbientLightSensor();
     sensor.addEventListener('reading', function () {
-        if (sensor.illuminance < 500 && hrundel.characteristics.energy < 100) {
+        let energy = hrundel.getCharacteristic('energy');
+        if (sensor.illuminance < 500 && energy < 100) {
             svgSleep();
-            hrundel.characteristics.state = 'sleeping';
+            hrundel.setState('sleeping');
         }
-        if (hrundel.characteristics.energy === 100) {
-            svgLife();
-            hrundel.characteristics.state = 'life';
+        if (energy === 100) {
+            svgLive();
+            hrundel.setState('live');
         }
     });
     sensor.start();

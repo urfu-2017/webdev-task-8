@@ -24,7 +24,7 @@ function svgSleep() {
     rightEye.animate({ r: 0 }, 1000);
 }
 
-function svgLife() {
+function svgLive() {
     leftEye.animate({ r: 5 }, 1000);
     rightEye.animate({ r: 5 }, 1000);
 }
