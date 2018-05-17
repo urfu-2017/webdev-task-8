@@ -1,7 +1,7 @@
 const { alternate, reset } = require('../../scripts/helpers/animation');
 const { initState, saveState, clearState } = require('../helpers/state');
 
-module.exports = class Hrundel {
+module.exports = class {
     constructor(hrundel) {
         this.hrundel = hrundel;
         this.leftHand = hrundel.select('#left-hand');
@@ -20,21 +20,21 @@ module.exports = class Hrundel {
         this.state = initState();
     }
 
-    initLifecycle(onUpdate, onFed, onEnjoyed, onOverslept) {
+    initLifecycle(data) {
         this.isEating = false;
         this.isEnjoying = false;
         this.isSleeping = false;
 
         this.deathLine = setInterval(() => {
-            this.tick(onUpdate);
+            this.tick(data);
         }, 1000);
 
         this.lifeLine = setInterval(() => {
-            this.fill(onUpdate, onFed, onEnjoyed, onOverslept);
+            this.fill(data);
         }, 250);
     }
 
-    tick(onUpdate) {
+    tick({ onUpdate, onHungry, onUpset }) {
         if (this.isDead()) {
             clearInterval(this.deathLine);
             clearInterval(this.lifeLine);
@@ -42,20 +42,20 @@ module.exports = class Hrundel {
 
             return;
         }
+        this.checkReduce({ onUpset, onHungry });
 
         this.state.energy -= this.needDecreaseEnergy() ? 1 : 0;
         this.state.mood -= this.needDecreaseMood() ? 1 : 0;
-        this.state.satiety -=  this.needDecreaseSatiety() ? 1 : 0;
+        this.state.satiety -= this.needDecreaseSatiety() ? 1 : 0;
 
         onUpdate(this.state);
         saveState(this.state);
     }
 
-    fill(onUpdate, onFed, onEnjoyed, onOverslept) {
-        this.checkState(onFed, onEnjoyed, onOverslept);
+    fill({ onUpdate, onFed, onEnjoyed, onOverslept }) {
+        this.checkFill({ onFed, onEnjoyed, onOverslept });
 
         this.state.energy += this.isSleeping ? 1 : 0;
-        this.state.mood += this.isEnjoying ? 1 : 0;
         this.state.satiety += this.isEating ? 1 : 0;
 
         onUpdate(this.state);
@@ -74,7 +74,8 @@ module.exports = class Hrundel {
         return !(this.isEating || this.state.satiety === 0);
     }
 
-    checkState(onFed, onEnjoyed, onOverslept) {
+    // eslint-disable-next-line
+    checkFill({ onFed, onEnjoyed, onOverslept }) {
         if (this.state.energy === 100) {
             if (this.isSleeping) {
                 this.state.energy = 99;
@@ -89,8 +90,21 @@ module.exports = class Hrundel {
             this.isEating = false;
         }
         if (this.state.mood === 100) {
+            if (this.isEnjoying) {
+                onEnjoyed();
+            }
+
             this.isEnjoying = false;
-            onEnjoyed();
+        }
+    }
+
+    checkReduce({ onUpset, onHungry }) {
+        if (this.state.satiety === 10) {
+            onHungry();
+        }
+
+        if (this.state.mood === 10) {
+            onUpset();
         }
     }
 
@@ -157,6 +171,18 @@ module.exports = class Hrundel {
         this.state.satiety = 100;
     }
 
+    listen() {
+        this.isEnjoying = true;
+    }
+
+    stopListening() {
+        this.isEnjoying = false;
+    }
+
+    moodUp() {
+        this.state.mood = this.state.mood <= 90 ? this.state.mood + 10 : 100;
+    }
+
     greet() {
         alternate(this.hrundel, {
             transform: 't0,-30'
@@ -180,6 +206,10 @@ module.exports = class Hrundel {
     }
 
     awake() {
+        if (this.isDead()) {
+            return;
+        }
+
         this.isSleeping = false;
 
         this.resetPosition(700);
@@ -187,6 +217,10 @@ module.exports = class Hrundel {
     }
 
     sleep() {
+        if (this.isDead()) {
+            return;
+        }
+
         this.isSleeping = true;
         this.isEnjoying = false;
         this.isEating = false;

@@ -2,6 +2,7 @@
   "extends": "hrundel/browser",
   "rules": {
     "no-undef": "off",
-    "new-cap": "off"
+    "new-cap": "off",
+    "no-alert": "off"
   }
 }
