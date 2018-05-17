@@ -1,10 +1,43 @@
 <!DOCTYPE html>
 <html lang="ru">
-<head>
-    <meta charset="utf-8">
-    <title>Хрюногочи</title>
-    <link rel="stylesheet" href="./index.css">
-</head>
-<body>
-</body>
+    <head>
+        <meta charset="utf-8">
+        <title>Хрюногочи</title>
+        <link rel="stylesheet" href="./index.css" type="text/css">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/snap.svg/0.5.1/snap.svg-min.js"></script>
+        <script src="./js/index.js"></script>
+    </head>
+    <body>
+        <div class="wrapper">
+            <aside class="controls">
+                <div class="controlRow">
+                    <span class="controlLabel">Satiety</span>
+                    <span class="controlValue" id="satietyValue"></span>
+                </div>
+                <div class="controlRow">
+                    <span class="controlLabel">Energy</span>
+                    <span class="controlValue" id="energyValue"></span>
+                </div>
+                <div class="controlRow">
+                    <span class="controlLabel">Mood</span>
+                    <span class="controlValue" id="moodValue"></span>
+                </div>
+
+                <div class="controlRow">
+                    <textarea cols="30" rows="10" class="control" id="speech"></textarea>
+                </div>
+                <div class="controlRow">
+                    <button id="reset" class="control">Reset</button>
+                </div>
+                <div class="controlRow">
+                    <input type="range" min="0" max="1" step="0.1" id="volume" class="control">
+                </div>
+            </aside>
+            <main>
+                <svg class="hrun" width="200px" height="200px"></svg>
+
+            </main>
+        </div>
+
+    </body>
 </html>
