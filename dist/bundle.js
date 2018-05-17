@@ -59,7 +59,10 @@ function start() {
 }
 
 const notifier = new Notifier();
-notifier.requestPermission();
+
+if (notifier.isAvaliable) {
+    notifier.requestPermission();
+}
 
 const recognition = new Recognition();
 
@@ -111,10 +114,18 @@ function onFed() {
 }
 
 function onUpset() {
+    if (!notifier.isAvaliable) {
+        return;
+    }
+
     notifier.notify('Мне скучно...');
 }
 
 function onHungry() {
+    if (!notifier.isAvaliable) {
+        return;
+    }
+
     notifier.notify('Хочу есть...');
 }
 
@@ -343,12 +354,16 @@ module.exports = class {
     }
 
     checkReduce({ onUpset, onHungry }) {
-        if (this.state.satiety === 10) {
-            onHungry();
-        }
+        try {
+            if (this.state.satiety === 10) {
+                onHungry();
+            }
 
-        if (this.state.mood === 10) {
-            onUpset();
+            if (this.state.mood === 10) {
+                onUpset();
+            }
+        } catch (e) {
+            console.error(e.message);
         }
     }
 
@@ -550,8 +565,7 @@ module.exports = class {
             return;
         }
 
-        let n = new Notification(text);
-        setTimeout(n.close.bind(n), 4000);
+        return new Notification(text);
     }
 };
 
