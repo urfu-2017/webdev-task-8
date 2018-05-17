@@ -36,6 +36,7 @@ window.onload = () => {
 
 window.onblur = () => {
     if (hrundel.getState() !== 'dead') {
+        console.info(hrundel.getState());
         svgSleep();
         hrundel.setState('sleeping');
     }
@@ -51,6 +52,7 @@ window.onfocus = () => {
 
 regame.onclick = () => {
     hrundel.die();
+    svgLive();
     startGame({
         satiety: 100,
         mood: 100,

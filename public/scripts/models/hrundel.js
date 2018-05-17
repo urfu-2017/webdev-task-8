@@ -29,8 +29,7 @@ class Hrundel {
     }
 
     setState(state) {
-        if (this.characteristics.state === 'dead' || state === 'dead') {
-            this.characteristics.state === 'dead'
+        if (this.characteristics.state === 'dead') {
             return
         }
         if (this.characteristics.state !== 'sleeping' &&  state === 'eating') {
@@ -89,7 +88,8 @@ class Hrundel {
     }
 
     die() {
-        this.setState('dead');
+        this.characteristics.state = 'dead';
+        svgSleep();
         renderCharacteristics(this.characteristics);
         document.cookie = `characteristics=${JSON.stringify(this.characteristics)}`;
         clearInterval(this.speakID);
