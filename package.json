@@ -3,7 +3,7 @@
   "scripts": {
     "build": "webpack --config ./webpack.production.config.js --progress --profile",
     "dev": "webpack-dev-server --config ./webpack.config.js --mode development",
-    "test": "npm run lint && mocha ./node_modules/html-tests/task-stub/test",
+    "test": "npm run lint",
     "lint": "eslint ./src/. && stylelint *.css **/*.css && html-validator --file src/index.html --verbose && htmllint *.html"
   },
   "dependencies": {
