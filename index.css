@@ -1,0 +1,44 @@
+.hunger,
+.happy,
+.tireness,
+button {
+    display: inline-block;
+    width: 150px;
+    margin: 10px;
+    text-align: center;
+    box-sizing: border-box;
+}
+
+.hunger::before {
+    content: "Голод: "
+}
+
+.happy::before {
+    content: "Счастье: "
+}
+
+.tireness::before {
+    content: "Усталость: "
+}
+
+.hunger::after,
+.happy::after,
+.tireness::after {
+    content: '%'
+}
+
+.game {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.hrundel {
+    padding: 25px;
+    box-sizing: border-box;
+    width: 200px;
+}
+
+img {
+    width: 100%;
+}
