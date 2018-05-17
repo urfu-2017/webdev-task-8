@@ -26,9 +26,11 @@ setInterval(()=> {
     localStorage.setItem('hunger', getNewValue('hunger'));
     localStorage.setItem('energy', getNewValue('energy'));
     localStorage.setItem('mood', getNewValue('mood'));
-
-    updateParameters();
 }, 1000);
+
+setInterval(()=> {
+    updateParameters();
+}, 900);
 
 function getNewValue(parameterName) {
     var newValue = localStorage.getItem(parameterName) - 1;
