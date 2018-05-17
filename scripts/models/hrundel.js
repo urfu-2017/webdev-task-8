@@ -99,12 +99,16 @@ module.exports = class {
     }
 
     checkReduce({ onUpset, onHungry }) {
-        if (this.state.satiety === 10) {
-            onHungry();
-        }
+        try {
+            if (this.state.satiety === 10) {
+                onHungry();
+            }
 
-        if (this.state.mood === 10) {
-            onUpset();
+            if (this.state.mood === 10) {
+                onUpset();
+            }
+        } catch (e) {
+            console.error(e.message);
         }
     }
 
