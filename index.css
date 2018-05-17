@@ -1,0 +1,49 @@
+.hrundel {
+    display: block;
+    max-width: 200px;
+    height: auto;
+    margin: 0 auto 20px;
+
+    cursor: pointer;
+}
+
+.stats {
+    max-width: 200px;
+    margin: 0 auto 20px;
+    display: flex;
+    flex-direction: column;
+}
+
+.stats__attribute {
+    display: flex;
+    justify-content: space-between;
+}
+
+.buttons {
+    max-width: 200px;
+    margin: 0 auto 20px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.buttons__feed {
+    display: none;
+}
+
+.reply {
+    max-width: 200px;
+    margin: 0 auto;
+
+    text-align: center;
+}
+
+.volume-holder {
+    display: flex;
+    justify-content: space-between;
+    max-width: 200px;
+    margin: 0 auto;
+}
+
+.sound {
+    display: none;
+}
