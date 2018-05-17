@@ -43,9 +43,9 @@ module.exports = class Hrundel {
             return;
         }
 
-        this.state.energy -= this.isSleeping ? 0 : 1;
-        this.state.mood -= this.isEnjoying ? 0 : 1;
-        this.state.satiety -= this.isEating ? 0 : 1;
+        this.state.energy -= this.needDecreaseEnergy() ? 1 : 0;
+        this.state.mood -= this.needDecreaseMood() ? 1 : 0;
+        this.state.satiety -=  this.needDecreaseSatiety() ? 1 : 0;
 
         onUpdate(this.state);
         saveState(this.state);
@@ -62,6 +62,18 @@ module.exports = class Hrundel {
         saveState(this.state);
     }
 
+    needDecreaseEnergy() {
+        return !(this.isSleeping || this.state.energy === 0);
+    }
+
+    needDecreaseMood() {
+        return !(this.isEnjoying || this.state.mood === 0);
+    }
+
+    needDecreaseSatiety() {
+        return !(this.isEating || this.state.satiety === 0);
+    }
+
     checkState(onFed, onEnjoyed, onOverslept) {
         if (this.state.energy === 100) {
             if (this.isSleeping) {
@@ -70,8 +82,11 @@ module.exports = class Hrundel {
             }
         }
         if (this.state.satiety === 100) {
+            if (this.isEating) {
+                onFed();
+            }
+
             this.isEating = false;
-            onFed();
         }
         if (this.state.mood === 100) {
             this.isEnjoying = false;
@@ -130,6 +145,18 @@ module.exports = class Hrundel {
         clearState();
     }
 
+    eat() {
+        this.isEating = true;
+    }
+
+    stopEating() {
+        this.isEating = false;
+    }
+
+    feedUp() {
+        this.state.satiety = 100;
+    }
+
     greet() {
         alternate(this.hrundel, {
             transform: 't0,-30'
@@ -161,6 +188,8 @@ module.exports = class Hrundel {
 
     sleep() {
         this.isSleeping = true;
+        this.isEnjoying = false;
+        this.isEating = false;
 
         const duration = 1000;
 

@@ -1,9 +1,13 @@
 const Hrundel = require('./scripts/models/hrundel');
+const { enableBatteryActivityListeners } = require('./scripts/helpers/battery');
+const { activeTabCheck } = require('./scripts/helpers/active-tab-check');
+const { lightnessCheck } = require('./scripts/helpers/lightness-check');
 
 const moodContainer = document.querySelector('.stats__mood .stats__value');
 const energyContainer = document.querySelector('.stats__energy .stats__value');
 const satietyContainer = document.querySelector('.stats__satiety .stats__value');
 const restartButton = document.querySelector('.restart');
+const feedButton = document.querySelector('.feed');
 
 let hrundel = new Hrundel(Snap('#hrundel'));
 
@@ -21,9 +25,21 @@ restartButton.addEventListener('click', () => {
 start();
 
 function start() {
+    if (!enableBatteryActivityListeners(hrundel)) {
+        feedButton.style.display = 'inline-block';
+
+        feedButton.addEventListener('click', function () {
+            hrundel.eat();
+            hrundel.feedUp();
+        });
+    }
+
+    activeTabCheck(hrundel);
+    lightnessCheck(hrundel);
+
     hrundel.greet();
 
-    hrundel.initLifecycle(onStateChange, () => {}, () => {}, onOverslept);
+    hrundel.initLifecycle(onStateChange, onFed, () => {}, onOverslept);
 }
 
 function onStateChange(state) {
@@ -34,21 +50,12 @@ function onStateChange(state) {
     satietyContainer.innerHTML = String(satiety);
 }
 
-function onFed() {
-    hrundel.enjoy();
-}
-
 function onOverslept() {
     if (document.hasFocus()) {
         hrundel.awake();
     }
 }
 
-window.onfocus = () => {
-    hrundel.awake();
-};
-
-window.onblur = () => {
-    hrundel.sleep();
-};
-
+function onFed() {
+    hrundel.enjoy();
+}
