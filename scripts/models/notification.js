@@ -19,7 +19,6 @@ module.exports = class {
             return;
         }
 
-        let n = new Notification(text);
-        setTimeout(n.close.bind(n), 4000);
+        return new window.Notification(text);
     }
 };
