@@ -1,0 +1,32 @@
+.wrapper
+{
+    display: grid;
+    grid-template-columns: 30% 70%;
+    grid-template-areas: 'controls main';
+}
+
+.controls
+{
+    grid-area: controls;
+}
+
+.controlRow
+{
+    display: flex;
+    justify-content: space-between;
+    width: 40%;
+    margin: 10px auto;
+    text-align: center;
+}
+
+.hrun
+{
+    margin: 10% 20%;
+    display: block;
+}
+
+.control
+{
+    display: block;
+    margin: auto;
+}
