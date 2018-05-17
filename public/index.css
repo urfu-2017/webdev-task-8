@@ -1,0 +1,113 @@
+.eat
+{
+    outline: none;
+    position: absolute;
+    top: 150px;
+    left: 8px;
+    width: 50px;
+    height: 50px;
+    background: url('./svg/market.svg');
+}
+
+.microphone
+{
+    outline: none;
+    position: absolute;
+    top: 150px;
+    left: 112px;
+    width: 50px;
+    height: 50px;
+    background: url('./svg/microphone.svg');
+}
+
+.start
+{
+    outline: none;
+    position: absolute;
+    top: 150px;
+    left: 60px;
+    width: 50px;
+    height: 50px;
+    background: url('./svg/start.svg');
+}
+
+.hru
+{
+    position: absolute;
+    top: 0;
+    left: 150px;
+    width: 100px;
+    height: 100px;
+    background: url('./svg/pig.svg');
+}
+
+.energy
+{
+    float: left;
+    width: 100px;
+    height: 20px;
+    background: linear-gradient(to right, #f00, #ffa500, #ff0, #01ff70,#0f0);
+}
+
+.energy-offset
+{
+    background: #fff;
+    float: left;
+    height: 20px;
+    width: 200px;
+}
+
+.fun-block
+{
+    clear: left;
+}
+
+.fun
+{
+    float: left;
+    width: 100px;
+    height: 20px;
+    background: linear-gradient(to right, #f00, #ffa500, #ff0, #01ff70,#0f0);
+}
+
+.fun-offset
+{
+    float: left;
+    background: #fff;
+    height: 20px;
+    width: 200px;
+}
+
+.hungry-block
+{
+    clear: left;
+}
+
+.hungry
+{
+    float: left;
+    width: 100px;
+    height: 20px;
+    background: linear-gradient(to right, #f00, #ffa500, #ff0, #01ff70,#0f0);
+}
+
+.hungry-offset
+{
+    float: left;
+    background: #fff;
+    height: 20px;
+    width: 200px;
+}
+
+.sound-block
+{
+    position: absolute;
+    top: 200px;
+    left: 8px;
+}
+
+.speech
+{
+    position: absolute;
+    top: 130px;
+}

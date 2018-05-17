@@ -4,7 +4,43 @@
     <meta charset="utf-8">
     <title>Хрюногочи</title>
     <link rel="stylesheet" href="./index.css">
+    <script src="index.js"></script>
 </head>
 <body>
+    <div class="energy-block">
+        <div id="energy-count"></div>
+        <div id="energy" class="energy"></div>
+        <div id="energy-offset" class="energy-offset"></div>
+    </div>
+
+    <div class="fun-block">
+        <div id="fun-count"></div>
+        <div id="fun" class="fun"></div>
+        <div id="fun-offset" class="fun-offset"></div>
+    </div>
+
+    <div class="hungry-block">
+        <div id="hungry-count"></div>
+        <div id="hungry" class="hungry"></div>
+        <div id="hungry-offset" class="hungry-offset"></div>
+    </div>
+
+    <div id="hru" class="hru"></div>
+
+    <button onclick="eat()" class="eat"></button>
+    <button onclick="start()" class="start"></button>
+    <button onclick="startTalking()" id="microphone" class="microphone"></button>
+    <div class="speech" id="speech"></div>
+    <div class="sound-block">
+        <input id="sound-control" type="range" min="1" max="100" value="0" onchange="changeVolume()">
+    </div>
+
+    <script src="./scripts/draw.js"></script>
+    <script src="./scripts/saveParams.js"></script>
+    <script src="./scripts/hungry.js"></script>
+    <script src="./scripts/notify.js"></script>
+    <script src="./scripts/sleep.js"></script>
+    <script src="./scripts/speech.js"></script>
+    <script src="./scripts/sound.js"></script>
 </body>
 </html>
