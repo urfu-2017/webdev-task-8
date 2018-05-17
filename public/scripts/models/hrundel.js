@@ -18,9 +18,6 @@ class Hrundel {
                 case 'sleeping':
                     this.characteristics.energy = setCharecteristic(this.characteristics.energy + 4);
                     break;
-                case 'playing':
-                    this.characteristics.mood = setCharecteristic(this.characteristics.mood + 4);
-                    break;
                 default:
                     break;
             }

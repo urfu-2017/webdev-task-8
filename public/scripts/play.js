@@ -8,15 +8,12 @@ play.onclick = function () {
         hrundel.characteristics.state === 'life') {
         const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
         const recognizer = new SpeechRecognition();
-
         recognizer.lang = 'en-US';
         recognizer.start();
-        recognizer.onresult = function e() {
-            var index = e.resultIndex;
-            let result = e.results[index][0].transcript.trim();
-            recognizedSpeech.innerHTML = result;
+        recognizer.onresult = e => {
             if (hrundel.characteristics.mood < 100) {
-                hrundel.characteristics.state = 'playing';
+                recognizedSpeech.value = e.results[e.resultIndex][0].transcript;
+                hrundel.characteristics.mood = setCharecteristic(hrundel.characteristics.mood + 4);
             }
             if (hrundel.characteristics.mood === 100) {
                 hrundel.characteristics.state = 'life';
