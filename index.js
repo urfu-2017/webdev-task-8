@@ -21,14 +21,6 @@ moodContainer.innerHTML = hrundel.state.mood;
 satietyContainer.innerHTML = hrundel.state.satiety;
 energyContainer.innerHTML = hrundel.state.energy;
 
-let interval = setInterval(() => {
-    if (hrundel.isDead()) {
-        clearInterval(interval);
-    }
-
-    hruSound.play();
-}, 5000);
-
 setListeners();
 start();
 
@@ -44,6 +36,7 @@ function start() {
 
     activeTabCheck(hrundel);
     lightnessCheck(hrundel);
+    playSounds();
 
     hrundel.greet();
 
@@ -149,4 +142,14 @@ function setListeners() {
     soundControl.addEventListener('change', () => {
         hruSound.volume = Number(soundControl.value) / 100;
     });
+}
+
+function playSounds() {
+    let interval = setInterval(() => {
+        if (hrundel.isDead()) {
+            clearInterval(interval);
+        }
+
+        hruSound.play();
+    }, 5000);
 }
