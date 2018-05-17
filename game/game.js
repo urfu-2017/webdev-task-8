@@ -1,23 +1,15 @@
 import { Hrunogochi } from './hrunogochi';
 import { SVG } from './svg';
-import { notify } from './notifications';
+import { NotificationAPI } from './notifications';
 import { STATE } from './state';
-import * as Audio from './audio';
-
-const savedState = JSON.parse(localStorage.getItem('state')) || undefined;
-const hrunogochi = new Hrunogochi(savedState);
+import { SoundSystem } from './soundSystem';
+import { Recognition } from './recognition';
 
 const heroDisplay = document.querySelector('.svg');
 const energyDisplay = document.querySelector('.state__energy span');
 const moodDisplay = document.querySelector('.state__mood span');
 const satietyDisplay = document.querySelector('.state__satiety span');
 const textDisplay = document.querySelector('.text');
-
-const volumeControl = document.querySelector('.volume');
-volumeControl.addEventListener('change', event => Audio.changeVolume(event.target.value / 100));
-
-Audio.changeVolume(0.5);
-volumeControl.value = 50;
 
 let isSatietyMode = false;
 let isSleepMode = false;
@@ -44,25 +36,19 @@ if (navigator.getBattery) {
     });
 }
 
-const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
-const recognizer = new SpeechRecognition();
-recognizer.lang = 'ru-RU';
-recognizer.interimResults = true;
-
-recognizer.onstart = () => isRecognizeMode = true;
-recognizer.onend = () => isRecognizeMode = false;
-recognizer.onresult = (event) => {
-    const result = event.results[0][0];
-    textDisplay.textContent = result.transcript;
-};
-
 window.addEventListener('blur', () => isSleepMode = true);
 window.addEventListener('focus', () => isSleepMode = false);
+
+const savedState = JSON.parse(localStorage.getItem('state')) || undefined;
+const hrunogochi = new Hrunogochi(savedState);
+const audio = new SoundSystem(document.querySelector('.volume'), 50);
+const recognition = new Recognition(status => isRecognizeMode = status, textDisplay);
+const notification = new NotificationAPI();
 
 document.querySelector('.new-game').addEventListener('click', () => hrunogochi.reset());
 document.querySelector('.eat').addEventListener('click', () => hrunogochi.setSatiety());
 document.querySelector('.say').addEventListener('click',
-    () => !isRecognizeMode && recognizer.start()
+    () => !isRecognizeMode && recognition.start()
 );
 
 const svg = new SVG(heroDisplay, hrunogochi.state);
@@ -84,7 +70,7 @@ function setAction({ energy, mood, satiety }) {
     if (isRecognizeMode && mood < 100) {
         hrunogochi.setMood();
     } else {
-        recognizer.stop();
+        recognition.stop();
     }
 
     if (isSleepMode && energy < 100) {
@@ -94,21 +80,20 @@ function setAction({ energy, mood, satiety }) {
 
 (function tick() {
     localStorage.setItem('state', JSON.stringify(Object.assign({}, hrunogochi.params)));
-    const params = hrunogochi.params;
 
-    setAction(params);
+    setAction(hrunogochi.params);
     draw(hrunogochi.params);
 
-    if (params.state !== STATE.DEAD && isSleepMode) {
-        notify(params);
+    if (hrunogochi.params.state !== STATE.DEAD && isSleepMode) {
+        notification.notify(hrunogochi.params);
     }
 
-    if (params.state !== STATE.IDLE) {
+    if (hrunogochi.params.state !== STATE.IDLE) {
         idleTime = Date.now();
-        Audio.stop();
+        audio.pause();
     } else if (Date.now() - idleTime > 3000) {
         // включаем звук, если хрюногочи без внимания 3 сек
-        Audio.play();
+        audio.play();
     }
 
     hrunogochi.update();
