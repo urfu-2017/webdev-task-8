@@ -11,6 +11,15 @@ const HRUNDEL_STATE = {
     sleeping: 'sleeping'
 };
 
+const HRUNDEL_STATE_ICON = {
+    happy: 'https://s4.aconvert.com/convert/p3r68-cdx67/cb4lu-e8b8y.svg',
+    common: 'https://s4.aconvert.com/convert/p3r68-cdx67/cbggr-zec5y.svg',
+    sad: 'https://s4.aconvert.com/convert/p3r68-cdx67/cb4s3-2oh6a.svg',
+    dead: 'https://s4.aconvert.com/convert/p3r68-cdx67/cb61n-wtnnj.svg',
+    eating: 'https://s4.aconvert.com/convert/p3r68-cdx67/cbmw6-rorvq.svg',
+    sleeping: 'https://s4.aconvert.com/convert/p3r68-cdx67/cburn-kmre8.svg'
+};
+
 const DEFAULT_HRUNDEL_INFO = {
     satiety: 100,
     energy: 100,
@@ -96,7 +105,7 @@ const render = change => {
     document.querySelector('.stat__satiety_value').textContent = `${HRUNDEL.satiety}%`;
     document.querySelector('.stat__energy_value').textContent = `${HRUNDEL.energy}%`;
     document.querySelector('.stat__mood_value').textContent = `${HRUNDEL.mood}%`;
-    document.querySelector('.hrundel-face').src = `./images/${HRUNDEL.state}.png`;
+    document.querySelector('.hrundel-face').src = HRUNDEL_STATE_ICON[HRUNDEL.state];
 
     const hrundelInfo = {
         satiety: HRUNDEL.satiety,
