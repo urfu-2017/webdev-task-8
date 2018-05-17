@@ -33,6 +33,7 @@ export default class Game extends EventEmitter {
             setInterval(this.tick.bind(this), 1500),
             setInterval(this.makeSomeNoise.bind(this), 15000)
         ];
+        this.emit('start');
     }
 
     stop() {

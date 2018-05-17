@@ -9,6 +9,9 @@ export default class Animator {
             this.layout.circle(30, 30, 10)
         );
         this.eyes.attr({ fill: '#CF4D6F' });
+        if (this.mouth) {
+            this.mouth.remove();
+        }
         this.mouth = this.layout.path('M10,70C40,90,60,90,90,70').attr({ fill: '#C97282' });
         this.nose = this.layout.path('').attr({ fill: '#76818E' });
         this.nose = this.layout.group(
