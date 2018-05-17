@@ -1,5 +1,6 @@
 (() => {
     let hrunogochi = {};
+
     const states = {
         dead: 'dead',
         satiety: 'satiety',
@@ -35,22 +36,16 @@
         const hrunogochiSvg = document.querySelector('.hrunogochi-svg');
         const hrunogochiSvgDead = document.querySelector('.hrunogochi-dead-svg');
 
-        satiety.innerHTML = hrunogochi.satiety;
-        energy.innerHTML = hrunogochi.energy;
-        mood.innerHTML = hrunogochi.mood;
-
-        if (hrunogochi.state !== states.satiety && satiety.innerHTML < 40) {
-            eat.style.display = 'block';
-        } else {
-            eat.style.display = 'none';
-        }
+        satiety.innerText = hrunogochi.satiety;
+        energy.innerText = hrunogochi.energy;
+        mood.innerText = hrunogochi.mood;
 
         if (hrunogochi.state === states.dead) {
-            hrunogochiSvg.style.display = 'none';
-            hrunogochiSvgDead.style.display = 'block';
+            hrunogochiSvg.classList.add('none');
+            hrunogochiSvgDead.classList.add('block');
         } else {
-            hrunogochiSvg.style.display = 'block';
-            hrunogochiSvgDead.style.display = 'none';
+            hrunogochiSvg.classList.remove('none');
+            hrunogochiSvgDead.classList.remove('block');
         }
     }
 
@@ -125,10 +120,7 @@
     }
 
     function eating() {
-        const eat = document.querySelector('.eat');
-
         hrunogochi.state = states.satiety;
-        eat.style.display = 'none';
     }
 
     function notifications() {
@@ -155,8 +147,8 @@
 
         const startListen = document.querySelector('.hrunogochi-svg');
         const log = document.querySelector('.characteristics__speech-log');
-        startListen.onclick = () => {
-            log.innerHTML = 'Recognition started';
+        startListen.onclick = function () {
+            log.innerText = 'Recognition started';
             if (hrunogochi.mood < 100) {
                 recognizer.start();
             }
@@ -166,28 +158,41 @@
             const index = e.resultIndex;
             const result = e.results[index][0].transcript.trim();
 
-            log.innerHTML = result;
+            log.innerText = result;
             hrunogochi.mood += 20;
         };
     }
 
-    const listeners = function () {
+    function listeners() {
         const newgame = document.querySelector('.newgame');
         newgame.addEventListener('click', start, false);
+    }
 
-        const eat = document.querySelector('.eat');
-        eat.addEventListener('click', eating, false);
-    };
-
-    window.onfocus = () => {
+    window.onfocus = function () {
         hrunogochi.state = states.normal;
     };
 
-    window.onblur = () => {
+    window.onblur = function () {
         hrunogochi.state = states.energy;
     };
 
-    window.onload = () => {
+    window.onload = function () {
+
+        const batteryDom = document.querySelector('.battery__value');
+        navigator.getBattery().then(function (battery) {
+            batteryDom.innerText = Math.round(battery.level * 100);
+            battery.addEventListener('levelchange', function () {
+                batteryDom.innerText = Math.round(battery.level * 100);
+            });
+
+            battery.addEventListener('chargingchange', function () {
+                if (battery.charging) {
+                    eating();
+                } else {
+                    hrunogochi.state = states.normal;
+                }
+            });
+        });
 
         const Notification = window.Notification || window.webkitNotification;
         Notification.requestPermission();

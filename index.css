@@ -21,3 +21,24 @@
     width: 100px;
     height: 100px;
 }
+
+.block
+{
+    display: block;
+}
+
+.none
+{
+    display: none;
+}
+
+.battery
+{
+    display: flex;
+    flex-direction: row;
+}
+
+.battery span
+{
+    margin-right: 5px;
+}
