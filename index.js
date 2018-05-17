@@ -58,7 +58,10 @@ function start() {
 }
 
 const notifier = new Notifier();
-notifier.requestPermission();
+
+if (notifier.isAvaliable) {
+    notifier.requestPermission();
+}
 
 const recognition = new Recognition();
 
@@ -110,10 +113,18 @@ function onFed() {
 }
 
 function onUpset() {
+    if (!notifier.isAvaliable) {
+        return;
+    }
+
     notifier.notify('Мне скучно...');
 }
 
 function onHungry() {
+    if (!notifier.isAvaliable) {
+        return;
+    }
+
     notifier.notify('Хочу есть...');
 }
 
