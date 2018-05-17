@@ -1,9 +1,8 @@
-/* eslint-disable no-new */
+/* eslint-disable no-new,no-invalid-this */
 import Tamagochi from './tamagotchi';
 import State from './stats';
 import { getWorldData } from '../world';
 import updateUi from '../view/ui';
-
 
 if ('Notification' in window) {
     Notification.requestPermission();
@@ -12,33 +11,35 @@ if ('Notification' in window) {
 const TICK_INTERVAL = 100;
 
 export default class GameLoop {
-
     constructor(viewFactory) {
         this.viewFactory = viewFactory;
-        this.tamagotchi = new Tamagochi(State.restore(), viewFactory());
+        this.tamagotchi = Tamagochi.create(State.restore(), viewFactory());
 
         document.querySelector('.controls__feed')
-            .onclick = () => this.tamagotchi.forceFeed();
+            .addEventListener('click', () => {
+                this.tamagotchi.forceFeed();
+            });
         document.querySelector('.controls__start-anew')
-            .onclick = this.startAnew.bind(this);
+            .addEventListener('click', () => {
+                this.startAnew();
+            });
     }
 
     startAnew() {
-        this.tamagotchi.view.clear();
-        this.tamagotchi = new Tamagochi(State.createNew(), this.viewFactory());
+        this.tamagotchi = Tamagochi.create(State.createNew(), this.viewFactory());
     }
 
     run() {
-        this._tickWrapper();
+        this._nextTick();
     }
 
     stop() {
         clearTimeout(this.task);
     }
 
-    _tickWrapper() {
+    _nextTick() {
         this.tick();
-        this.task = setTimeout(this._tickWrapper.bind(this), TICK_INTERVAL);
+        this.task = setTimeout(this._nextTick.bind(this), TICK_INTERVAL);
     }
 
     tick() {
@@ -54,6 +55,8 @@ export default class GameLoop {
             return;
         }
 
-        new Notification(text);
+        if ('Notification' in window) {
+            new Notification(text);
+        }
     }
 }

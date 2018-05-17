@@ -6,7 +6,20 @@ const REFILL_RATE = 0.5;
 
 
 export default class Tamagotchi {
-    constructor(stats, view) {
+    static create(stats, view) {
+        if (!Tamagotchi.__instance) {
+            Tamagotchi.__instance = new Tamagotchi();
+        }
+        Tamagotchi.__instance.initialize(stats, view);
+
+        return Tamagotchi.__instance;
+    }
+
+    initialize(stats, view) {
+        if (this.view) {
+            this.view.clear();
+        }
+        view.drawFace();
         this.stats = stats;
         this.view = view;
         this.actions = new Set([ACTIONS.IDLE]);

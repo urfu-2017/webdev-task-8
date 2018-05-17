@@ -17,8 +17,6 @@ export default class View {
         this._shapes = {};
         this._overlay = [];
         this._previousAction = null;
-
-        this._drawFace();
     }
 
     draw(action) {
@@ -53,7 +51,7 @@ export default class View {
         this._snap.clear();
     }
 
-    _drawFace() {
+    drawFace() {
         this._shapes.base = this._snap.circle(150, 150, 150);
         this._shapes.base.attr({
             fill: 'pink',

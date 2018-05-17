@@ -43,7 +43,8 @@ const startListening = () => {
 const toggleListening = () => readings.talking ? stopListening() : startListening();
 
 
-document.querySelector('.view').onclick = toggleListening;
+document.querySelector('.view')
+    .addEventListener('click', toggleListening);
 
 
 export default readings;
