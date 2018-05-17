@@ -1,3 +1,7 @@
 {
-  "extends": "hrundel/browser"
+  "extends": "hrundel/browser",
+  "parserOptions": {
+    "ecmaVersion": 2018,
+    "sourceType": "module"
+  }
 }

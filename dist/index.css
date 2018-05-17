@@ -1,0 +1,76 @@
+body
+{
+    margin: 0;
+}
+
+.wrapper
+{
+    font-family: sans-serif;
+
+    display: flex;
+    flex-direction: column;
+
+    width: 800px;
+    height: 100vh;
+    margin: auto;
+
+    align-items: center;
+    justify-content: space-around;
+}
+
+.stats
+{
+    width: 100%;
+}
+
+.stats__indicator
+{
+    font-size: 24px;
+
+    min-width: 30px;
+    max-width: 100%;
+    height: 25px;
+    margin-bottom: 10px;
+    padding: 15px;
+
+    transition: all .5s;
+    text-align: right;
+
+    color: #fff;
+    background: #000;
+}
+
+.stats__indicator_type_energy
+{
+    background: #ff8c70;
+}
+
+.stats__indicator_type_spirit
+{
+    background: #9ad7ff;
+}
+
+.stats__indicator_type_satiety
+{
+    background: #80ff7e;
+}
+
+.view
+{
+    width: 300px;
+    height: 300px;
+
+    cursor: pointer;
+}
+
+.speech-recognition
+{
+    font-family: 'Comic Sans MS', sans-serif;
+
+    height: 20px;
+}
+
+.audio
+{
+    display: none;
+}
