@@ -1,10 +1,40 @@
 <!DOCTYPE html>
 <html lang="ru">
+
 <head>
     <meta charset="utf-8">
     <title>Хрюногочи</title>
     <link rel="stylesheet" href="./index.css">
 </head>
+
 <body>
+    <div class="hrundel">
+        <div class="hrundel_img">
+            <svg id="svg"></svg>
+        </div>
+        <div class="hrundel_states">
+            <div class="hrundel_states_satiety"></div>
+            <div class="hrundel_states_energy"></div>
+            <div class="hrundel_states_mood"></div>
+        </div>
+        <input class="hrundel_recognized_speech">
+        <div class="hrundel_controls">
+            <img src="/img/eat.jpg" alt="a" class="hrundel_controls_feed">
+            <img src="/img/speedDown.jpg" alt="a" class="hrundel_controls_speedDown">
+            <img src="/img/speedUp.jpg" alt="a" class="hrundel_controls_speedUp">
+        </div>
+
+    </div>
+    <button class="regame">Start new game</button>
+    <script src="scripts/svg/dist/snap.svg-min.js"></script>
+    <script src="scripts/models/hrundel.js"></script>
+    <script src="scripts/view/hrundel.js"></script>
+    <script src="scripts/index.js"></script>
+    <script src="scripts/speak.js"></script>
+    <script src="scripts/notice.js"></script>
+    <script src="scripts/sleep.js"></script>
+    <script src="scripts/play.js"></script>
+    <script src="scripts/eat.js"></script>
 </body>
+
 </html>
