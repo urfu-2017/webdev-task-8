@@ -1,0 +1,17 @@
+.mood-handler__microphone-img,
+.hunger-handler__bourger-img
+{
+    width: 100px;
+}
+
+.parameters
+{
+    display: flex;
+    font-size: 45px;
+}
+
+.parameters div
+{
+    margin: 0 30px;
+    width: 450px;
+}

@@ -3,8 +3,53 @@
 <head>
     <meta charset="utf-8">
     <title>Хрюногочи</title>
-    <link rel="stylesheet" href="./index.css">
+    <link rel="stylesheet" href="/styles/styles.css">
 </head>
 <body>
+    <main>
+        <button class="reset-button">Reset</button>
+        <div class="parameters">
+            <div class="parameters__hunger">
+                <p>hunger</p>
+                <div class="hunger">
+                </div>
+            </div>
+            <div class="parameters__energy">
+                <p>energy</p>
+                <div class="energy">
+                </div>
+            </div>
+            <div class="parameters__energy">
+                <p>mood</p>
+                <div class="mood">
+                </div>
+            </div>
+        </div>
+        <section class="mood-handler">
+            <header class="mood-handler__microphone">
+                <img class="mood-handler__microphone-img" src="/img/microphone.png" alt="micro">
+            </header>
+            <div class="mood-handler__words"></div>
+        </section>
+        <section class="hunger-handler">
+            <header class="hunger-handler__bourger">
+                <img class="hunger-handler__bourger-img" src="/img/burger.png" alt="burger">
+            </header>
+        </section>
+        <section class="pigVoice">
+            <header class="pigVoice__header">Volume</header>
+            <div class="pigVoice__slider">
+                <input type="range" min="1" max="100" value="50" class="pigVoice__slider-input">
+            </div>
+        </section>
+    </main>
+    <script src="/scripts/localStorage.js"></script>
+    <script src="/scripts/moodHandler.js"></script>
+    <script src="/scripts/hungerHandler.js"></script>
+    <script src="/scripts/energyHandler.js"></script>
+    <script src="/scripts/healthMonitoring.js"></script>
+    <script src="/scripts/pigVoice.js"></script>
+    <script src="/scripts/snap.svg-min.js"></script>
+    <script src="/scripts/pig.js"></script>
 </body>
 </html>
