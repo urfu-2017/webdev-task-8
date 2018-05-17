@@ -1,17 +1,35 @@
 {
   "private": true,
   "scripts": {
+    "build": "webpack --config ./webpack.production.config.js --progress --profile",
+    "dev": "webpack-dev-server --config ./webpack.config.js --mode development",
     "test": "npm run lint && mocha ./node_modules/html-tests/task-stub/test",
-    "lint": "eslint . && stylelint *.css **/*.css && html-validator --file index.html --verbose && htmllint *.html"
+    "lint": "eslint ./src/. && stylelint *.css **/*.css && html-validator --file src/index.html --verbose && htmllint *.html"
   },
   "dependencies": {
     "eslint": "4.18.0",
     "eslint-config-hrundel": "1.3.0",
+    "eve": "0.5.4",
     "html-tests": "1.0.2",
     "html-validator-cli": "3.0.2",
+    "htmllint": "0.7.2",
     "htmllint-cli-alpha": "0.0.6",
     "mocha": "3.1.0",
+    "snapsvg": "0.5.1",
     "stylelint": "7.3.1",
     "stylelint-config-hrundel": "1.0.3"
+  },
+  "devDependencies": {
+    "babel-core": "6.26.3",
+    "babel-loader": "7.1.4",
+    "babel-plugin-transform-decorators-legacy": "1.3.4",
+    "babel-preset-env": "1.6.1",
+    "babel-preset-stage-2": "6.24.1",
+    "html-webpack-plugin": "3.2.0",
+    "imports-loader": "0.8.0",
+    "webpack": "4.6.0",
+    "webpack-cleanup-plugin": "0.5.1",
+    "webpack-cli": "2.1.2",
+    "webpack-dev-server": "3.1.4"
   }
 }

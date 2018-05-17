@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="utf-8">
+    <title>Хрюногочи</title>
+    <link rel="stylesheet" type="text/css" href="./index.css">
+</head>
+<body>
+<div class="wrapper">
+    <svg class="view"></svg>
+    <div class="controls">
+        <button class="controls__feed">Покормить</button>
+        <button class="controls__start-anew">Нести следующего</button>
+        <input class="controls__volume" type="range"
+               min="0.0" max="1.0" step="0.01" value="0.5" title="Громкость"/>
+    </div>
+    <div class="speech-recognition">
+        <p class="speech-recognition__result"></p>
+    </div>
+    <div class="stats">
+        Энергия
+        <div class="stats__indicator stats__indicator_type_energy">100%</div>
+        Настроение
+        <div class="stats__indicator stats__indicator_type_spirit">100%</div>
+        Сытость
+        <div class="stats__indicator stats__indicator_type_satiety">100%</div>
+    </div>
+    <audio class="audio" controls preload="none">
+        <source src="./hruspersky.mp3" type="audio/mpeg">
+    </audio>
+</div>
+</body>
+</html>
