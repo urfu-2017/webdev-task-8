@@ -1,0 +1,70 @@
+@import url('https://fonts.googleapis.com/css?family=IBM+Plex+Sans:300,400,500,700');
+
+body {
+    display: flex;
+
+    font-family: 'IBM Plex Sans', 'Helvetica', sans-serif;
+    font-size: 15px;
+
+    height: 100vh;
+}
+
+.wrapper {
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: center;
+    align-items: center;
+
+    margin: auto;
+    padding: 16px;
+
+    width: max-content;
+
+    background: #fafafa;
+    box-shadow: 0 0 10px rgba(0, 0, 0, .15);
+}
+
+.info {
+    width: 100%;
+}
+
+.info__property {
+    display: flex;
+    justify-content: space-between;
+}
+
+.hrun {
+    margin: 16px 0;
+}
+    
+
+.hrun-shape {
+    width: 250px;
+    height: 250px;
+}
+
+.recognized-text {
+    display: block;
+
+    margin: 0 0 16px;
+
+    max-width: 300px;
+    word-wrap: break-word;
+}
+
+.volume {
+    margin: 0 0 8px;
+}
+
+.volume__title {
+    display: block;
+}
+
+.buttons {
+    display: flex;
+    justify-content: center;
+}
+
+.buttons__feed {
+    display: none;
+}

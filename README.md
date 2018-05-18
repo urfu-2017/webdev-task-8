@@ -1,5 +1,7 @@
 # Задача «Гейб слишком занят»
 
+[Демо](https://rawgit.com/tonyfresher/webdev-task-8/master/index.html)
+
 Перед выполнением задания внимательно прочитайте:
 
 - [О всех этапах проверки задания](https://github.com/urfu-2017/guides/blob/master/workflow/overall.md)
