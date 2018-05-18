@@ -18,14 +18,14 @@ class Drawer {
             stroke: '#000'
         };
         this.leftEar = this.snap
-            .path('M 110,120 T 90,70,180,80 Z')
+            .path('M 90,120 T 70,70,160,80 Z')
             .attr(earAttr);
         this.rigthEar = this.snap
-            .path('M 300,140 T 320,70,250,90 Z')
+            .path('M 280,140 T 300,70,230,90 Z')
             .attr(earAttr);
 
         this.face = this.snap
-            .circle(200, 200, 120)
+            .circle(180, 200, 120)
             .attr({
                 fill: '#fda7fa',
                 stroke: '#000'
@@ -35,13 +35,13 @@ class Drawer {
             fill: '#000'
         };
         this.leftEye = this.snap
-            .circle(155, 145, 20)
+            .circle(135, 145, 20)
             .attr(eyeAttr);
         this.rightEye = this.snap
-            .circle(245, 145, 20)
+            .circle(225, 145, 20)
             .attr(eyeAttr);
 
-        this.nose = this.snap.ellipse(200, 200, 30, 25)
+        this.nose = this.snap.ellipse(180, 200, 30, 25)
             .attr({
                 fill: '#f18cc1',
                 stroke: '#000'
@@ -52,14 +52,14 @@ class Drawer {
             stroke: '#000'
         };
         this.leftNaris = this.snap
-            .ellipse(190, 200, 5, 10)
+            .ellipse(170, 200, 5, 10)
             .attr(narisAttr);
         this.rightNaris = this.snap
-            .ellipse(210, 200, 5, 10)
+            .ellipse(190, 200, 5, 10)
             .attr(narisAttr);
 
         this.mouth = this.snap
-            .path('M 160,255 T 200,280,250,230 Z')
+            .path('M 140,255 T 180,280,230,230 Z')
             .attr({
                 fill: '#fff',
                 stroke: '#000'
@@ -81,22 +81,22 @@ class Drawer {
         this.rightEye.remove();
         this.leftEye.remove();
         this.leftEye = this.snap
-            .line(170, 160, 140, 130)
+            .line(150, 160, 120, 130)
             .attr({
                 stroke: '#000'
             });
         this.leftEye = this.snap
-            .line(170, 130, 140, 160)
+            .line(150, 130, 120, 160)
             .attr({
                 stroke: '#000'
             });
         this.rightEye = this.snap
-            .line(260, 160, 230, 130)
+            .line(240, 160, 210, 130)
             .attr({
                 stroke: '#000'
             });
         this.rightEye = this.snap
-            .line(260, 130, 230, 160)
+            .line(240, 130, 210, 160)
             .attr({
                 stroke: '#000'
             });
@@ -209,7 +209,7 @@ function createNotifications() {
                 // eslint-disable-next-line no-new
                 new Notification('Помогите!!!');
             }
-        }, 1000);
+        }, 5000);
     }
 }
 
@@ -270,6 +270,34 @@ function createSpeech() {
     }
 }
 
+function createSounds() {
+    const PHRASES = ['Души мне не жаль, я проживу и без неё.',
+        'Сын мой...в день когда ты родился,сами леса Лордерона прошептали мне это имя.',
+        'Я такой же осёл как и вы, сэр!', 'Ты что ли король? Я за тебя не голосовал.',
+        'Да пребудет с тобой сила!', 'Человек? Во мне уже давно не осталось ничего человеческого.',
+        'Я с радостью приму на себя проклятье, лишь бы спасти свой народ.', 'Мы не будем рабами!',
+        'Скоро Азерот будет разрушен, и все сгорит дотла в тени моих крыльев!', 'Моя прелесть.',
+        'Жизнь как коробка шоколадных конфет: никогда не знаешь, какая начинка тебе попадётся.',
+        'И того, и другого. И можно без хлеба...', 'У меня есть мысль, и я её думаю.',
+        'Поели — можно и поспать. Поспали — можно и поесть.'
+    ];
+    let volumeValue = 0.5;
+    if (window.speechSynthesis) {
+        setInterval(() => {
+            if (!isDead) {
+                const randomPhrase = PHRASES[Math.floor(Math.random() * PHRASES.length)];
+                const message = new SpeechSynthesisUtterance(randomPhrase);
+                message.lang = 'ru-RU';
+                message.volume = volumeValue;
+                window.speechSynthesis.speak(message);
+            }
+        }, 10000);
+
+        const volume = document.getElementById('volume');
+        volume.addEventListener('change', () => (volumeValue = volume.value / 100));
+    }
+}
+
 document.addEventListener('DOMContentLoaded',
     function () {
         const drawer = new Drawer();
@@ -279,6 +307,7 @@ document.addEventListener('DOMContentLoaded',
         createLight();
         enableSleep();
         createSpeech();
+        createSounds();
         const reestablishCharacteristics = () => {
             const characteristics = [].slice.call(document
                 .querySelectorAll('.characteristic-value'));

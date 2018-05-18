@@ -1,5 +1,5 @@
 .characteristics,
-.controls
+.game
 {
     width: 80%;
     margin: 10px auto;
@@ -112,3 +112,17 @@
     transition: 0s ease opacity .4s, height .2s ease .4s, width .2s ease .6s;
 }
 
+.volume__label,
+.volume__range,
+.reset-button
+{
+    width: 90%;
+}
+
+.controls
+{
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+}

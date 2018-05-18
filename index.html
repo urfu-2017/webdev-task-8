@@ -31,10 +31,16 @@
         <div id="mood-bar" class="characteristic-bar"></div>
     </section>
 </article>
-<article class="controls">
-    <div id="speech" class="speech-field">Нажми на персонажа, чтобы поговорить с ним.</div>
+<article class="game">
+    <div id="speech" class="speech-field">Нажмите на персонажа, чтобы поговорить с ним.</div>
     <svg class="character" id="character"></svg>
-    <button id="reset" class="reset-button">Новая игра</button>
+    <article class="controls">
+        <button id="reset" class="reset-button">Новая игра</button>
+        <section class="volume">
+            <label for="volume" class="volume__label">Громкость персонажа.</label>
+            <input type="range" min="1" max="100" id="volume" class="volume__range">
+        </section>
+    </article>
 </article>
 </body>
 </html>

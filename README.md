@@ -1,4 +1,4 @@
-﻿https://webdev-task-8-miavkaqsvp.now.sh
+﻿https://webdev-task-8-rglwkrdasc.now.sh
 
 # Задача «Гейб слишком занят»
 
