@@ -96,7 +96,7 @@ class Game {
             Notification.requestPermission(() => this._handleHiding());
             this.Notification = Notification;
 
-            setInterval(() => this._notifyIfNeeded(), Hrun.CYCLE_INTERVAL);
+            setInterval(() => this._notifyIfNeeded(), Hrun.CYCLE_INTERVAL * 100);
         }
     }
 
@@ -125,24 +125,22 @@ class Game {
             this.speechRecognizer = new SpeechRecognition();
             this.speechRecognizer.lang = 'ru-RU';
             this.speechRecognizer.continuous = true;
-        
-            this.speechRecognizer.onerror = e => {
-                console.error(e);
-                this.hrun.calm();
-            };
 
             this.speechRecognizer.onstart = () => {
                 this.hrun.calm();
                 this.hrun.startCommunicating();
             };
-        
-            this.speechRecognizer.onresult = e => {
-                const index = e.resultIndex;
-                const result = e.results[index][0].transcript.trim();
 
-                const label = DOM.recognizedText;
-                const oldResult = label.innerHTML;
-                label.innerText = oldResult + result;
+            this.speechRecognizer.onresult = event => {
+                const index = event.resultIndex;
+                const result = event.results[index][0].transcript.trim();
+
+                DOM.recognizedText.innerText = result;
+            };
+
+            this.speechRecognizer.onerror = error => {
+                this.hrun.calm();
+                console.error(error);
             };
 
             DOM.getHrunBody().onclick = () => {
@@ -150,7 +148,7 @@ class Game {
             };
         }
     }
-    
+
     _stopListening() {
         LISTENER.stop();
         HRUN._action = 'rest';
