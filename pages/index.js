@@ -86,12 +86,7 @@ export default class MainPage extends React.Component {
     }
 
     isDead() {
-        const criticalIndicators = _.chain(this.state.indicators)
-            .pairs()
-            .filter(pair => pair[1] === 0)
-            .value();
-
-        return criticalIndicators.length >= 2;
+        return _.filter(this.state.indicators, indicatorValue => indicatorValue === 0).length >= 2;
     }
 
     /* eslint-disable */
