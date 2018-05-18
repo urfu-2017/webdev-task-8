@@ -18,7 +18,7 @@ export default function moodSetup(game, animator) {
             if (speechStarted) {
                 speechStarted = false;
                 recognition.stop();
-                animator.endSpeech();
+                animator.resetCurrentAnimation();
             } else {
                 speechStarted = true;
                 recognition.start();

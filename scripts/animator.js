@@ -12,24 +12,54 @@ export default class Animator {
         if (this.mouth) {
             this.mouth.remove();
         }
-        this.mouth = this.layout.path('M10,70C40,90,60,90,90,70').attr({ fill: '#C97282' });
-        this.nose = this.layout.path('').attr({ fill: '#76818E' });
+        this.mouth = this.layout.path('M10,70C40,90,60,90,90,70').attr({ fill: '#CF4D6F' });
         this.nose = this.layout.group(
             this.layout.circle(50, 50, 12).attr({ fill: '#ecc5c4' }),
             this.layout.circle(44, 50, 3).attr({ fill: '#b85f69' }),
             this.layout.circle(56, 50, 3).attr({ fill: '#b85f69' }),
         );
+        this.sleepingEyes = this.layout.group(
+            this.layout.rect(20, 27, 20, 7),
+            this.layout.rect(60, 27, 20, 7)
+        );
+        this.sleepingEyes.attr({ fill: '#CF4D6F', opacity: 0 });
     }
 
     animateDeath() {
-        this.endSpeech();
+        this.resetCurrentAnimation();
         this.eyes.attr({ fill: '#000' });
         this.mouth.animate({ d: 'M10,90C40,70,60,70,90,90' }, 1000);
     }
 
-    endSpeech() {
+    animateSleep() {
+        this.resetCurrentAnimation();
+        this.eyes.animate({ opacity: 0 }, 200);
+        this.sleepingEyes.animate({ opacity: 1 }, 200);
+    }
+
+    animateWaking() {
+        this.resetCurrentAnimation();
+        this.eyes.animate({ opacity: 1 }, 1500);
+        this.sleepingEyes.animate({ opacity: 0 }, 1500);
+    }
+
+    animateFeeding() {
+        this.resetCurrentAnimation();
+        this.battery = this.layout.group(
+            this.layout.rect(92, 2, 2, 10),
+            this.layout.rect(84, 2, 2, 10),
+            this.layout.rect(88, 2, 2, 10),
+            this.layout.rect(96, 4, 2, 6)
+        );
+        this.battery.attr({ fill: '#0dd11a' });
+    }
+
+    resetCurrentAnimation() {
         if (this.ears) {
-            this.ears.attr({ opacity: 0 });
+            this.ears.remove();
+        }
+        if (this.battery) {
+            this.battery.remove();
         }
     }
 

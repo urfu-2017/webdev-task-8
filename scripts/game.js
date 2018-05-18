@@ -62,10 +62,10 @@ export default class Game extends EventEmitter {
         this.state.mood = this._boundTo(this.state.mood + this.deltas.mood);
         this.storage.save(this.state);
         this.emit('stateChanged');
-        if (this.state.satiety < 10) {
+        if (this.state.satiety === 10 && this.deltas.satiety === -1) {
             this.emit('hungry');
         }
-        if (this.state.mood < 10) {
+        if (this.state.mood === 10 && this.deltas.mood === -1) {
             this.emit('bored');
         }
     }
@@ -80,17 +80,28 @@ export default class Game extends EventEmitter {
         this.deltas = this.getDefaultDeltas();
         this.deltas.energy = 2;
         this.isActive = false;
+        if (!this.isDead()) {
+            this.emit('sleep');
+        }
     }
 
     wakeUp() {
         this.deltas = this.getDefaultDeltas();
         this.isActive = true;
+        if (!this.isDead()) {
+            this.emit('wakeUp');
+        }
     }
 
     startFeeding(charging) {
         this.deltas = this.getDefaultDeltas();
         if (charging) {
             this.deltas.satiety = 2;
+            if (!this.isDead()) {
+                this.emit('feed');
+            }
+        } else {
+            this.emit('feedEnd');
         }
     }
 

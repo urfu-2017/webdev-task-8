@@ -13,6 +13,9 @@ window.onblur = () => game.sleep();
 
 game.on('death', () => animator.animateDeath());
 game.on('start', () => animator.drawHero());
+game.on('wakeUp', () => animator.animateWaking());
+game.on('sleep', () => animator.animateSleep());
+game.on('feed', () => animator.animateFeeding());
 
 game.on('stateChanged', () => {
     document.querySelector('.satiety .state__feature-value').innerHTML = game.state.satiety;
@@ -20,7 +23,10 @@ game.on('stateChanged', () => {
     document.querySelector('.mood .state__feature-value').innerHTML = game.state.mood;
 });
 document.querySelector('.new-game-btn')
-    .addEventListener('click', () => game.reset());
+    .addEventListener('click', () => {
+        game.reset();
+        animator.resetCurrentAnimation();
+    });
 satietySetup(game);
 moodSetup(game, animator);
 notificationSetup(game);
