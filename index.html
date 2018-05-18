@@ -5,6 +5,58 @@
     <title>Хрюногочи</title>
     <link rel="stylesheet" href="./index.css">
 </head>
-<body>
+<body class="menu">
+    <img src="https://media.giphy.com/media/l0HlMZrXA2H7aqpwI/giphy.gif" alt="pig" class="pig">
+    <img src="https://cdn4.iconfinder.com/data/icons/christmas-linear-icon/70/angel-512.png"
+         alt="angel"
+         class="reset-icon">
+    <section class="params">
+        <article class="hunger param">
+            <span class="param__name">Hunger</span>
+            <div class="container hunger__container">
+                <div class="hunger-lack lack"></div>
+            </div>
+        </article>
+        <article class="enegry param">
+            <span class="param__name">Energy</span>
+            <div class="container energy__container">
+                <div class="energy-lack lack"></div>
+            </div>
+        </article>
+        <article class="mood param">
+            <span class="param__name">Mood</span>
+            <div class="container mood__container">
+                <div class="mood-lack lack"></div>
+            </div>
+        </article>
+    </section>
+    <section class="speech-recognition">
+        <p>Вы сказали</p>
+        <div class="speech-recognition__words"></div>
+    </section>
+    <section class="icons">
+        <p>Действия с хрюкой</p>
+        <img src="https://d30y9cdsu7xlg0.cloudfront.net/png/830216-200.png" alt="food" class="feed">
+        <img src="https://d30y9cdsu7xlg0.cloudfront.net/png/117743-200.png"
+             alt="talks"
+             class="speech-recognition__icon">
+    </section>
+    <section class="volume">
+        <header class="volume__header">Volume</header>
+        <div class="slidecontainer">
+            <input type="range" min="1" max="100" value="50" class="slider">
+        </div>
+    </section>
+
+<script src="/scripts/healthUpdater.js"></script>
+<script src="/scripts/speech.js"></script>
+<script src="/scripts/battery.js"></script>
+<script src="/scripts/notifications.js"></script>
+<script src="/scripts/light.js"></script>
+<script src="/scripts/sounds.js"></script>
+<script src="/scripts/tabChecker.js"></script>
+<script src="/scripts/localStorage.js"></script>
+<script src="/scripts/snap.svg-min.js"></script>
+<script src="/scripts/svgCreator.js"></script>
 </body>
 </html>
