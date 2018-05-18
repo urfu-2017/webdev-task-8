@@ -42,7 +42,7 @@ class Hrun {
             : Math.max(this[prop] + delta, 0);
     }
 
-    died() {
+    get died() {
         return [this.satiety, this.energy, this.mood]
             .filter(prop => prop > 0).length < 2;
     }
@@ -66,15 +66,18 @@ class Hrun {
             this._state === Hrun.STATES.sleeping ? increment : -1
         );
 
-        if (this.died()) {
+        if (this.died) {
             clearInterval(this.intervalId);
+            this.active = false;
         }
     }
 
     /* eslint-enable no-unused-expressions */
 
     start(state) {
-        this._state = state;
+        if (!this.died) {
+            this._state = state;
+        }
     }
 
     stop(state) {
@@ -98,6 +101,10 @@ class Hrun {
     startSleeping() {
         this.start(Hrun.STATES.sleeping);
         this.active = false;
+    }
+
+    get sleeping() {
+        return this._state === Hrun.STATES.sleeping;
     }
 
     stopSleeping() {
