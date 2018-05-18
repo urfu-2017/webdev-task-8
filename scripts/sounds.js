@@ -29,11 +29,8 @@
             }
             if (death <= 1) {
                 random = Math.round(Math.random());
-                if (random) {
-                    window.speechSynthesis.speak(message1);
-                } else {
-                    window.speechSynthesis.speak(message2);
-                }
+                const message = random ? message1 : message2;
+                window.speechSynthesis.speak(message);
             }
         }, 6000);
 

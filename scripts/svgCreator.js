@@ -1,10 +1,16 @@
 'use strict';
 /* eslint-disable */
 (() => {
-    const s = Snap(265, 260);
-    let face = s.circle(150, 150, 100);
+    const snap = Snap(265, 260);
+    let face = snap.circle(150, 150, 100);
     const alive = {
         fill: '#fda9f7',
+        stroke: '#000',
+        strokeWidth: 5
+    };
+
+    const dead = {
+        fill: '#8dbdb6',
         stroke: '#000',
         strokeWidth: 5
     };
@@ -14,21 +20,20 @@
         fill: '#000'
     };
 
-    let leftEye = s.ellipse(110, 100, 20, 30);
-    let rightEye = s.ellipse(190, 100, 20, 30);
+    let leftEye = snap.ellipse(110, 100, 20, 30);
+    let rightEye = snap.ellipse(190, 100, 20, 30);
     leftEye.attr(eyeColor);
     rightEye.attr(eyeColor);
-    leftEye.attr(eyeColor);
     const innerNose = {
         fill: '#f1adb9',
         stroke: '#000',
         strokeWidth: 3
     };
 
-    const nose = s.ellipse(150, 160, 40, 23);
+    const nose = snap.ellipse(150, 160, 40, 23);
     nose.attr(innerNose);
-    const leftNostril = s.ellipse(135, 160, 5, 10);
-    const rightNostril = s.ellipse(165, 160, 5, 10);
+    const leftNostril = snap.ellipse(135, 160, 5, 10);
+    const rightNostril = snap.ellipse(165, 160, 5, 10);
     const nostril = {
         fill: '#de8796',
         stroke: '#000',
@@ -42,47 +47,43 @@
         stroke: '#000',
         strokeWidth: 2
     };
-    let currentMouth = s.ellipse(150,220,45, 30, 30, 45, 9);
+    let currentMouth = snap.ellipse(150,220,45, 30, 30, 45, 9);
     currentMouth.attr(mouth);
-    const leftEar = s.polygon([60, 110, 70, 90, 90, 70, 110, 60, 55, 35]);
+    const leftEar = snap.polygon([60, 110, 70, 90, 90, 70, 110, 60, 55, 35]);
     leftEar.attr(nostril);
-    const rigthEar = s.polygon([240, 110, 260, 50, 185, 55, 205, 65, 225, 80]);
+    const rigthEar = snap.polygon([240, 110, 260, 50, 185, 55, 205, 65, 225, 80]);
     rigthEar.attr(nostril);
 
     const makeSadFace = () => {
         currentMouth.remove();
-        currentMouth = s.polygon([110, 215, 150, 195, 190, 215]);
+        currentMouth = snap.polygon([110, 215, 150, 195, 190, 215]);
         currentMouth.attr(mouth);
     };
 
     const makeHappyFace = () => {
         face.attr(alive);
         currentMouth.remove();
-        currentMouth = s.polygon([110, 195, 150, 215, 190, 195]);
+        currentMouth = snap.polygon([110, 195, 150, 215, 190, 195]);
         currentMouth.attr(mouth);
         leftEye.remove();
         rightEye.remove();
-        leftEye = s.ellipse(110, 100, 20, 30);
-        rightEye = s.ellipse(190, 100, 20, 30);
+        leftEye = snap.ellipse(110, 100, 20, 30);
+        rightEye = snap.ellipse(190, 100, 20, 30);
     };
 
     const makeMehFace = () => {
         currentMouth.remove();
-        currentMouth = s.ellipse(150,220,45, 30, 30, 45, 9);
+        currentMouth = snap.ellipse(150,220,45, 30, 30, 45, 9);
         currentMouth.attr(mouth);
     };
 
     const die = () => {
         makeMehFace();
-        face.attr({
-            fill: '#8dbdb6',
-            stroke: '#000',
-            strokeWidth: 5
-        });
+        face.attr(dead);
         leftEye.remove();
-        leftEye = s.text(110, 100, 'О');
+        leftEye = snap.text(110, 100, 'О');
         rightEye.remove();
-        rightEye = s.text(175, 100, 'О');
+        rightEye = snap.text(175, 100, 'О');
     };
 
     setInterval(() => {

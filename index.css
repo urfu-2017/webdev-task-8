@@ -1,27 +1,35 @@
 .menu
 {
     display: grid;
-    padding: 10px;
-    margin-left: 10px;
-    flex-direction: column;
     float: left;
+    flex-direction: column;
+    
     height: 93vh;
+    margin-left: 10px;
+    padding: 10px;
+    
     background: linear-gradient(to top left, #b0e0e6, #ffc0cb);
+    
     grid-column-gap: 23px;
     grid-template-areas: 'stats pig pig' 'text svin items' '. volume .';
 }
 
 .reset-icon
 {
-    margin: 0 auto;
-    cursor: pointer;
-    position: absolute;
-    border: none;
-    height: 80px;
     font-size: 36px;
-    grid-area: stats;
+    
+    position: absolute;
     top: 133px;
     left: 68px;
+    
+    height: 80px;
+    margin: 0 auto;
+    
+    cursor: pointer;
+    
+    border: none;
+    
+    grid-area: stats;
 }
 
 .border
@@ -31,21 +39,25 @@
 
 .params
 {
+    display: flex;
+    flex-direction: column;
+    
+    width: 200px;
     margin: 0 auto;
     margin-top: 20px;
-    display: flex;
-    grid-area: stats;
-    flex-direction: column;
-    align-content: space-around;
     padding: 10px;
-    width: 200px;
+    
+    grid-area: stats;
+    align-content: space-around;
 }
 
 .param
 {
-    margin: 5px;
     display: flex;
     flex-direction: row;
+    
+    margin: 5px;
+    
     align-content: space-between;
 }
 
@@ -53,8 +65,9 @@
 {
     width: 100px;
     height: 16px;
-    background: linear-gradient(to right, #f00, #00ff7f);
+    
     border-radius: 22px;
+    background: linear-gradient(to right, #f00, #00ff7f);
 }
 
 .param__name
@@ -64,52 +77,60 @@
 
 .lack
 {
+    float: right;
+    
     width: 0;
     height: 100%;
-    float: right;
+    
     background-color: #fff;
 }
 
 svg
 {
     cursor: pointer;
+    
     grid-area: svin;
 }
 
 .pig
 {
     height: 17em;
-    cursor: pointer;
-    grid-area: pig;
     
+    cursor: pointer;
+    
+    grid-area: pig;
 }
 
 .speech-recognition
 {
+    width: 100%;
+    height: 90%;
     margin-top: 20px;
     padding: 10px;
-    height: 90%;
-    width: 100%;
+    
     grid-area: text;
 }
 
 .speech-recognition__icon
 {
-    margin: auto;
     height: 80px;
+    margin: auto;
 }
 
 .speech-recognition__words
 {
-    border: 2px solid #000;
     height: 100%;
+    
+    border: 2px solid #000;
 }
 
 .icons
 {
-    cursor: pointer;
-    margin-top: 20px;
     height: 30px;
+    margin-top: 20px;
+    
+    cursor: pointer;
+    
     grid-area: items;
 }
 
@@ -126,8 +147,10 @@ svg
 
 .volume
 {
-    margin-top: 15px;
     flex-direction: row;
+    
+    margin-top: 15px;
+    
     grid-area: volume;
 }
 
@@ -144,28 +167,35 @@ svg
 
 .slider
 {
-    -webkit-appearance: none;
-    appearance: none;
     width: 100%;
     height: 25px;
-    background: #ebebeb;
+    
     outline: none;
+    background: #ebebeb;
+    
+    -webkit-appearance: none;
+    appearance: none;
 }
 
 .slider::-webkit-slider-thumb
 {
-    -webkit-appearance: none;
-    appearance: none;
     width: 25px;
     height: 25px;
-    background: #8ef1a0;
+    
     cursor: pointer;
+    
+    background: #8ef1a0;
+    
+    -webkit-appearance: none;
+    appearance: none;
 }
 
 .slider::-moz-range-thumb
 {
     width: 25px;
     height: 25px;
-    background: #8ef1a0;
+    
     cursor: pointer;
+    
+    background: #8ef1a0;
 }
