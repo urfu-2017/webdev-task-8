@@ -139,6 +139,6 @@ Hrun.STATES = {
     sleeping: 'hard-resting'
 };
 
-Hrun.CYCLE_INTERVAL = 5000;
+Hrun.CYCLE_INTERVAL = 2000;
 
 Hrun.STORAGE_KEY = 'hrun-props';
