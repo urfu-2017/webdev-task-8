@@ -1,0 +1,114 @@
+.characteristics,
+.controls
+{
+    width: 80%;
+    margin: 10px auto;
+    display: flex;
+    justify-content: space-between;
+    box-shadow: 0 0 2px 3px;
+}
+
+.characteristics__characteristic
+{
+    padding: 5px;
+    width: 80%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 0 1px 1px;
+}
+
+.characteristic-value
+{
+    font-size: 20px;
+}
+
+.characteristic-bar
+{
+    border-radius: 5px;
+    transition: all 1s linear;
+    height: 20px;
+    background-color: green;
+}
+
+.speech-field
+{
+    display: flex;
+    align-items: center;
+    width: 30%;
+    height: 150px;
+    margin: 5%;
+    text-align: center;
+    box-shadow: 0 0 10px;
+    border-radius: 10px;
+}
+
+.character
+{
+    box-shadow: 0 0 1px 2px;
+    width: 400px;
+    height: 400px;
+    cursor: pointer;
+}
+
+.reset-button
+{
+    width: 20%;
+    height: 100px;
+    padding: 10px;
+    margin: 5px 10px;
+    position: relative;
+    color: black;
+    border: 1px solid rgba(255, 255, 255, .4);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.reset-button:before,
+.reset-button:after
+{
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 0;
+    opacity: 0;
+    box-sizing: border-box;
+}
+
+.reset-button:before
+{
+    bottom: 0;
+    left: 0;
+    border-left: 1px solid black;
+    border-top: 1px solid black;
+    transition: opacity 0s ease .8s, width .2s ease .4s, height .2s ease .6s;
+}
+
+.reset-button:after
+{
+    top: 0;
+    right: 0;
+    border-right: 1px solid black;
+    border-bottom: 1px solid black;
+    transition: 0s ease opacity .4s, width .2s ease, height .2s ease .2s;
+}
+
+.reset-button:hover:before,
+.reset-button:hover:after
+{
+    height: 100%;
+    width: 100%;
+    opacity: 1;
+}
+
+.reset-button:hover:before
+{
+    transition: 0s ease opacity 0s, height .2s ease, width .2s ease .2s;
+}
+
+.reset-button:hover:after
+{
+    transition: 0s ease opacity .4s, height .2s ease .4s, width .2s ease .6s;
+}
+

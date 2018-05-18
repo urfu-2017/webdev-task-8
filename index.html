@@ -4,7 +4,37 @@
     <meta charset="utf-8">
     <title>Хрюногочи</title>
     <link rel="stylesheet" href="./index.css">
+    <script src="./snap.svg-min.js"></script>
+    <script src="./index.js"></script>
 </head>
 <body>
+<article class="characteristics">
+    <section class="characteristics__characteristic">
+        <h2>Сытость</h2>
+        <span class="characteristic-value" id="satiety">
+            100
+        </span>
+        <div id="satiety-bar" class="characteristic-bar"></div>
+    </section>
+    <section class="characteristics__characteristic">
+        <h2>Энергия</h2>
+        <span class="characteristic-value" id="energy">
+            100
+        </span>
+        <div id="energy-bar" class="characteristic-bar"></div>
+    </section>
+    <section class="characteristics__characteristic">
+        <h2>Настроение</h2>
+        <span class="characteristic-value" id="mood">
+            100
+        </span>
+        <div id="mood-bar" class="characteristic-bar"></div>
+    </section>
+</article>
+<article class="controls">
+    <div id="speech" class="speech-field">Нажми на персонажа, чтобы поговорить с ним.</div>
+    <svg class="character" id="character"></svg>
+    <button id="reset" class="reset-button">Новая игра</button>
+</article>
 </body>
 </html>
