@@ -85,7 +85,7 @@ class Game {
         this.Notification = Notification;
 
         this.notificationInterval =
-            setInterval(() => this._notifyIfNeeded(), Hrun.CYCLE_INTERVAL * 100);
+            setInterval(() => this._notifyIfNeeded(), Hrun.CYCLE_INTERVAL * 10);
     }
 
     _notifyIfNeeded() {

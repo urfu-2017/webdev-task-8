@@ -24,7 +24,7 @@ class Hrun {
     }
 
     static tryLoad() {
-        return /* Hrun._savedProps ? new Hrun(Hrun._savedProps) : */ new Hrun();
+        return Hrun._savedProps ? new Hrun(Hrun._savedProps) : new Hrun();
     }
 
     save() {
@@ -71,7 +71,6 @@ class Hrun {
             this.active = false;
         }
     }
-
     /* eslint-enable no-unused-expressions */
 
     start(state) {
@@ -140,6 +139,6 @@ Hrun.STATES = {
     sleeping: 'hard-resting'
 };
 
-Hrun.CYCLE_INTERVAL = 100;
+Hrun.CYCLE_INTERVAL = 5000;
 
 Hrun.STORAGE_KEY = 'hrun-props';
