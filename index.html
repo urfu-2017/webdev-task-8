@@ -9,13 +9,14 @@
     <script type='text/javascript' src='./index.js'></script>
     <main class="game">
         <div class="stats">
-            <div class="hunger" id="hunger">100</div>
-            <div class="tireness" id="tireness">100</div>
+            <div class="eat" id="eat">100</div>
+            <div class="energy" id="energy">100</div>
             <div class="happy" id="happy">100</div>
         </div>
-        <div class="hrundel">
+        <div class="hrundel" id="hrundel">
             <img src="https://cloud.githubusercontent.com/assets/4534405/14706865/b8d57320-07da-11e6-9205-8dc4e838b8de.png">
         </div>
+        <input type="range" max='100' min='0' default='100' id='volume'>
         <div class="controls">
             <button id="feed">Покормить</button>
             <button id="sleep">Поспать</button>

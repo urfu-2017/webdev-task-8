@@ -1,6 +1,6 @@
-.hunger,
+.eat,
 .happy,
-.tireness,
+.energy,
 button {
     display: inline-block;
     width: 150px;
@@ -9,21 +9,21 @@ button {
     box-sizing: border-box;
 }
 
-.hunger::before {
-    content: "Голод: "
+.eat::before {
+    content: "Сытость: "
 }
 
 .happy::before {
     content: "Счастье: "
 }
 
-.tireness::before {
-    content: "Усталость: "
+.energy::before {
+    content: "Энергия: "
 }
 
-.hunger::after,
+.eat::after,
 .happy::after,
-.tireness::after {
+.energy::after {
     content: '%'
 }
 
