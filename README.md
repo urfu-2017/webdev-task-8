@@ -1,5 +1,5 @@
 # Задача «Гейб слишком занят»
-
+NOW LINK: https://my-little-kitty.now.sh/
 Перед выполнением задания внимательно прочитайте:
 
 - [О всех этапах проверки задания](https://github.com/urfu-2017/guides/blob/master/workflow/overall.md)
