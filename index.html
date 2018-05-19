@@ -1,10 +1,46 @@
 <!DOCTYPE html>
 <html lang="ru">
+
 <head>
     <meta charset="utf-8">
     <title>Хрюногочи</title>
     <link rel="stylesheet" href="./index.css">
+    <script src="./snap.svg.js"></script>
 </head>
+
 <body>
+    <div class="stat">Сытость:
+        <span class="stat__amount stat__amount_satiety"></span>
+    </div>
+    <div class="stat">Энергия:
+        <span class="stat__amount stat__amount_energy"></span>
+    </div>
+    <div class="stat">Настроение:
+        <span class="stat__amount stat__amount_mood"></span>
+    </div>
+    <button class="restart-button">Начать заново</button>
+    <button class="feed-button">Покормить</button>
+    <button class="sleep">Положить спать</button>
+    <button class="awake">Разбудить</button>
+    <div class="speech-log">Здесь будет ваша фраза</div>
+    <div class="battery-charging"></div>
+    <span>Громкость:</span>
+    <input type="range" class="volume" min="0" max="10">
+    <div class="death-text"></div>
+    <svg class="svg"></svg>
+
+    <script src="./scripts/animations.js"></script>
+    <script src="./scripts/state.js"></script>
+    <script src="./scripts/draw.js"></script>
+    <script src="./scripts/restart.js"></script>
+    <script src="./scripts/feed.js"></script>
+    <script src="./scripts/sound.js"></script>
+    <script src="./scripts/battery.js"></script>
+    <script src="./scripts/sleepAwake.js"></script>
+    <script src="./scripts/speech.js"></script>
+    <script src="./scripts/checksAndNotifications.js"></script>
+    <script src="./scripts/actions.js"></script>
+    <script src="./scripts/gameLoop.js"></script>
 </body>
+
 </html>
