@@ -66,10 +66,16 @@ body
 {
     text-align: center;
     background-color: white;
-    margin: 10px;
+    margin: 20px;
 }
 
 .hrundel-face
 {
     cursor: pointer;
+}
+
+.speech
+{
+    margin: 20px;
+    text-align: center;
 }
