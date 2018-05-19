@@ -24,3 +24,17 @@ window.addEventListener('blur', function (e) {
 window.addEventListener('focus', function (e) {
     awakening();
 });
+
+if ('AmbientLightSensor' in window) {
+    var sensor = new AmbientLightSensor();
+
+    sensor.addEventListener('reading', function (e) {
+        if (sensor.illuminance < 50) {
+            failingASleep();
+        } else {
+            awakening();
+        }
+    });
+
+    sensor.start();
+}
