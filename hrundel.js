@@ -109,6 +109,10 @@
             hruStorage.setObject('feedings', []);
         }
     };
-
-
+    if (hruStorage.getObject('naps') === null ||
+        hruStorage.getObject('games') === null ||
+        hruStorage.getObject('feedings') === null ||
+        hruStorage.getDate('bornDate') === null) {
+        window.hrundel.reborn();
+    }
 }());
