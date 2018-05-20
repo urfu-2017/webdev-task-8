@@ -221,6 +221,22 @@ function drawSleepEyes(s) {
     window.pig.eye2 = s.rect(125, 67, 20, 5);
 }
 
+function initLight() {
+    if ('AmbientLightSensor' in window) {
+        var sensor = new AmbientLightSensor();
+
+        sensor.addEventListener('reading', function () {
+            if (sensor.illuminance < 0.5) {
+                fallASleep();
+            } else {
+                wakeUp();
+            }
+        });
+
+        sensor.start();
+    }
+}
+
 if (navigator.getBattery) {
     navigator.getBattery().then(initBattery);
 } else {
@@ -228,6 +244,7 @@ if (navigator.getBattery) {
 }
 
 drawPig();
+initLight();
 initCharacteristics();
 initNotifications();
 initSounds();
