@@ -223,6 +223,7 @@ function drawSleepEyes(s) {
 
 function initLight() {
     if ('AmbientLightSensor' in window) {
+        // eslint-disable-next-line new-cap, no-undef
         var sensor = new AmbientLightSensor();
 
         sensor.addEventListener('reading', function () {
