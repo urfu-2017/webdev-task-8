@@ -12,53 +12,63 @@ let volume = 1;
 
 class HrundelView {
     constructor() {
-        const svg = Snap("#svg");
-
+        const svg = Snap("#hrundel__image");
         this.face = svg.circle(75, 75, 50);
-        const leftEye = svg.circle(50, 60, 5);
-        const rightEye = svg.circle(100, 60, 5);
-        const nose = svg.circle(75, 90, 20);
-        const rightNose = svg.circle(65, 90, 5);
-        const leftNose = svg.circle(85, 90, 5);
-
-        this.eyes = [leftEye, rightEye];
-        this.noses = [nose, leftNose, rightNose];
+        this.nose = svg.circle(75, 90, 20);
+        this.noses = [this.nose, svg.circle(65, 90, 5), svg.circle(85, 90, 5)];
+        this.eyes = [svg.circle(50, 60, 5), svg.circle(100, 60, 5)];
     }
+
+    animateGroup(group, animation, timeout = 0, cb) {
+        group.forEach(element => {
+            element.animate(animation, timeout)
+        });
+        if (cb) {
+            setTimeout(() => cb(), timeout)
+        }
+    }
+
+    attrGroup(group, obj) {
+        group.forEach(element => {
+            element.attr(obj);
+        });
+    }
+
 
     start() {
         this.face.attr({ fill: '#FDD7E4' });
-        this.noses.forEach(e => { e.attr({ fill: 'white', stroke: 'black' }) });
-        this.noses[0].attr({ fill: '#FDD7E4' });
-        this.eyes.forEach(eye => eye.attr({ fill: 'white', r: 5, stroke: 'black' }));
+        this.attrGroup(this.noses, { fill: 'white', stroke: 'black' });
+        this.nose.attr({ fill: '#FDD7E4' });
+        this.attrGroup(this.eyes, { fill: 'white', r: 5, stroke: 'black' });
     }
 
     ressurect() {
         this.face.animate({ fill: '#FDD7E4' }, 1000);
-        this.noses.forEach(e => { e.animate({ fill: 'white', stroke: 'black' }, 1000) });
-        this.noses[0].animate({ fill: '#FDD7E4' }, 1000);
-        this.eyes.forEach(eye => eye.animate({ fill: 'white', r: 5 }, 1000));
+        this.animateGroup(this.noses, { fill: 'white', stroke: 'black' }, 1000);
+        this.nose.animate({ fill: '#FDD7E4' }, 1000);
+        this.animateGroup(this.eyes, { fill: 'white', r: 5 }, 1000);
     }
 
     sleep() {
-        this.eyes.forEach(eye => eye.animate({ r: 1 }, 500));
+        this.animateGroup(this.eyes, { r: 1 }, 500);
     }
 
     die() {
         this.face.animate({ fill: 'grey' }, 500);
-        this.noses[0].animate({ fill: 'grey' }, 500);
-        this.eyes.forEach(eye => eye.animate({ r: 0 }, 500));
+        this.nose.animate({ fill: 'grey' }, 500);
+        this.animateGroup(this.eyes, { r: 0 }, 500);
     }
 
     wakeUp() {
-        this.eyes.forEach(eye => eye.animate({ r: 5 }, 500));
+        this.animateGroup(this.eyes, { r: 5 }, 500);
     }
 
     happy() {
-        this.noses.forEach(e => { e.animate({ cy: 100 }, 500) });
-        this.eyes.forEach(eye => eye.animate({ r: 10 }, 500, null, () => {
-            this.noses.forEach(e => { e.animate({ cy: 90 }, 500) });
-            this.eyes.forEach(eye => eye.animate({ r: 5 }, 500));
-        }));
+        this.animateGroup(this.noses, { cy: 100 }, 500);
+        this.animateGroup(this.eyes, { r: 10 }, 500, () => {
+            this.animateGroup(this.noses, { cy: 90 }, 500);
+            this.animateGroup(this.eyes, { r: 5 }, 500);
+        });
     }
 }
 
@@ -131,7 +141,7 @@ function gameOver() {
 
 function setAction(newAction) {
     action = newAction;
-    if (action === 'energy' && play) {
+    if (action === 'energy' && play && stats[action] !== 100) {
         hrundelView.sleep();
     }
 }

@@ -1,6 +1,6 @@
-.eat,
-.happy,
-.energy,
+.stats__eat,
+.stats__happy,
+.stats__energy,
 button
 {
     display: inline-block;
@@ -10,24 +10,24 @@ button
     box-sizing: border-box;
 }
 
-.eat::before
+.stats__eat::before
 {
     content: 'Сытость: ';
 }
 
-.happy::before
+.stats__happy::before
 {
     content: 'Счастье: ';
 }
 
-.energy::before
+.stats__energy::before
 {
     content: 'Энергия: ';
 }
 
-.eat::after,
-.happy::after,
-.energy::after
+.stats__eat::after,
+.stats__happy::after,
+.stats__energy::after
 {
     content: '%';
 }
