@@ -55,7 +55,6 @@ if (SpeechRecognition) {
 
     recognizer.onend = () => {
         hru.speaking = false;
-        heroSpeech.textContent = 'Я готов поговорить';
         drawer.stopSpeak();
     };
 

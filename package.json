@@ -17,7 +17,6 @@
     "stylelint-config-hrundel": "1.0.3"
   },
   "dependencies": {
-    "eve": "0.5.4",
     "snapsvg": "0.5.1"
   }
 }
