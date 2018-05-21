@@ -1,4 +1,5 @@
-"use strict"
+'use strict';
+/* eslint-disable */
 
 let action = null;
 let stats = null;
@@ -226,7 +227,7 @@ function hrundelOnClick(Recognizer) {
 
 window.onload = () => {
     initGame();
-    document.getElementById('new game').onclick = () => {
+    document.getElementById('new-game').onclick = () => {
         if (!play) {
             hrundelView.ressurect();
         }

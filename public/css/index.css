@@ -1,7 +1,8 @@
 .eat,
 .happy,
 .energy,
-button {
+button
+{
     display: inline-block;
     width: 150px;
     margin: 10px;
@@ -9,36 +10,43 @@ button {
     box-sizing: border-box;
 }
 
-.eat::before {
-    content: "Сытость: "
+.eat::before
+{
+    content: 'Сытость: ';
 }
 
-.happy::before {
-    content: "Счастье: "
+.happy::before
+{
+    content: 'Счастье: ';
 }
 
-.energy::before {
-    content: "Энергия: "
+.energy::before
+{
+    content: 'Энергия: ';
 }
 
 .eat::after,
 .happy::after,
-.energy::after {
-    content: '%'
+.energy::after
+{
+    content: '%';
 }
 
-.game {
+.game
+{
     display: flex;
     flex-direction: column;
     align-items: center;
 }
 
-.hrundel {
+.hrundel
+{
     padding: 25px;
     box-sizing: border-box;
     width: 200px;
 }
 
-svg {
+svg
+{
     width: 100%;
 }
