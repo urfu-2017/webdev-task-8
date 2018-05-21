@@ -3,8 +3,27 @@
 <head>
     <meta charset="utf-8">
     <title>Хрюногочи</title>
-    <link rel="stylesheet" href="./index.css">
+    <link rel="stylesheet" href="/css/index.css">
 </head>
 <body>
+    <main class="game">
+        <div class="stats">
+            <div class="stats__eat" id="eat">100</div>
+            <div class="stats__energy" id="energy">100</div>
+            <div class="stats__happy" id="happy">100</div>
+        </div>
+        <div class="hrundel" id="hrundel">
+            <svg id="hrundel__image"></svg>
+        </div>
+        <input type="range" max="100" min="0" value="100" id="volume">
+        <span id="recognized-text"></span>
+        <div class="controls">
+            <button id="feed">Покормить</button>
+            <button id="sleep">Поспать</button>
+            <button id="new-game">Новая игра</button>
+        </div>
+    </main>
+    <script type="text/javascript" src="/js/snap.svg-min.js"></script>
+    <script type="text/javascript" src="/js/index.js"></script>
 </body>
 </html>

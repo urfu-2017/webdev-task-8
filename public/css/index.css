@@ -1,0 +1,52 @@
+.stats__eat,
+.stats__happy,
+.stats__energy,
+button
+{
+    display: inline-block;
+    width: 150px;
+    margin: 10px;
+    text-align: center;
+    box-sizing: border-box;
+}
+
+.stats__eat::before
+{
+    content: 'Сытость: ';
+}
+
+.stats__happy::before
+{
+    content: 'Счастье: ';
+}
+
+.stats__energy::before
+{
+    content: 'Энергия: ';
+}
+
+.stats__eat::after,
+.stats__happy::after,
+.stats__energy::after
+{
+    content: '%';
+}
+
+.game
+{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.hrundel
+{
+    padding: 25px;
+    box-sizing: border-box;
+    width: 200px;
+}
+
+svg
+{
+    width: 100%;
+}
