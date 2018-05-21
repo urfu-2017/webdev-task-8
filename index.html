@@ -3,10 +3,9 @@
 <head>
     <meta charset="utf-8">
     <title>Хрюногочи</title>
-    <link rel="stylesheet" href="./index.css">
+    <link rel="stylesheet" href="/css/index.css">
 </head>
 <body>
-    <script type='text/javascript' src='./index.js'></script>
     <main class="game">
         <div class="stats">
             <div class="eat" id="eat">100</div>
@@ -14,14 +13,17 @@
             <div class="happy" id="happy">100</div>
         </div>
         <div class="hrundel" id="hrundel">
-            <img src="https://cloud.githubusercontent.com/assets/4534405/14706865/b8d57320-07da-11e6-9205-8dc4e838b8de.png">
+            <svg id='svg'></svg>
         </div>
         <input type="range" max='100' min='0' default='100' id='volume'>
+        <span id="recognized-text"></span>
         <div class="controls">
             <button id="feed">Покормить</button>
             <button id="sleep">Поспать</button>
             <button id="new game">Новая игра</button>
         </div>
     </main>
+    <script type='text/javascript' src='/js/snap.svg-min.js'></script>
+    <script type='text/javascript' src='/js/index.js'></script>
 </body>
 </html>

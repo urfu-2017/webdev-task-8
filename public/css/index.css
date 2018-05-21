@@ -1,0 +1,44 @@
+.eat,
+.happy,
+.energy,
+button {
+    display: inline-block;
+    width: 150px;
+    margin: 10px;
+    text-align: center;
+    box-sizing: border-box;
+}
+
+.eat::before {
+    content: "Сытость: "
+}
+
+.happy::before {
+    content: "Счастье: "
+}
+
+.energy::before {
+    content: "Энергия: "
+}
+
+.eat::after,
+.happy::after,
+.energy::after {
+    content: '%'
+}
+
+.game {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.hrundel {
+    padding: 25px;
+    box-sizing: border-box;
+    width: 200px;
+}
+
+svg {
+    width: 100%;
+}
