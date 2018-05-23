@@ -1,20 +1,24 @@
 html,
-body {
+body
+{
     margin: 0;
     padding: 0;
     height: 100%;
 }
 
-body {
+body
+{
     display: flex;
 }
 
-header {
+header
+{
     text-align: center;
     margin-bottom: 1em;
 }
 
-.game {
+.game
+{
     width: 35%;
     margin: auto;
     border: 2px black solid;
@@ -22,7 +26,8 @@ header {
 }
 
 .state,
-.controls {
+.controls
+{
     display: flex;
     justify-content: space-between;
 }
@@ -33,18 +38,21 @@ header {
     text-align: center;
 }
 
-.controls__item {
+.controls__item
+{
     padding: 5px 10px;
     font-size: 15px;
 }
 
-.hero {
+.hero
+{
     margin: 10px;
     display: flex;
     flex-direction: column;
     align-items: center;
 }
 
-.hero__speech {
+.hero__speech
+{
     margin: 10px;
 }
