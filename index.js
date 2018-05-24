@@ -62,6 +62,7 @@ window.addEventListener('blur', () => {
 
 window.addEventListener('focus', () => {
     hru.sleeping = false;
+    drawer.animateWake();
 });
 
 document.querySelector('.controls__item.reset')

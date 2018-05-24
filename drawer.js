@@ -1,8 +1,8 @@
-'use srtict';
-
+/* global mina:true*/
 import snap from 'snapsvg';
 
 class Drawer {
+
     drawHero() {
         this.layout = snap('.hero__picture');
         this.head = this.layout.circle(60, 50, 50).attr({ fill: '#cca0a0' });
@@ -33,6 +33,13 @@ class Drawer {
         this.mouth.animate({ d: 'M20,80C40,60,80,60,100,80' }, 1000);
     }
 
+    animateWake() {
+        this.eyes.attr({ fill: 'none' }).animate({ fill: '#CF4D6F' }, 1500, mina.easeinout);
+        this.paws.animate({ transform: 't0, 2' }, 500, mina.easein, () => {
+            this.paws.animate({ transform: 't0, -2' }, 500, mina.easein);
+        });
+    }
+
     stopSpeak() {
         if (this.ears) {
             this.ears.attr({ opacity: 0 });
@@ -42,7 +49,7 @@ class Drawer {
     startSpeak() {
         this.ears = this.layout.group(this.layout.polygon([14, 30, 40, 4, 0, 0]),
             this.layout.polygon([106, 30, 80, 4, 110, 0]));
-        this.ears.attr({ fill: '#b85f69' });
+        this.ears.attr({ fill: '#b85f69' }, 10000, mina.easein);
     }
 }
 
