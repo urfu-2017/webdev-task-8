@@ -1,5 +1,4 @@
 const Notification = window.Notification || window.webkitNotification;
-const AudioContext = window.AudioContext || window.webkitAudioContext;
 const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
 
 const MAX_POINTS = 100;
@@ -8,10 +7,10 @@ const MIN_POINTS = 10;
 var hero;
 
 const heroActions = {
-    none: "NONE",
-    eating: "EATING",
-    sleeping: "SLEEPING",
-    listening: "LISTENING",
+    none: 'NONE',
+    eating: 'EATING',
+    sleeping: 'SLEEPING',
+    listening: 'LISTENING'
 };
 
 class Hero {
@@ -21,12 +20,13 @@ class Hero {
         this.mood = MAX_POINTS;
         this.action = heroActions.none;
         this.speechRecognizer = getSpeechRecognizer();
-        this.recognizedText = "";
+        this.recognizedText = '';
     }
 
     constructor(state) {
         if (!state) {
             this.setDefaults();
+
             return;
         }
         this.health = state.health;
@@ -56,9 +56,9 @@ class Hero {
             return;
         }
 
-		this.health = Math.max(0, this.health - 10);
-		this.energy = Math.max(0, this.energy - 10);
-		this.mood = Math.max(0, this.mood - 1);
+        this.health = Math.max(0, this.health - 10);
+        this.energy = Math.max(0, this.energy - 10);
+        this.mood = Math.max(0, this.mood - 1);
 
         if (this.health <= MIN_POINTS) {
             this.notify('Здоровье');
@@ -114,7 +114,7 @@ class Hero {
         this.speechRecognizer.start();
     }
 
-    
+
 }
 
 function getSpeechRecognizer() {
@@ -133,11 +133,13 @@ function getSpeechRecognizer() {
             }
             this.recognizedText = '';
             this.mood = Math.min(this.mood + 10, MAX_POINTS);
-            for (let i = recognizedTextEvent.resultIndex; i < recognizedTextEvent.results.length; i += 1) {
+            for (let i = recognizedTextEvent.resultIndex;
+                i < recognizedTextEvent.results.length; i += 1) {
                 this.recognizedText += recognizedTextEvent.results[i][0].transcript;
-            };
-        }
+            }
+        };
     }
+
     return speechRecognizer;
 }
 
@@ -150,10 +152,11 @@ function render() {
     document.getElementById('recognizedText').textContent = hero.recognizedText;
 
     if (hero.isDead()) {
+        // eslint-disable-next-line
         alert('Busted!');
     }
     saveState();
-};
+}
 
 function saveState() {
     document.cookie = `state=${JSON.stringify(hero.getState())}`;
@@ -162,16 +165,18 @@ function saveState() {
 function getHeroFromState() {
     if (document.cookie) {
         const oldState = JSON.parse(document.cookie.split('=')[1]);
+
         return new Hero(oldState);
-    } else {
-        return new Hero();
     }
+
+    return new Hero();
 }
 
 window.onload = () => {
     hero = getHeroFromState();
 
     document.getElementById('eat').onclick = () => hero.eat();
+    // eslint-disable-next-line
     document.getElementById('restart').onclick = () => hero = new Hero();
     document.querySelector('.hero__avatar').onclick = () => hero.listen();
 
